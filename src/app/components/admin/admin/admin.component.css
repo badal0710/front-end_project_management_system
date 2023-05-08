@@ -1,0 +1,13 @@
+.main{
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar{
+    display: block;
+}
+
+
+.content{
+    display: block;
+}

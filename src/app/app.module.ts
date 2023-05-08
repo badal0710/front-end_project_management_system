@@ -6,20 +6,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { AdminComponent } from './components/admin/admin/admin.component';
+import { InvestorComponent } from './components/investor/investor/investor.component';
+import { ContractorComponent } from './components/contractor/contractor/contractor.component';
+import { ReleasePageComponent } from './components/release-page/release-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent,
+    AdminComponent,
+    InvestorComponent,
+    ContractorComponent,
+    ReleasePageComponent,
   ],
   imports: [
     FormsModule,

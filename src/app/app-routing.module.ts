@@ -5,8 +5,10 @@ import { AdminComponent } from './components/admin/admin/admin.component';
 import { ContractorComponent } from './components/contractor/contractor/contractor.component';
 import { InvestorComponent } from './components/investor/investor/investor.component';
 import { ReleasePageComponent } from './components/release-page/release-page.component';
+import { LoginsComponent } from './components/logins/logins.component';
 
 const routes: Routes = [
+
   {
     path: '',
     redirectTo: 'release',
@@ -19,6 +21,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'logins',
+    component: LoginsComponent
   },
   {
     path: 'admin',

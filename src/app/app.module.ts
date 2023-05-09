@@ -16,6 +16,8 @@ import { AdminComponent } from './components/admin/admin/admin.component';
 import { InvestorComponent } from './components/investor/investor/investor.component';
 import { ContractorComponent } from './components/contractor/contractor/contractor.component';
 import { ReleasePageComponent } from './components/release-page/release-page.component';
+import { FooterComponent } from './components/admin/footer/footer.component';
+import { HeaderComponent } from './components/admin/header/header.component';
 
 
 @NgModule({
@@ -26,6 +28,8 @@ import { ReleasePageComponent } from './components/release-page/release-page.com
     InvestorComponent,
     ContractorComponent,
     ReleasePageComponent,
+    FooterComponent,
+    HeaderComponent,
   ],
   imports: [
     FormsModule,

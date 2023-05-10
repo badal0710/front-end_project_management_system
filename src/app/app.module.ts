@@ -21,7 +21,11 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule, S
 import {
   GoogleLoginProvider
 } from '@abacritt/angularx-social-login';
-import { LoginsComponent } from './components/logins/logins.component';
+import { LoginsComponent } from './components/logins/logins.component'; import { FooterComponent } from './components/admin/footer/footer.component';
+import { HeaderComponent } from './components/admin/header/header.component';
+import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { LoginsComponent } from './components/logins/logins.component';
     InvestorComponent,
     ContractorComponent,
     ReleasePageComponent,
+    FooterComponent,
+    HeaderComponent,
+    SidebarComponent,
+    DashboardComponent,
   ],
   imports: [
     FormsModule,

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin/admin.component';
@@ -6,6 +6,7 @@ import { ContractorComponent } from './components/contractor/contractor/contract
 import { InvestorComponent } from './components/investor/investor/investor.component';
 import { ReleasePageComponent } from './components/release-page/release-page.component';
 import { LoginsComponent } from './components/logins/logins.component';
+import { TaskDetailsComponent } from './components/admin/task-details/task-details.component';
 
 const routes: Routes = [
 
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent
+  },
+  {
+    path: 'task-details',
+    component: TaskDetailsComponent
   },
   {
     path: 'contractor',

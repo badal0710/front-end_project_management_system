@@ -26,6 +26,9 @@ import { HeaderComponent } from './components/admin/header/header.component';
 import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
+import { TaskDetailsComponent } from './components/admin/task-details/task-details.component';
+
+
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
     HeaderComponent,
     SidebarComponent,
     DashboardComponent,
+    TaskDetailsComponent
   ],
   imports: [
     FormsModule,

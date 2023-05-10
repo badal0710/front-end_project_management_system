@@ -1,0 +1,71 @@
+<p>task-details works!</p>
+<div class="container-fluid">
+
+    <div class="card shadow p-3 mb-3">
+
+        <h1> Task's list </h1>
+
+
+
+
+        <div class="border border-success p-3 mb-3">
+            <table class="table p3 mb-3">
+
+                <thead>
+                    <td><b> taskId </b></td>
+                    <td> <b> taskName </b></td>
+                    <td><b>taskStartingDate</b></td>
+
+                    <td><b>taskDeadLine</b></td>
+                    <td> <b> allocatedBudget </b></td>
+
+
+                    <td><b>contractorName</b></td>
+
+                    <td><b>taskStatus</b></td>
+                    <td><b>Actions</b></td>
+
+                </thead>
+
+                <br>
+
+                <tbody>
+
+                    <tr *ngFor="let item of data">
+                        <td> {{item.taskId}}</td>
+                        <td> {{item.taskName}} </td>
+                        <td>{{item.taskStartingDate}}</td>
+
+                        <td>{{item.taskDeadLine}}</td>
+                        <td> {{ item.allocatedBudget }} </td>
+
+
+                        <td>{{item.contractorName}}</td>
+                        <td>{{item.taskStatus}}</td>
+                        <td><button>Update</button> &nbsp; <button>Delete</button></td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- <h2>Get Request("http://localhost:9090/project/AllProjects")</h2>
+<table>
+    <tr>
+        <td>projectId</td>
+        <td>projectDeadline</td>
+        <td>projectName</td>
+        <td>projectStartingDate</td>
+        <td>projectStatus</td>
+        <td>projectTypeName</td>
+    </tr>
+    <tr *ngFor="let products of data">
+        <td>{{products.projectId}}</td>
+        <td>{{products.projectName}}</td>
+    </tr>
+</table> -->

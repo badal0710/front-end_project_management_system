@@ -16,28 +16,21 @@ export class DashboardComponent implements OnInit {
   
   ngOnInit(): void {
     this.createChart(this.colors,this.values);
+    this.projects();
   }
 
+  // chart
   @Input() colors!: any[];
   @Input() values!: any[];
 
+  // chart
   chart: any;
 
-  items = [
-    {
-      id: 1,
-      name: 'manoj',
-      status: 'active',
-      action: 'add'
-    },
-    {
-      id: 2,
-      name: 'dsds',
-      status: 'block',
-      action: 'remove'
-    }
-  ];
+  //project
+  ProjectValue: any[]=[];
+  ProjectKeys: any=[];
 
+  // breadcrumbs
   myBreadCrumbs:any = [
     {
       name:'item1',
@@ -76,6 +69,17 @@ export class DashboardComponent implements OnInit {
       }
 
     });
+  }
+
+  projects(){
+    this.adminService.getAllProject().subscribe((projects:any)=>{
+      for(let project of projects){
+        this.ProjectKeys.push(Object.keys(project))
+        this.ProjectValue.push(Object.values(project));
+      }
+      console.log(this.ProjectKeys);
+      console.log(this.ProjectValue);
+    })
   }
 
 

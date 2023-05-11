@@ -1,1 +1,22 @@
-<p>table works!</p>
+<div class="card shadow p-3 mt-4">
+    <h1> Project's list </h1>
+
+    <div class="p-3 mb-3">
+
+        <table class="table p3 mb-3">
+            <thead style="background-color:aliceblue; height: 30px;align-items: center;justify-content: center;">
+                <tr>
+                    <td *ngFor="let k of keys[0]"> <b> {{ k }} </b></td>
+                </tr>
+            </thead>
+            <br>
+            <tbody>
+                <tr *ngFor="let value of values">
+                    <td *ngFor="let v of value"> {{ v }}  </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</div>

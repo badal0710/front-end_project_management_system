@@ -27,6 +27,7 @@ import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 import { TaskDetailsComponent } from './components/admin/task-details/task-details.component';
+import { BreadcrumbsComponent } from './components/admin/breadcrumbs/breadcrumbs.component';
 
 
 
@@ -43,7 +44,8 @@ import { TaskDetailsComponent } from './components/admin/task-details/task-detai
     HeaderComponent,
     SidebarComponent,
     DashboardComponent,
-    TaskDetailsComponent
+    TaskDetailsComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     FormsModule,

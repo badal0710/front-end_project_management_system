@@ -28,10 +28,30 @@ export class DashboardComponent implements OnInit {
 
   chart: any;
 
+  myBreadCrumbs:any = [
+    {
+      name:'item1',
+      url:'url1'
+    },
+    {
+      name:'item2',
+      url:'url2'
+    },
+    {
+      name:'item3',
+      url:'https://www.google.com'
+    },
+    {
+      name:'item4',
+      url:'url2'
+    },
+  ];
+
   constructor() {
+    //comment
   }
+
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
     this.createChart(this.data,this.type);
   }
 

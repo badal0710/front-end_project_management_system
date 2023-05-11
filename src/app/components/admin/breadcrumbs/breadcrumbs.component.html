@@ -1,0 +1,5 @@
+<ol class="breadcrumb">
+    <span class="breadcrump-item" *ngFor="let item of myBreadCrumbs">
+    <li class="breadcrump-item"> <span *ngIf="myBreadCrumbs.indexOf(item) !== 0"> &nbsp; / &nbsp; </span> <a href="{{ item.url }}"> {{ item.name }} </a>  </li>
+    </span>
+</ol>

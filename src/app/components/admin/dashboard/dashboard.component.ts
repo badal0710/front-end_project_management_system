@@ -1,12 +1,27 @@
 import { Component, Input, OnInit } from '@angular/core';
 import Chart, { ChartData } from 'chart.js/auto';
 
+import { AdminService } from 'src/app/services/admin/admin.service';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  
+  constructor(private adminService: AdminService) {
+    //comment
+  }
+  
+  ngOnInit(): void {
+    this.createChart(this.colors,this.values);
+  }
+
+  @Input() colors!: any[];
+  @Input() values!: any[];
+
+  chart: any;
 
   items = [
     {
@@ -22,11 +37,6 @@ export class DashboardComponent implements OnInit {
       action: 'remove'
     }
   ];
-
-  @Input() data!: ChartData;
-  @Input() type!: string;
-
-  chart: any;
 
   myBreadCrumbs:any = [
     {
@@ -47,25 +57,26 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  constructor() {
-    //comment
-  }
-
-  ngOnInit(): void {
-    this.createChart(this.data,this.type);
-  }
-
-  createChart(data: ChartData, type:String) {
+  createChart(colors: any[], values:any[]) {
 
     this.chart = new Chart("MyChart", {
       type: 'doughnut', //this denotes tha type of chart
 
-      data: this.data,
+      data: {
+        labels: colors, //color
+        datasets: [{
+          label: 'My First Dataset',
+          data: values, //value
+          backgroundColor: colors, //color
+          hoverOffset: 4
+        }],
+      },
       options: {
         aspectRatio: 2.5
       }
 
     });
   }
+
 
 }

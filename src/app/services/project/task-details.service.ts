@@ -11,7 +11,7 @@ export class TaskDetailsService {
 
   constructor(private http: HttpClient) { }
 
-  getData(): Observable<any> {
+  getData(id:any): Observable<any> {
     return this.http.get(this.apiUrl);
 
 

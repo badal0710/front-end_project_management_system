@@ -7,41 +7,52 @@ import { InvestorComponent } from './components/investor/investor/investor.compo
 import { ReleasePageComponent } from './components/release-page/release-page.component';
 import { LoginsComponent } from './components/logins/logins.component';
 import { TaskDetailsComponent } from './components/admin/task-details/task-details.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { ProjectDetailsComponent } from './components/admin/project-details/project-details.component';
 
 const routes: Routes = [
 
   {
-    path: '',
-    redirectTo: 'release',
-    pathMatch: 'full'
+    path: '', component: ReleasePageComponent
+  },
+  // {
+  //   path: 'login',component: LoginComponent
+  // },
+  // {
+  //   path: 'logins',component: LoginsComponent
+  // },
+  {
+    path: 'admin',component: AdminComponent,
+    children: [
+      {
+        path: '', component: DashboardComponent
+      },
+      {
+        path: 'dashboard', component: DashboardComponent
+      },
+      {
+        path: 'projects', component: ProjectDetailsComponent
+      },
+      {
+        path: 'projects/:id', component: ProjectDetailsComponent
+      },
+      {
+        path: 'tasks', component: TaskDetailsComponent
+      },
+      {
+        path: 'tasks/:id', component: TaskDetailsComponent
+      }
+    ]
+    
+  },
+  // {
+  //   path: 'task-details/:id',component: TaskDetailsComponent
+  // },
+  {
+    path: 'contractor',component: ContractorComponent
   },
   {
-    path: 'release',
-    component: ReleasePageComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'logins',
-    component: LoginsComponent
-  },
-  {
-    path: 'admin',
-    component: AdminComponent
-  },
-  {
-    path: 'task-details',
-    component: TaskDetailsComponent
-  },
-  {
-    path: 'contractor',
-    component: ContractorComponent
-  },
-  {
-    path: 'investor',
-    component: InvestorComponent
+    path: 'investor',component: InvestorComponent
   },
 ];
 

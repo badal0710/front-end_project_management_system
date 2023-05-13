@@ -5,3 +5,7 @@
     margin-left: 15px;
     font-size: 25px;
 }
+
+header{
+    border-bottom: 1px solid black;
+}

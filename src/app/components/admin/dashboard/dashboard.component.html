@@ -7,14 +7,12 @@
     </div>
 
      <!-- ============= Tables ================= -->
-    <app-table [TableName]="ProjectName" [TableKeys]="ProjectKeys"  [TableValue]="ProjectValue"></app-table>
-    <app-table [TableName]="TaskName" [TableValue]="TaskValue" [TableKeys]="TaskKeys"></app-table>
+    <app-table [TableName]="ProjectName" [TableAction]="ProjectAction" [TableKeys]="ProjectKeys"  [TableValue]="ProjectValue" [RowAction]="ProjectRowAction"></app-table>
 
 
-    <!-- ============== project Chart ================== -->
+    <!-- ============== Chart ================== -->
      <div class="card shadow p-3 mt-4">
-        <app-charts [chartName]="chartName1" [chartType]="chartType1" [chartLabel]="chartLabel1" [chartValue]="chartValue1"></app-charts>
-        <app-charts [chartName]="chartName2" [chartType]="chartType2" [chartLabel]="chartLabel2" [chartValue]="chartValue2"></app-charts>
+        <app-charts [chartName]="projectChartName" [chartType]="projectChartType" [chartLabel]="projectChartLabel" [chartValue]="projectChartValue"></app-charts>
     </div>
     
 </div>

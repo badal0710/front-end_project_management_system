@@ -12,14 +12,21 @@ export class TableComponent implements OnInit {
   @Input() TableKeys!:any[];
   @Input() TableValue!:any[];
   @Input() TableName!:any[];
+  @Input() TableAction!:any[];
+  @Input() RowAction!:any[];
 
   public keys:any[]=[];
   public values:any[]=[];
+  public actions:any[]=[];
+  public rowAction:any;
+  public tableAction:any;
 
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
     this.keys=this.TableKeys;
     this.values=this.TableValue;
+    this.actions=this.RowAction;
+    this.rowAction=this.RowAction;
+    this.tableAction=this.TableAction;
   }
 
 }

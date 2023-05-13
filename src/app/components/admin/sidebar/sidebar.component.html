@@ -1,35 +1,29 @@
-<div id="sideContent" class="offcanvas offcanvas-start shadow" style="margin-top: 80px;border: 0;z-index: 1;" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
-  <div class="offcanvas-header">
+<div id="sideContent" class="offcanvas offcanvas-start " style="margin-top: 80px;z-index: 1;" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+  <!-- <div class="offcanvas-header">
     <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Colored with scrolling</h5>
-  </div>
+  </div> -->
   <div class="offcanvas-body">
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link active" aria-current="page">
-          <i class="bi bi-house" width="16" height="16"></i>
-          Home
-        </a>
-      </li>
+    <ul class="nav nav-pills flex-column mb-auto p-3">
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a routerLink="dashboard" class="nav-link link-dark nav-active" routerLinkActive="active">
             <i class="bi bi-house" width="16" height="16"></i>
           Dashboard
         </a>
       </li>
-      <li>
-        <a href="#" class="nav-link link-dark">
+      <!-- <li>
+        <a routerLink="projects" class="nav-link link-dark" routerLinkActive="active">
             <i class="bi bi-house" width="16" height="16"></i>
-          Orders
+          Projects
         </a>
       </li>
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a routerLink="tasks" class="nav-link link-dark" routerLinkActive="active">
             <i class="bi bi-house" width="16" height="16"></i>
-          Products
+          Tasks
         </a>
-      </li>
+      </li> -->
       <li>
-        <a href="#" class="nav-link link-dark">
+        <a routerLink="#" class="nav-link link-dark" routerLinkActive="active">
             <i class="bi bi-house" width="16" height="16"></i>
           Customers
         </a>

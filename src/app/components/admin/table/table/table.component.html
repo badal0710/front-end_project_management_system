@@ -1,5 +1,9 @@
 <div class="card shadow p-3 mt-4">
-    <h1> {{ TableName }} </h1>
+    <div class="container-fluid" style="display: flex; justify-content: space-between;">
+        <h1> {{ TableName }} </h1>
+        <a routerLink=""> <button class="btn btn-outline-info">  {{ tableAction }} </button> </a>
+      </div>
+      
 
     <div class="p-3 mb-3" style="overflow-x:auto;">
 
@@ -7,13 +11,17 @@
             <thead style="background-color:aliceblue; height: 30px;align-items: center;justify-content: center;">
                 <tr>
                     <td *ngFor="let k of keys[0]"> <b> {{ k }} </b></td>
+                    <td colspan="2"> <b> Action </b> </td>
                 </tr>
             </thead>
             <br>
             <tbody>
                 <tr *ngFor="let value of values">
                     <td *ngFor="let v of value"> {{ v }}  </td>
-                </tr>
+                    <td *ngFor="let action of actions">
+                        <a routerLink="/{{action[1]}}/{{value[0]}}"> <button class="btn btn-outline-success">  {{ action[0] }} </button> </a>
+                    </td>
+                </tr> 
             </tbody>
         </table>
 

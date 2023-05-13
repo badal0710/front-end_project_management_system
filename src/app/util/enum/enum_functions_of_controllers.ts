@@ -69,8 +69,10 @@ export enum enum_functions {
 
 
 
-
-
+    /**
+     *     @GetMapping("/all-task")
+     */
+    taskDetail_allTask = "all-task",
     /**
      *     @PostMapping("/create-task")
      */

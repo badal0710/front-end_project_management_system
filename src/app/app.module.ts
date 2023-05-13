@@ -30,6 +30,7 @@ import { TaskDetailsComponent } from './components/admin/task-details/task-detai
 import { BreadcrumbsComponent } from './components/admin/breadcrumbs/breadcrumbs.component';
 import { TableComponent } from './components/admin/table/table/table.component';
 import { ChartsComponent } from './components/admin/charts/charts.component';
+import { ProjectDetailsComponent } from './components/admin/project-details/project-details.component';
 
 
 
@@ -49,7 +50,8 @@ import { ChartsComponent } from './components/admin/charts/charts.component';
     TaskDetailsComponent,
     BreadcrumbsComponent,
     TableComponent,
-    ChartsComponent
+    ChartsComponent,
+    ProjectDetailsComponent,
   ],
   imports: [
     FormsModule,

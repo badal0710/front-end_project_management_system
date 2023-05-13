@@ -2,11 +2,24 @@
 
     <!-- ============= breadCrumbs And Title ================= -->
     <div>
-        <h1 style="font-size: 25px"> Project's </h1>
+        <h1 style="font-size: 25px"> Project </h1>
         <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
     </div>
 
-     <!-- ============= Tables ================= -->
+    <!-- ============= Details ================= -->
+    <div class="card shadow p-3 mt-4">
+
+            <h1 class="card-title">Project Details</h1><hr><br>
+
+            <div class="row" *ngFor="let title of ProjectTitle;let i = index">
+                <div class="col-lg-3 col-md-4 label ">  {{ title }}  </div>
+                <div class="col-lg-9 col-md-4"> 
+                    {{ ProjectDesc[i] }}  
+                </div>
+            </div>
+
+    </div>
+    <!-- ============= Tables ================= -->
     <app-table [TableName]="TaskName" [TableAction]="TableAction" [TableValue]="TaskValue" [TableKeys]="TaskKeys" [RowAction]="TaskRowAction"></app-table>
     
 </div>

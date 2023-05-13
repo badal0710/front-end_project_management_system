@@ -15,4 +15,8 @@ export class AdminService {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_getAllProject}`);
   }
 
+  getAllTask(){
+    return this.http.get(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_taskDetail}/1/filterDates`);
+  }
+
 }

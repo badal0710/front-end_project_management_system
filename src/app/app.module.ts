@@ -29,6 +29,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { TaskDetailsComponent } from './components/admin/task-details/task-details.component';
 import { BreadcrumbsComponent } from './components/admin/breadcrumbs/breadcrumbs.component';
 import { TableComponent } from './components/admin/table/table/table.component';
+import { ChartsComponent } from './components/admin/charts/charts.component';
 
 
 
@@ -47,7 +48,8 @@ import { TableComponent } from './components/admin/table/table/table.component';
     DashboardComponent,
     TaskDetailsComponent,
     BreadcrumbsComponent,
-    TableComponent
+    TableComponent,
+    ChartsComponent
   ],
   imports: [
     FormsModule,

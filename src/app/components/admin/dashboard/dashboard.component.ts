@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {  AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import Chart, { ChartData } from 'chart.js/auto';
 
 import { AdminService } from 'src/app/services/admin/admin.service';
@@ -8,27 +8,44 @@ import { AdminService } from 'src/app/services/admin/admin.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit,AfterViewInit {
   
-  constructor(private adminService: AdminService) {
-    //comment
+  constructor(private adminService: AdminService, private cd: ChangeDetectorRef) {
+  }
+  
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
   }
   
   ngOnInit(): void {
-    this.createChart(this.colors,this.values);
     this.projects();
+    this.tasks();
   }
 
   // chart
-  @Input() colors!: any[];
   @Input() values!: any[];
+  @Input() labels!: any[];
 
   // chart
-  chart: any;
+  chartName1="chartName1";
+  chartType1="pie";
+  chartLabel1=['1','2','3','4','5'];
+  chartValue1=[20,40,60,80,100];
+
+  chartName2="chartName1";
+  chartType2="doughnut";
+  chartLabel2=['1','2','3','4','5'];
+  chartValue2=[20,40,60,80,100];
 
   //project
   ProjectValue: any[]=[];
   ProjectKeys: any=[];
+  ProjectName: any="Project List";
+
+  //task
+  TaskValue: any[]=[];
+  TaskKeys: any=[];
+  TaskName: any="Task List";
 
   // breadcrumbs
   myBreadCrumbs:any = [
@@ -50,36 +67,25 @@ export class DashboardComponent implements OnInit {
     },
   ];
 
-  createChart(colors: any[], values:any[]) {
-
-    this.chart = new Chart("MyChart", {
-      type: 'doughnut', //this denotes tha type of chart
-
-      data: {
-        labels: colors, //color
-        datasets: [{
-          label: 'My First Dataset',
-          data: values, //value
-          backgroundColor: colors, //color
-          hoverOffset: 4
-        }],
-      },
-      options: {
-        aspectRatio: 2.5
-      }
-
-    });
-  }
-
+  // tables
   projects(){
     this.adminService.getAllProject().subscribe((projects:any)=>{
       for(let project of projects){
         this.ProjectKeys.push(Object.keys(project))
         this.ProjectValue.push(Object.values(project));
       }
-      console.log(this.ProjectKeys);
-      console.log(this.ProjectValue);
     })
+  }
+
+  tasks(){
+    this.adminService.getAllTask().subscribe((tasks:any)=>{
+      for(let task of tasks){
+        this.TaskKeys.push(Object.keys(task))
+        this.TaskValue.push(Object.values(task));
+      }
+    })
+    console.log(this.TaskKeys);
+    console.log(this.TaskValue);
   }
 
 

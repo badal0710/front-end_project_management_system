@@ -6,44 +6,15 @@
         <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
     </div>
 
-    <app-table [ProjectValue]="ProjectValue" [ProjectKeys]="ProjectKeys"></app-table>
-    <!-- ================ Project Table ================== -->
-    <!-- <div class="card shadow p-3 mt-4">
-        <h1> Project's list </h1>
+     <!-- ============= Tables ================= -->
+    <app-table [TableName]="ProjectName" [TableKeys]="ProjectKeys"  [TableValue]="ProjectValue"></app-table>
+    <app-table [TableName]="TaskName" [TableValue]="TaskValue" [TableKeys]="TaskKeys"></app-table>
 
-        <div class="p-3 mb-3">
-
-            <table class="table p3 mb-3">
-                <thead style="background-color:aliceblue; height: 30px;align-items: center;justify-content: center;">
-                    <td> <b> ID </b></td>
-                    <td> <b> Project Name </b> </td>
-                    <td> <b> Project Status </b> </td>
-                    <td> <b> Project Actions </b></td>
-                </thead>
-                <br>
-                <tbody>
-                    <tr *ngFor="let item of items">
-                        <td> {{ item.id }} </td>
-                        <td> {{ item.name }} </td>
-                        <td> {{ item.status }} </td>
-                        <td> {{ item.action }} </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div>
-
-    </div> -->
 
     <!-- ============== project Chart ================== -->
-    <div class="card shadow p-3 mt-4">
-        <div class="card-body">
-          <h5 class="card-title">Project's Chart</h5>
-    
-          <div class="chart-container">
-            <canvas  id="MyChart" >{{ chart }}</canvas>
-          </div>
-        </div>
+     <div class="card shadow p-3 mt-4">
+        <app-charts [chartName]="chartName1" [chartType]="chartType1" [chartLabel]="chartLabel1" [chartValue]="chartValue1"></app-charts>
+        <app-charts [chartName]="chartName2" [chartType]="chartType2" [chartLabel]="chartLabel2" [chartValue]="chartValue2"></app-charts>
     </div>
     
 </div>

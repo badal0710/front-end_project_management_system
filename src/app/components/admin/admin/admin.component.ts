@@ -14,21 +14,23 @@ export class AdminComponent implements OnInit {
   constructor( private adminService: AdminService ) { }
 
   // Chart
-  public projectStatus: Number[]=[];
-  public chartValues!:Number[];
-  public chartColors!:String[];
-
+  public chartValues!:any;
+  public chartLabels!:any;
+  
   ngOnInit(): void {
+    
+    let projectStatus: any[]=[];
+    let projectNames: any[]=[];
 
     // Chart 
     this.adminService.getAllProject().subscribe((items:any)=>{
         for(let item of items){
-          this.projectStatus.push(item.projectStatus);
+          projectStatus.push(item.projectStatus);
+          projectNames.push(item.projectName);
         }
       });
-
-    this.chartValues=this.projectStatus;
-    this.chartColors=['red'];
+    this.chartValues=projectStatus;
+    this.chartLabels=projectNames;
   }
 
 }

@@ -31,6 +31,7 @@ import { BreadcrumbsComponent } from './components/admin/breadcrumbs/breadcrumbs
 import { TableComponent } from './components/admin/table/table/table.component';
 import { ChartsComponent } from './components/admin/charts/charts.component';
 import { ProjectDetailsComponent } from './components/admin/project-details/project-details.component';
+import { CardsComponent } from './components/admin/cards/cards.component';
 
 
 
@@ -52,6 +53,7 @@ import { ProjectDetailsComponent } from './components/admin/project-details/proj
     TableComponent,
     ChartsComponent,
     ProjectDetailsComponent,
+    CardsComponent,
   ],
   imports: [
     FormsModule,

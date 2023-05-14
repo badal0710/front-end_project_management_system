@@ -29,6 +29,13 @@ export class DashboardComponent implements OnInit,AfterViewInit {
     }
   ];
 
+  // card
+  cardData1=['bi bi-person','Investor','20'];
+  cardData2=['bi bi-person','Contractor','30'];
+  cardData3=['bi bi-buildings','Projects','120'];
+  cardData4=['bi bi-currency-dollar','Funding','220'];
+
+
   // chart
   projectChartName="Project's Chart";
   projectChartType="pie";

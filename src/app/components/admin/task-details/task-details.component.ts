@@ -23,11 +23,7 @@ export class TaskDetailsComponent implements OnInit {
   myBreadCrumbs:any = [
       {
         name:'Home',
-        url: '../',
-      },
-      {
-        name:'tasks',
-        url:'tasks'
+        url: '../../',
       },
   ];
 

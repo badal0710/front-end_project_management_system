@@ -14,7 +14,8 @@ export class ChartsComponent implements AfterViewInit, OnInit {
   @Input() chartType:any;
   
   chart: any;
-  chartId:any
+  chartId:any;
+  isnull:any=false;
 
   public static count = 0;
   constructor(){
@@ -30,7 +31,6 @@ export class ChartsComponent implements AfterViewInit, OnInit {
   }
 
   createChart(chartId: any, chartType:any, chartValue:any, chartLabel:any) {
-
     let colors = this.getColors(chartValue);
     this.chart = new Chart(chartId, {
       type: chartType, //this denotes tha type of chart
@@ -47,8 +47,7 @@ export class ChartsComponent implements AfterViewInit, OnInit {
         aspectRatio: 4
       }
 
-    });
-    
+    }); 
   }
 
   getColors(values:any){

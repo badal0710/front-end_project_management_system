@@ -7,6 +7,14 @@
     </div>
 
      <!-- ============= Tables ================= -->
+    <div class="p-3 mt-4" style="display: flex;justify-content: space-between;flex-wrap: wrap;">
+        <app-cards [Data]="cardData1"></app-cards>
+        <app-cards [Data]="cardData2"></app-cards>
+        <app-cards [Data]="cardData3"></app-cards>
+        <app-cards [Data]="cardData4"></app-cards>
+    </div>
+
+     <!-- ============= Tables ================= -->
     <app-table [TableName]="ProjectName" [TableAction]="ProjectAction" [TableKeys]="ProjectKeys"  [TableValue]="ProjectValue" [RowAction]="ProjectRowAction"></app-table>
 
 

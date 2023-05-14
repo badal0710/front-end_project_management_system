@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/app/services/admin/admin.service';
 
@@ -7,7 +7,7 @@ import { AdminService } from 'src/app/services/admin/admin.service';
   templateUrl: './project-details.component.html',
   styleUrls: ['./project-details.component.css']
 })
-export class ProjectDetailsComponent implements OnInit {
+export class ProjectDetailsComponent implements OnInit,AfterViewInit {
 
   data: any = [];
 
@@ -21,7 +21,7 @@ export class ProjectDetailsComponent implements OnInit {
   TaskKeys: any = [];
   TaskName: any = "Task List";
   TableAction: any = ['Create Task'];
-  TaskRowAction: any = [['Update', 'admin/tasks/update'], ['Delete', 'admin/tasks/delete']];
+  TaskRowAction: any = [['View', 'admin/tasks']];
 
   // breadcrumbs
   myBreadCrumbs: any = [
@@ -38,6 +38,9 @@ export class ProjectDetailsComponent implements OnInit {
   taskChartValue:any=[];
 
   constructor(private adminService: AdminService, private route: ActivatedRoute, private cd:ChangeDetectorRef) { }
+  ngAfterViewInit(): void {
+    this.cd.detectChanges();
+  }
 
   ngOnInit(): void {
     // let id:any;

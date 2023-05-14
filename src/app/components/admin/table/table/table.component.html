@@ -5,7 +5,7 @@
       </div>
       
 
-    <div class="p-3 mb-3" style="overflow-x:auto;">
+    <div *ngIf="keys[0]" class="p-3 mb-3" style="overflow-x:auto;">
 
         <table class="table p3 mb-3">
             <thead style="background-color:aliceblue; height: 30px;align-items: center;justify-content: center;">
@@ -25,6 +25,10 @@
             </tbody>
         </table>
 
+    </div>
+
+    <div *ngIf="!keys[0]" class="p-3 mb-3" style="overflow-x:auto;">
+            <h1 style="text-align: center;"> No Data Available </h1>
     </div>
 
 </div>

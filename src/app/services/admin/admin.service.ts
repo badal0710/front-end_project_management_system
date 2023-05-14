@@ -19,7 +19,7 @@ export class AdminService {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_getOneProject}/${id}`);
   }
 
-  getAllTask(id:any){
+  getAllTaskOfOneProject(id:any){
     return this.http.get(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_taskDetail}/${id}/filterDates`);
   }
 

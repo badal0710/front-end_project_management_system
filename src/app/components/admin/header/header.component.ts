@@ -9,8 +9,8 @@ export class HeaderComponent {
 
   toggle:Boolean=false;
 
-  sidebarToggle(){
 
+  sidebarToggle(){
     if(!this.toggle){
       this.toggle=true;
       document.getElementById("sideContent")?.classList.add("content");

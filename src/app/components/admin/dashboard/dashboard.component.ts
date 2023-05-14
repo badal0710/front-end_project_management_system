@@ -25,8 +25,8 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   myBreadCrumbs:any = [
     {
       name:'Home',
-      url:'http://localhost:4200/admin'
-    },
+      url:'admin'
+    }
   ];
 
   // chart

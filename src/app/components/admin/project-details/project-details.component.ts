@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/app/services/admin/admin.service';
 
@@ -27,30 +27,34 @@ export class ProjectDetailsComponent implements OnInit {
   myBreadCrumbs: any = [
     {
       name: 'Home',
-      url: 'dashboard'
-    },
-    {
-      name: 'Projects',
-      url: 'Projects'
+      url: '../../'
     },
   ];
 
-  constructor(private adminService: AdminService, private route: ActivatedRoute) { }
+    // chart
+  taskChartName="Project's Chart";
+  taskChartType="pie";
+  taskChartLabel:any=[];
+  taskChartValue:any=[];
+
+  constructor(private adminService: AdminService, private route: ActivatedRoute, private cd:ChangeDetectorRef) { }
 
   ngOnInit(): void {
     // let id:any;
     let id = this.route.snapshot.paramMap.get("id");
     this.detailOfProject(id);
-    // this.tasksOfProject(id);
+    this.tasksOfProject(id);
   }
 
   tasksOfProject(id: any) {
-    this.adminService.getAllTasks().subscribe((tasks: any) => {
+    this.adminService.getAllTaskOfOneProject(id).subscribe((tasks: any) => {
       for (let task of tasks) {
         this.TaskKeys.push(Object.keys(task))
         this.TaskValue.push(Object.values(task));
-        console.log(task);
+        this.taskChartLabel.push(task.taskName);
+        this.taskChartValue.push(task.taskStatus);
       }
+      this.cd.detectChanges();
     })
   }
 
@@ -79,7 +83,7 @@ export class ProjectDetailsComponent implements OnInit {
 
   // tasks(id: any) {
   //   if (id == null) {
-  //     this.adminService.getAllTasks().subscribe((tasks: any) => {
+  //     this.adminService.getAllTaskOfOneProject(id).subscribe((tasks: any) => {
   //       for (let task of tasks) {
   //         this.TaskKeys.push(Object.keys(task))
   //         this.TaskValue.push(Object.values(task));
@@ -87,7 +91,7 @@ export class ProjectDetailsComponent implements OnInit {
   //       }
   //     })
   //   } else {
-  //     this.adminService.getAllTask(id).subscribe((tasks: any) => {
+  //     this.adminService.getAllTasks().subscribe((tasks: any) => {
   //       for (let task of tasks) {
   //         this.TaskKeys.push(Object.keys(task))
   //         this.TaskValue.push(Object.values(task));

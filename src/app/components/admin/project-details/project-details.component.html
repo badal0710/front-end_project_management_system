@@ -9,17 +9,30 @@
     <!-- ============= Details ================= -->
     <div class="card shadow p-3 mt-4">
 
-            <h1 class="card-title">Project Details</h1><hr><br>
+            <div class="card-title" style="display: flex;justify-content: space-between;">
+                    <h1> Project Details </h1>
+                    <div style="justify-content: space-between;">
+                        <button class="btn btn-info"> Edit </button> &nbsp; &nbsp;
+                        <button class="btn btn-danger"> Delete </button>
+                    </div>
+            </div><br>
 
             <div class="row" *ngFor="let title of ProjectTitle;let i = index">
-                <div class="col-lg-3 col-md-4 label ">  {{ title }}  </div>
-                <div class="col-lg-9 col-md-4"> 
+                <div class="col-lg-3 col-md-4 label "> <b> {{ title }}  </b> </div>
+                <div class="col-lg-1 col-md-1 label "> <b> :  </b> </div>
+                <div class="col-lg-8 col-md-4"> 
                     {{ ProjectDesc[i] }}  
                 </div>
             </div>
 
     </div>
+
     <!-- ============= Tables ================= -->
     <app-table [TableName]="TaskName" [TableAction]="TableAction" [TableValue]="TaskValue" [TableKeys]="TaskKeys" [RowAction]="TaskRowAction"></app-table>
+
+    <!-- ============== Chart ================== -->
+    <div class="card shadow p-3 mt-4">
+        <app-charts [chartName]="taskChartName" [chartType]="taskChartType" [chartLabel]="taskChartLabel" [chartValue]="taskChartValue"></app-charts>
+    </div>
     
 </div>

@@ -23,7 +23,7 @@ export class TaskDetailsComponent implements OnInit {
   myBreadCrumbs:any = [
       {
         name:'Home',
-        url:'dashboard'
+        url: '../',
       },
       {
         name:'tasks',
@@ -54,7 +54,7 @@ export class TaskDetailsComponent implements OnInit {
         }
       })
     }else{
-      this.adminService.getAllTask(id).subscribe((tasks:any)=>{
+      this.adminService.getAllTaskOfOneProject(id).subscribe((tasks:any)=>{
         for(let task of tasks){
           this.TaskKeys.push(Object.keys(task))
           this.TaskValue.push(Object.values(task));

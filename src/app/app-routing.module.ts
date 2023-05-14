@@ -10,9 +10,12 @@ import { ProjectDetailsComponent } from './components/admin/project-details/proj
 
 const routes: Routes = [
 
+  //release
   {
     path: '', component: ReleasePageComponent
   },
+
+  //admin
   {
     path: 'admin',component: AdminComponent,
     children: [
@@ -36,11 +39,55 @@ const routes: Routes = [
       }
     ]  
   },
+
+  //component
   {
-    path: 'contractor',component: ContractorComponent
+    path: 'contractor',component: ContractorComponent,
+    children: [
+      {
+        path: '', component: DashboardComponent
+      },
+      {
+        path: 'dashboard', component: DashboardComponent
+      },
+      {
+        path: 'projects', component: ProjectDetailsComponent
+      },
+      {
+        path: 'projects/:id', component: ProjectDetailsComponent
+      },
+      {
+        path: 'tasks', component: TaskDetailsComponent
+      },
+      {
+        path: 'tasks/:id', component: TaskDetailsComponent
+      }
+    ]
   },
+
+  //investor
   {
-    path: 'investor',component: InvestorComponent
+    path: 'investor',component: InvestorComponent,
+    children: [
+      {
+        path: '', component: DashboardComponent
+      },
+      {
+        path: 'dashboard', component: DashboardComponent
+      },
+      {
+        path: 'projects', component: ProjectDetailsComponent
+      },
+      {
+        path: 'projects/:id', component: ProjectDetailsComponent
+      },
+      {
+        path: 'tasks', component: TaskDetailsComponent
+      },
+      {
+        path: 'tasks/:id', component: TaskDetailsComponent
+      }
+    ]
   },
 ];
 

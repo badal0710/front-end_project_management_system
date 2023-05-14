@@ -8,8 +8,6 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
 
   toggle:Boolean=false;
-
-
   sidebarToggle(){
     if(!this.toggle){
       this.toggle=true;

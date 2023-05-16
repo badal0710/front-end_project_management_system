@@ -7,6 +7,8 @@ import { ReleasePageComponent } from './components/release-page/release-page.com
 import { TaskDetailsComponent } from './components/admin/task-details/task-details.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { ProjectDetailsComponent } from './components/admin/project-details/project-details.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginsComponent } from './components/logins/logins.component';
 
 const routes: Routes = [
 
@@ -89,6 +91,20 @@ const routes: Routes = [
       }
     ]
   },
+
+  //login
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'logins', component: LoginsComponent
+  },
+
+  //error
+  {
+    path: 'errorPage', component: LoginComponent
+  }
+
 ];
 
 @NgModule({

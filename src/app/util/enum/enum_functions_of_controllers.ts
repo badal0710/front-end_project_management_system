@@ -85,4 +85,19 @@ export enum enum_functions {
      *     @DeleteMapping("/delete-task/{taskId}")
      */
     taskDetail_deleteTask = 'delete-task',
+
+
+
+    /**
+     *     @PostMapping("/insertUser")
+     */
+    user_insertUser = 'insertUser',
+    /**
+     *     @GetMapping("/getUser/{email}")
+     */
+    user_getUser = 'getUser',
+    /**
+     *     @PostMapping("/login")
+     */
+    user_login = 'login',
 }

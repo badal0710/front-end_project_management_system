@@ -27,4 +27,12 @@ export class AdminService {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.taskDetail}/${enum_functions.taskDetail_allTask}`);
   }
 
+  updateProject(body: any, id: any){
+    return this.http.put(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_updateProject}/${id}`,body);
+  }
+
+  deleteProject(id: any){
+    return this.http.delete(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_deleteProject}/${id}`);
+  }
+
 }

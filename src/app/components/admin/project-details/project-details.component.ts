@@ -1,5 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
@@ -16,6 +16,10 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   ProjectTitle:any;
   ProjectDesc:any;
 
+  //form
+  formData:any={};
+  formData_original:any={};
+
   //task
   TaskValue: any[] = [];
   TaskKeys: any = [];
@@ -31,22 +35,21 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
     },
   ];
 
-    // chart
+  // chart
   taskChartName="Project's Chart";
   taskChartType="pie";
   taskChartLabel:any=[];
   taskChartValue:any=[];
 
-  constructor(private adminService: AdminService, private route: ActivatedRoute, private cd:ChangeDetectorRef) { }
+  constructor(private adminService: AdminService, private route: ActivatedRoute, private cd:ChangeDetectorRef, private router: Router) { }
+ 
   ngAfterViewInit(): void {
     this.cd.detectChanges();
   }
 
   ngOnInit(): void {
-    // let id:any;
     let id = this.route.snapshot.paramMap.get("id");
-    this.detailOfProject(id);
-    this.tasksOfProject(id);
+    this.loadData(id);
   }
 
   tasksOfProject(id: any) {
@@ -63,7 +66,8 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
 
   detailOfProject(id:any){
     this.adminService.getOneProject(id).subscribe((project: any) => {
-        let index;
+        let index=0;
+
         this.ProjectTitle=Object.keys(project);
         this.ProjectDesc=Object.values(project);
 
@@ -81,27 +85,39 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
           }
         }
 
+        for(let key of this.ProjectTitle){
+          this.formData[key]=this.ProjectDesc[index];
+          index++;
+        }
+        this.formData_original=this.formData;
+        console.log(this.formData);
+
     })
   }
 
-  // tasks(id: any) {
-  //   if (id == null) {
-  //     this.adminService.getAllTaskOfOneProject(id).subscribe((tasks: any) => {
-  //       for (let task of tasks) {
-  //         this.TaskKeys.push(Object.keys(task))
-  //         this.TaskValue.push(Object.values(task));
-  //         console.log(task);
-  //       }
-  //     })
-  //   } else {
-  //     this.adminService.getAllTasks().subscribe((tasks: any) => {
-  //       for (let task of tasks) {
-  //         this.TaskKeys.push(Object.keys(task))
-  //         this.TaskValue.push(Object.values(task));
-  //         console.log(task);
-  //       }
-  //     })
-  //   }
-  // }
+  updateProject(){
+    this.adminService.updateProject(this.formData,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
+      setTimeout(function () {
+        if (result === "OK") {
+          alert("Updated Successfully");
+        } else {
+          alert("error Occur while Updating");
+        } 
+      }, 2000);
+      
+      this.loadData(this.route.snapshot.paramMap.get("id"));
+    })
+  }
+
+  deleteProject(){
+    this.adminService.deleteProject(this.route.snapshot.paramMap.get("id")).subscribe();
+    alert("deleted")
+    this.router.navigateByUrl('/admin/dashboard');
+  }
+
+  loadData(id:any){
+    this.detailOfProject(id);
+    this.tasksOfProject(id);
+  }
 
 }

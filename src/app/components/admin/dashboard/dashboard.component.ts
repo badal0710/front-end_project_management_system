@@ -44,20 +44,38 @@ export class DashboardComponent implements OnInit,AfterViewInit {
 
   //project
   ProjectValue: any[]=[];
-  ProjectKeys: any=[];
+  ProjectKeys: any[]=[];
   ProjectName: any="Project List";
   ProjectRowAction: any=[['View','admin/projects']];
   ProjectAction: any=['Create Project'];
+  Names:any=[];
 
   // tables
   projects(){
     this.adminService.getAllProject().subscribe((projects:any)=>{
       for(let project of projects){
+        this.Names=Object.keys(project);
         this.ProjectKeys.push(Object.keys(project))
         this.ProjectValue.push(Object.values(project));
         this.projectChartLabel.push(project.projectName);
         this.projectChartValue.push(project.projectStatus);
       }
+      console.log(this.Names);
+      this.ProjectValue.map( (obj) => {
+        let v:any = null;
+        for(let i=0;i<=obj.length;i++){
+            if(typeof obj[i]==="object"){
+              // obj.splice(i,1);
+              // this.ProjectKeys.splice(i,1);
+              v=i;
+            }
+        }
+        obj.splice(v,1);
+        this.ProjectKeys.map((obj2)=>{
+          obj2.splice(v,1);
+        });
+      })
+
     })
   }
 

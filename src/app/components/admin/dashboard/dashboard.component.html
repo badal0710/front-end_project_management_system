@@ -6,7 +6,7 @@
         <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
     </div>
 
-     <!-- ============= Tables ================= -->
+     <!-- ============= Cards ================= -->
     <div class="p-3 mt-4" style="display: flex;justify-content: space-between;flex-wrap: wrap;">
         <app-cards [Data]="cardData1"></app-cards>
         <app-cards [Data]="cardData2"></app-cards>
@@ -15,7 +15,7 @@
     </div>
 
      <!-- ============= Tables ================= -->
-    <app-table [TableName]="ProjectName" [TableAction]="ProjectAction" [TableKeys]="ProjectKeys"  [TableValue]="ProjectValue" [RowAction]="ProjectRowAction"></app-table>
+    <app-table [TableName]="ProjectName" [TableAction]="ProjectAction" [TableKeys]="ProjectKeys"  [TableValue]="ProjectValue" [RowAction]="ProjectRowAction" [ColumnNames]="Names"></app-table>
 
 
     <!-- ============== Chart ================== -->

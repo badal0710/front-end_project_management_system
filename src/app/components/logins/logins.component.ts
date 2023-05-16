@@ -29,7 +29,7 @@ export class LoginsComponent implements OnInit {
 
       this.getAccessToken();
 
-      console.log('authState user: ', user);
+      console.log('authState user: ', user.email);
 
       console.log('Token from state: ', user.authToken)
 
@@ -37,7 +37,7 @@ export class LoginsComponent implements OnInit {
 
   }
 
-  private accessToken = '';
+  accessToken = '';
 
   user: any;
 

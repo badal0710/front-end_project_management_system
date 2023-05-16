@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from 'src/app/services/admin/admin.service';
-import { TaskDetailsService } from 'src/app/services/project/task-details.service';
 
 @Component({
   selector: 'app-task-details',

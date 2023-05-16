@@ -1,6 +1,6 @@
 <div class="card shadow p-3 mt-4">
     <div class="container-fluid" style="display: flex; justify-content: space-between;">
-        <h1> {{ TableName }} </h1>
+        <h1 contenteditable="true"> {{ TableName }} </h1>
         <a routerLink=""> <button class="btn btn-outline-info">  {{ tableAction }} </button> </a>
       </div>
       
@@ -31,4 +31,39 @@
             <h1 style="text-align: center;"> No Data Available </h1>
     </div>
 
+    <div>
+
+    </div>
+
 </div>
+
+<!-- ============== model ================== -->
+<div class="modal fade" id="edit" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h5 class="modal-title" style="font-size: 20px;"> Edit </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+  
+        <div class="modal-body">
+  
+          <form (submit)="create()">
+  
+            <div class="mb-3" *ngFor="let title of keys[0];let i = index">
+              <label for="{{ title }}" class="col-form-label">{{ title }}:</label>
+              <input type="text" class="form-control" [(ngModel)]="formData[title]" [ngModelOptions]="{ standalone: true }"/>
+            </div>
+  
+            <div>
+              <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close"> Submit </button>
+            </div>
+  
+          </form>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>

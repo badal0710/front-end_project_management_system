@@ -21,43 +21,39 @@
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" (ngSubmit)="submit()">
+                  <form class="row g-3" (ngSubmit)="login()">
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Username</label>
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="username" class="form-control" id="yourUsername" [(ngModel)]="username"  required>
-                        <div class="invalid-feedback">Please enter your username.</div>
+                      <div class="input-group">
+                        <span class="input-group-text">@</span>
+                        <input type="text" name="username" class="form-control" [(ngModel)]="username">
                       </div>
                     </div>
 
                     <div class="col-12">
                       <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control" id="yourPassword" [(ngModel)]="password"  required>
-                      <div class="invalid-feedback">Please enter your password!</div>
+                      <input type="password" name="password" class="form-control" [(ngModel)]="password">
                     </div>
-
+                    
                     <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe" [(ngModel)]="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Login</button>
+                      <button class="btn btn-primary container" type="submit">Login</button>
                     </div>
                   </form>
 
                 </div>
-              </div>
+              
+                <div class="container p-3 mb-3">
+              
+                  <div class="google-btn container">
+                    
+                    <asl-google-signin-button type='standard' shape="rectangular" size='medium' theme="filled_blue" text="signin_with"
+                        locale="en-IN" logo_alignment="left" (signIn)="getAccessToken()" class="container"  style="justify-content: center;display: flex;align-items: center;">
+                    </asl-google-signin-button>
+                  </div>
+                </div>
 
-              <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-                <!-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+
               </div>
 
             </div>

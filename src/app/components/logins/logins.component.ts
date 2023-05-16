@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserdataService } from 'src/app/services/user/userdata.service';
+import { UserModel } from 'src/app/components/Model/user-model';
 
 @Component({
   selector: 'app-logins',
@@ -15,7 +17,9 @@ export class LoginsComponent implements OnInit {
 
     // private afAuth: AngularFireAuth,
 
-    private router: Router, private readonly authService: SocialAuthService,
+    private router: Router,
+    private readonly authService: SocialAuthService,
+    private userApiService: UserdataService,
 
     private httpClient: HttpClient
 
@@ -23,18 +27,34 @@ export class LoginsComponent implements OnInit {
 
   }
 
+  myemail: any = "default";
+
   ngOnInit() {
 
-    this.authService.authState.subscribe((user: any) => {
+    this.authService.authState.subscribe(async (user: any) => {
 
       this.getAccessToken();
 
-      console.log('authState user: ', user);
-
+      let userData: UserModel = {
+        firstName: user['fistName'],
+        lastName: user['lastName'],
+        Email: user['email'],
+      };
+      await this.userApiService.loginUser(userData);
       console.log('Token from state: ', user.authToken)
-
+      this.myemail = user.email;
     });
 
+
+
+  }
+
+  onclick() {
+    alert(this.myemail);
+    console.log('authState user: ', this.myemail);
+    this.userApiService.findUser(this.myemail).subscribe((abc: any) => {
+      console.log("type of user: ", abc);
+    })
   }
 
   private accessToken = '';
@@ -51,7 +71,4 @@ export class LoginsComponent implements OnInit {
 
   }
 
-  signOut(): void {
-    this.authService.signOut();
-  }
 }

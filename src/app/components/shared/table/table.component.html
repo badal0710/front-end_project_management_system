@@ -1,7 +1,7 @@
 <div class="card shadow p-3 mt-4">
     <div class="container-fluid" style="display: flex; justify-content: space-between;">
         <h1 contenteditable="true"> {{ TableName }} </h1>
-        <a routerLink=""> <button class="btn btn-outline-info">  {{ tableAction }} </button> </a>
+        <a> <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#create">  {{ tableAction }} </button> </a>
       </div>
       
 
@@ -38,7 +38,7 @@
 </div>
 
 <!-- ============== model ================== -->
-<div class="modal fade" id="edit" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="create" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
   

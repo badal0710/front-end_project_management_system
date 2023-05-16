@@ -14,7 +14,7 @@ export class TableComponent implements OnInit {
   @Input() TableName!:any[];
   @Input() TableAction!:any[];
   @Input() RowAction!:any[];
-  @Input() ColumnNames:any=[];
+  // @Input() ColumnNames:any=[];
 
   public keys:any[]=[];
   public values:any[]=[];
@@ -32,7 +32,7 @@ export class TableComponent implements OnInit {
     this.rowAction=this.RowAction;
     this.tableAction=this.TableAction;
 
-    console.log("c: ",this.ColumnNames);
+    // console.log("c: ",this.ColumnNames);
     // for(let a of this.keys[0]){
     // }
 

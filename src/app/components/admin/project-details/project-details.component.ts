@@ -43,13 +43,19 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
 
   constructor(private adminService: AdminService, private route: ActivatedRoute, private cd:ChangeDetectorRef, private router: Router) { }
  
+  p(a:any,b:any){
+    console.log(`${a}: ${b}`);
+  }
+
   ngAfterViewInit(): void {
     this.cd.detectChanges();
+    this.p("ngafterview",this.ProjectTitle);
   }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get("id");
     this.loadData(id);
+    this.p("ngoninit",this.ProjectTitle);
   }
 
   tasksOfProject(id: any) {
@@ -62,6 +68,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
       }
       this.cd.detectChanges();
     })
+    this.p("taskofproject",this.ProjectTitle);
   }
 
   detailOfProject(id:any){
@@ -92,7 +99,10 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
         this.formData_original=this.formData;
         console.log(this.formData);
 
+        console.log(this.ProjectTitle);
+
     })
+    this.p("detailofproject",this.ProjectTitle);
   }
 
   updateProject(){
@@ -107,6 +117,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
       
       this.loadData(this.route.snapshot.paramMap.get("id"));
     })
+    this.p("updateproject",this.ProjectTitle);
   }
 
   deleteProject(){
@@ -118,6 +129,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   loadData(id:any){
     this.detailOfProject(id);
     this.tasksOfProject(id);
+    this.p("loadData",this.ProjectTitle);
   }
 
 }

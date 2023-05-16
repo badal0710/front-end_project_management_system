@@ -7,6 +7,8 @@ import { InvestorComponent } from './components/investor/investor/investor.compo
 import { ReleasePageComponent } from './components/release-page/release-page.component';
 import { LoginsComponent } from './components/logins/logins.component';
 import { TaskDetailsComponent } from './components/admin/task-details/task-details.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { AboutPageComponent } from './components/about-page/about-page.component';
 
 const routes: Routes = [
 
@@ -24,8 +26,16 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
+    path: 'HomePage',
+    component: HomepageComponent
+  },
+  {
     path: 'logins',
     component: LoginsComponent
+  },
+  {
+    path: 'AboutPage',
+    component: AboutPageComponent
   },
   {
     path: 'admin',

@@ -1,4 +1,4 @@
-import { HttpClient,HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -22,7 +22,7 @@ export class TaskDetailsService {
 
   // gettaskdetailsbyprojectId():Observable<any>{
   //   let params1= new HttpParams(). 
-     
+
   // }
 
 

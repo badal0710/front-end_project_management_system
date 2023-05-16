@@ -1,0 +1,212 @@
+body {
+    font-family: arial, "Microsoft YaHei", 微软雅黑, 宋体, Helvetica;
+    font-size: 15px;
+}
+
+/*
+    div.content:
+        provide the content div in the middle
+*/
+body div.content {
+    /*width:1280px;*/
+    width: 1000px;
+    margin: 0 auto;
+    line-height: 30px;
+}
+
+/*
+    header wrapper
+*/
+body div.header {
+    background-color: #2196F3;
+}
+
+body div.header>div.content {
+    padding: 10px;
+}
+
+/*
+    footer1
+*/
+body div.footer1 {
+    margin-top: 30px;
+    background-color: #64B5F6;
+}
+
+/*
+    footer2
+*/
+body div.footer2 {
+    background-color: #2196F3;
+}
+
+body div.footer>div.content {
+    padding: 10px;
+}
+
+body div.footer1>div.content {
+    padding: 20px;
+    line-height: 40px;
+    font-size: 1.2em;
+}
+
+/*
+    utils css
+*/
+div.white-text {
+    color: white;
+}
+
+div.content>div.title {
+    padding: 20px 0;
+    border-top: 1px silver solid;
+    margin-top: 30px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+body a {
+    text-decoration: none;
+}
+
+div.content ul {
+    list-style: disc inside none;
+}
+
+div.content ol {
+    list-style: none inside none;
+}
+
+div.content li {
+    line-height: 30px;
+    padding-bottom: 5px;
+}
+
+div.content div.float-right {
+    float: right;
+}
+
+/*
+    bio
+*/
+div.bio {
+    font-size: 1.2em;
+}
+
+div.bio>div.left {
+    float: left;
+    width: 300px;
+}
+
+div.bio>div.left>img.me {
+    max-height: 220px;
+    margin: 10px;
+    max-width: 220px;
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+div.bio>div.right {
+    margin: 0 0 0 310px;
+    min-height: 300px;
+}
+
+div.bio>div.right>div.line.name {
+    padding: 15px 0;
+    line-height: 40px;
+}
+
+div.bio>div.right>div.name>span.name,
+div.bio>div.right>div.name>span.chineseName {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+div.bio>div.right>div.name>span.chinesesName {
+    font-family: "Microsoft YaHei", 微软雅黑, 宋体, Helvetica, arial;
+}
+
+div.bio>div.right>div.name>span.misc {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+div.bio>div.right>div.line.school {
+    padding: 5px 0;
+}
+
+div.bio>div.right>div.line.office {
+    padding: 5px 0;
+}
+
+
+
+div.quickLink {
+    min-height: 70px;
+}
+
+div.quickLink.block {
+    display: block;
+    float: left;
+    padding: 10px 0px;
+    text-align: center;
+    border: 1px silver solid;
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px silver;
+    width: 140px;
+    margin-right: 50px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+div.research>ul>li>span.title,
+div.research>ul>li>div.time,
+div.education>ul>li>span.title,
+div.education>ul>li>div.time,
+div.pro>ul>li>span.title {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+div.research>ul>li>div.info,
+div.education>ul>li>div.info,
+div.pro>ul>li>div.info {
+    padding-left: 20px;
+    word-wrap: break-word;
+}
+
+div.publications>ol>li {
+    padding-bottom: 30px;
+}
+
+div.publications>ol>li>span.title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+div.publications>ol>li>div.info {
+    padding-left: 20px;
+    word-wrap: break-word;
+}
+
+div.publications>ol>li>div.info.italic {
+    font-style: italic;
+}
+
+div.publications div.imgblock {
+    float: left;
+    height: 180px;
+    width: 300px;
+    padding: 10px;
+    margin-right: 30px;
+    text-align: center;
+}
+
+div.publications div.imgblock>img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+img.press {
+    height: 20px;
+}

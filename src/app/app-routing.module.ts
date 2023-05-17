@@ -1,39 +1,80 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin/admin.component';
 import { ContractorComponent } from './components/contractor/contractor/contractor.component';
 import { InvestorComponent } from './components/investor/investor/investor.component';
 import { ReleasePageComponent } from './components/release-page/release-page.component';
-import { LoginsComponent } from './components/logins/logins.component';
 import { TaskDetailsComponent } from './components/admin/task-details/task-details.component';
+import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
+import { ProjectDetailsComponent } from './components/admin/project-details/project-details.component';
+import { LoginComponent } from './components/login/login.component';
+import { LoginsComponent } from './components/logins/logins.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 const routes: Routes = [
 
+  //release
   {
-    path: '',
-    redirectTo: 'release',
-    pathMatch: 'full'
+    path: '', component: ReleasePageComponent
   },
+
+  //admin
   {
-    path: 'release',
-    component: ReleasePageComponent
+    path: 'admin', component: AdminComponent,
+    children: [
+      {
+        path: '', component: DashboardComponent
+      },
+      {
+        path: 'dashboard', component: DashboardComponent
+      },
+      {
+        path: 'projects', component: ProjectDetailsComponent
+      },
+      {
+        path: 'projects/:id', component: ProjectDetailsComponent
+      },
+      {
+        path: 'tasks', component: TaskDetailsComponent
+      },
+      {
+        path: 'tasks/:id', component: TaskDetailsComponent
+      }
+    ]
   },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
+
+  //component
   {
     path: 'HomePage',
     component: HomepageComponent
   },
   {
-    path: 'logins',
-    component: LoginsComponent
+    path: 'contractor', component: ContractorComponent,
+    children: [
+      {
+        path: '', component: DashboardComponent
+      },
+      {
+        path: 'dashboard', component: DashboardComponent
+      },
+      {
+        path: 'projects', component: ProjectDetailsComponent
+      },
+      {
+        path: 'projects/:id', component: ProjectDetailsComponent
+      },
+      {
+        path: 'tasks', component: TaskDetailsComponent
+      },
+      {
+        path: 'tasks/:id', component: TaskDetailsComponent
+      }
+    ]
   },
+
+  //investor
   {
     path: 'Contact-us',
     component: ContactUsComponent
@@ -43,21 +84,42 @@ const routes: Routes = [
     component: AboutPageComponent
   },
   {
-    path: 'admin',
-    component: AdminComponent
+    path: 'investor', component: InvestorComponent,
+    children: [
+      {
+        path: '', component: DashboardComponent
+      },
+      {
+        path: 'dashboard', component: DashboardComponent
+      },
+      {
+        path: 'projects', component: ProjectDetailsComponent
+      },
+      {
+        path: 'projects/:id', component: ProjectDetailsComponent
+      },
+      {
+        path: 'tasks', component: TaskDetailsComponent
+      },
+      {
+        path: 'tasks/:id', component: TaskDetailsComponent
+      }
+    ]
+  },
+
+  //login
+  {
+    path: 'login', component: LoginComponent
   },
   {
-    path: 'task-details',
-    component: TaskDetailsComponent
+    path: 'logins', component: LoginsComponent
   },
+
+  //error
   {
-    path: 'contractor',
-    component: ContractorComponent
-  },
-  {
-    path: 'investor',
-    component: InvestorComponent
-  },
+    path: 'errorPage', component: LoginComponent
+  }
+
 ];
 
 @NgModule({

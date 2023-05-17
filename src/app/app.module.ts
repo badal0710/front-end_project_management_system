@@ -21,15 +21,21 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule, S
 import {
   GoogleLoginProvider
 } from '@abacritt/angularx-social-login';
-import { LoginsComponent } from './components/logins/logins.component'; import { FooterComponent } from './components/admin/footer/footer.component';
-import { HeaderComponent } from './components/admin/header/header.component';
-import { SidebarComponent } from './components/admin/sidebar/sidebar.component';
+import { LoginsComponent } from './components/logins/logins.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 
 import { TaskDetailsComponent } from './components/admin/task-details/task-details.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { BreadcrumbsComponent } from './components/shared/breadcrumbs/breadcrumbs.component';
+import { TableComponent } from './components/shared/table/table.component';
+import { ChartsComponent } from './components/shared/charts/charts.component';
+import { ProjectDetailsComponent } from './components/admin/project-details/project-details.component';
+import { CardsComponent } from './components/shared/cards/cards.component';
 
 
 
@@ -49,7 +55,12 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
     TaskDetailsComponent,
     HomepageComponent,
     AboutPageComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    BreadcrumbsComponent,
+    TableComponent,
+    ChartsComponent,
+    ProjectDetailsComponent,
+    CardsComponent,
   ],
   imports: [
     FormsModule,

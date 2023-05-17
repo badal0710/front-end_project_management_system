@@ -1,71 +1,65 @@
-<p>task-details works!</p>
-<div class="container-fluid">
+<div class="container-fluid p-3 m-1">
 
-    <div class="card shadow p-3 mb-3">
+    <!-- ============= breadCrumbs And Title ================= -->
+    <div>
+        <h1 style="font-size: 25px"> Project's </h1>
+        <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
+    </div>
 
-        <h1> Task's list </h1>
+    <!-- ============= Details ================= -->
+    <div class="card shadow p-3 mt-4">
 
+        <div class="card-title" style="display: flex;justify-content: space-between;">
+                <h1> Task Details </h1>
+                <div style="justify-content: space-between;">
+                    <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editTask"> Edit </button> &nbsp; &nbsp;
+                    <button class="btn btn-danger" (click)="deleteTask()"> Delete </button>
+                </div>
+        </div><br>
 
-
-
-        <div class="border border-success p-3 mb-3">
-            <table class="table p3 mb-3">
-
-                <thead>
-                    <td><b> taskId </b></td>
-                    <td> <b> taskName </b></td>
-                    <td><b>taskStartingDate</b></td>
-
-                    <td><b>taskDeadLine</b></td>
-                    <td> <b> allocatedBudget </b></td>
-
-
-                    <td><b>contractorName</b></td>
-
-                    <td><b>taskStatus</b></td>
-                    <td><b>Actions</b></td>
-
-                </thead>
-
-                <br>
-
-                <tbody>
-
-                    <tr *ngFor="let item of data">
-                        <td> {{item.taskId}}</td>
-                        <td> {{item.taskName}} </td>
-                        <td>{{item.taskStartingDate}}</td>
-
-                        <td>{{item.taskDeadLine}}</td>
-                        <td> {{ item.allocatedBudget }} </td>
-
-
-                        <td>{{item.contractorName}}</td>
-                        <td>{{item.taskStatus}}</td>
-                        <td><button>Update</button> &nbsp; <button>Delete</button></td>
-                    </tr>
-
-                </tbody>
-
-            </table>
+        <div class="row" *ngFor="let title of TaskTitle;let i = index">
+            <div class="col-lg-3 col-md-4 label "> <b> {{ title }}  </b> </div>
+            <div class="col-lg-1 col-md-1 label "> <b> :  </b> </div>
+            <div class="col-lg-8 col-md-4"> 
+                {{ TaskDesc[i] }}  
+            </div>
         </div>
 
     </div>
 
-</div>
+     <!-- ============= Tables ================= -->
+    <!-- <app-table [TableName]="TaskName" [TableAction]="TableAction" [TableValue]="TaskValue" [TableKeys]="TaskKeys" [RowAction]="TaskRowAction"></app-table> -->
 
-<!-- <h2>Get Request("http://localhost:9090/project/AllProjects")</h2>
-<table>
-    <tr>
-        <td>projectId</td>
-        <td>projectDeadline</td>
-        <td>projectName</td>
-        <td>projectStartingDate</td>
-        <td>projectStatus</td>
-        <td>projectTypeName</td>
-    </tr>
-    <tr *ngFor="let products of data">
-        <td>{{products.projectId}}</td>
-        <td>{{products.projectName}}</td>
-    </tr>
-</table> -->
+    
+    <!-- ============== model ================== -->
+    <div class="modal fade" id="editTask" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+    
+            <div class="modal-header">
+            <h5 class="modal-title" style="font-size: 20px;"> Edit </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+    
+            <div class="modal-body">
+    
+            <form (submit)="updateTask()">
+    
+                <div class="mb-3" *ngFor="let title of TaskTitle;let i = index">
+                <label for="{{ title }}" class="col-form-label">{{ title }}:</label>
+                <input type="text" class="form-control" [(ngModel)]="formData[title]" [ngModelOptions]="{ standalone: true }"/>
+                </div>
+    
+                <div>
+                <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close"> Submit </button>
+                </div>
+    
+            </form>
+    
+            </div>
+    
+        </div>
+        </div>
+    </div>
+
+</div>

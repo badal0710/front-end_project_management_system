@@ -40,7 +40,7 @@ export class LoginsComponent implements OnInit {
         lastName: user['lastName'],
         Email: user['email'],
       };
-      await this.userApiService.loginUser(userData);
+      await this.userApiService.loginUser(userData.email);
       console.log('Token from state: ', user.authToken)
       this.myemail = user.email;
     });
@@ -57,7 +57,7 @@ export class LoginsComponent implements OnInit {
     })
   }
 
-  private accessToken = '';
+  accessToken = '';
 
   user: any;
 

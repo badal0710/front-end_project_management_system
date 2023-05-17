@@ -1,0 +1,33 @@
+<header class="p-3 mb-3 fixed-top">
+
+  <div>
+      <span (click)="sidebarToggle()" data-bs-toggle="offcanvas" href="#offcanvasScrolling" role="button" aria-controls="offcanvasScrolling"> 
+        <i class="bi bi-menu-button-wide-fill" style="font-size: 35px; margin-right: 20px;"> </i>
+      </span>
+  </div>
+
+  <div>
+    <a routerLink="" class="nav-link" style="font-size: 30px;font-family:'Dancing Script','Times New Roman', Times, serif;"> Project Management </a>
+  </div>
+
+  <div>
+
+    <div class="dropdown text-end">
+
+      <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+        <i class="rounded-circle bi bi-person" style="font-size: 30px;"></i>
+      </a>
+
+      <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+        <li><a class="dropdown-item" href="#">New project...</a></li>
+        <li><a class="dropdown-item" href="#">Settings</a></li>
+        <li><a class="dropdown-item" href="#">Profile</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">Sign out</a></li>
+      </ul>
+
+    </div>
+
+  </div>
+
+</header>

@@ -1,0 +1,70 @@
+<div class="container-fluid p-3 m-1">
+
+    <!-- ============= breadCrumbs And Title ================= -->
+    <div>
+        <h1 style="font-size: 25px"> Project </h1>
+        <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
+    </div>
+
+    <!-- ============= Details ================= -->
+    <div class="card shadow p-3 mt-4">
+
+            <div class="card-title" style="display: flex;justify-content: space-between;">
+                    <h1> Project Details </h1>
+                    <div style="justify-content: space-between;">
+                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit"> Edit </button> &nbsp; &nbsp;
+                        <button class="btn btn-danger" (click)="deleteProject()"> Delete </button>
+                    </div>
+            </div><br>
+
+            <div class="row" *ngFor="let title of ProjectTitle;let i = index">
+                <div class="col-lg-3 col-md-4 label "> <b> {{ title }}  </b> </div>
+                <div class="col-lg-1 col-md-1 label "> <b> :  </b> </div>
+                <div class="col-lg-8 col-md-4"> 
+                    {{ ProjectDesc[i] }}  
+                </div>
+            </div>
+
+    </div>
+
+    <!-- ============= Tables ================= -->
+    <app-table [TableName]="TaskName" [TableAction]="TableAction" [TableValue]="TaskValue" [TableKeys]="TaskKeys" [RowAction]="TaskRowAction"></app-table>
+
+    <!-- ============== Chart ================== -->
+    <div class="card shadow p-3 mt-4">
+        <app-charts [chartName]="taskChartName" [chartType]="taskChartType" [chartLabel]="taskChartLabel" [chartValue]="taskChartValue"></app-charts>
+    </div>
+    
+</div>
+
+
+<!-- ============== model ================== -->
+<div class="modal fade" id="edit" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" style="font-size: 20px;"> Edit </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form (submit)="updateProject()">
+
+          <div class="mb-3" *ngFor="let title of ProjectTitle;let i = index">
+            <label for="{{ title }}" class="col-form-label">{{ title }}:</label>
+            <input type="text" class="form-control" [(ngModel)]="formData[title]" [ngModelOptions]="{ standalone: true }"/>
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close"> Submit </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>

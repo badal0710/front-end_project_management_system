@@ -1,4 +1,6 @@
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,17 +9,25 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
-  toggle:Boolean=false;
+  constructor(private readonly googleAuth: SocialAuthService, private router:Router){}
+
+  public static toggle:Boolean=false;
+
   sidebarToggle(){
-    if(!this.toggle){
-      this.toggle=true;
+    if(!HeaderComponent.toggle){
+      HeaderComponent.toggle=true;
       document.getElementById("sideContent")?.classList.add("content");
       document.getElementById("mainContent")?.classList.add("sidePlease");
     }else{
-      this.toggle=false;
+      HeaderComponent.toggle=false;
       document.getElementById("sideContent")?.classList.remove("content");
       document.getElementById("mainContent")?.classList.remove("sidePlease");
     }
+  }
+
+  Logout(){
+    this.googleAuth.signOut();
+    this.router.navigateByUrl('/login')
   }
 
 }

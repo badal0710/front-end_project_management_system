@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/admin/admin.service';
 
 @Component({
   selector: 'app-table',
@@ -7,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  constructor() {}
+  constructor(private adminService:AdminService) {}
 
   @Input() TableKeys:any[]=[];
   @Input() TableValue!:any[];
@@ -22,7 +23,6 @@ export class TableComponent implements OnInit {
   public rowAction:any;
   public tableAction:any;
   public columnNamess:any=[];
-
   public formData:any={};
 
   ngOnInit(): void {
@@ -32,20 +32,46 @@ export class TableComponent implements OnInit {
     this.rowAction=this.RowAction;
     this.tableAction=this.TableAction;
 
-    // console.log("c: ",this.ColumnNames);
-    // for(let a of this.keys[0]){
-    // }
+    for(let a of this.tableAction[1]){
+      this.formData[a]=null;
+    }
+  }
 
-    // for(let i=0;i<=this.TableKeys.length;i++){
-    //   this.formData[this.TableKeys[i]]=null;
-    // }
+  submitForm(){
 
-    console.log(this.formData);
+    if(this.validate(this.formData)){
+
+      if(this.tableAction[0]==='Task'){
+        alert("task table");
+        this.adminService.createTask(this.formData).subscribe((result:any)=>{
+          console.log("result: ",result);
+        });
+      }
+      else if(this.tableAction[0]==='Project'){
+        alert("project table");
+        this.adminService.createProject(this.formData).subscribe((result:any)=>{
+          console.log("result: ",result);
+        });
+      }
+      else if(this.tableAction[0]==='Investor'){
+        alert("investor table");
+        this.adminService.createInvestor(this.formData).subscribe((result:any)=>{
+          console.log("result: ",result);
+        });
+      }
+      else if(this.tableAction[0]==='Contractor'){
+        alert("contractor table");
+        this.adminService.createContractor(this.formData).subscribe((result:any)=>{
+          console.log("result: ",result);
+        });
+      }
+
+    }
 
   }
 
-  create(){
-    alert("hello");
+  validate(data:any){
+    return true;
   }
 
 }

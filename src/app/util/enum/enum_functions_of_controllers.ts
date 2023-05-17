@@ -12,13 +12,37 @@ export enum enum_functions {
      *     @DeleteMapping("/delete-contractor/{id}")
      */
     contractor_deleteContractor = 'delete-contractor',
+    /**
+     *     
+     */
+    contractor_getOneContractor = '',
+    /**
+     *   @GetMapping("/allContractor")  
+     */
+    contractor_getAllContractor = 'allContractor',
+    /**
+     *   @GetMapping("/totalContractor")
+     */
+    contractor_countContractor = 'totalContractor',
 
 
 
     /**
      *     @GetMapping("/{investorId}/")
      */
-    investor_getInvestor = '',
+    investor_getOneInvestor = '',
+    /**
+     *   @GetMapping("/allInvestor")  
+     */
+    investor_getAllInvestor = 'allInvestor',
+    /**
+     *   @GetMapping("/totalInvestor")
+     */
+    investor_countInvestor = 'totalInvestor',
+    /**
+     *   
+     */
+    investor_createInvestor = '',
 
 
 
@@ -54,6 +78,10 @@ export enum enum_functions {
      *     @GetMapping("/project-status-date/{startingDate/{endingDate}/{projectStatus}")
      */
     projectController_projectStatusDate = 'project-status-date',
+    /**
+     *   @GetMapping("/totalProject")
+     */
+    projectController_countProject = 'totalProject',
 
 
 

@@ -1,0 +1,18 @@
+<div class="container-fluid p-3 m-1">
+
+    <!-- ============= breadCrumbs And Title ================= -->
+    <div>
+        <h1 style="font-size: 25px"> Investor </h1>
+        <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
+    </div>
+
+     <!-- ============= Tables ================= -->
+    <app-table [TableName]="InvestorName" [TableAction]="InvestorAction" [TableKeys]="InvestorKeys"  [TableValue]="InvestorValue" [RowAction]="InvestorRowAction"></app-table>
+
+
+    <!-- ============== Chart ================== -->
+     <div class="card shadow p-3 mt-4">
+        <app-charts [chartName]="InvestorChartName" [chartType]="InvestorChartType" [chartLabel]="InvestorChartLabel" [chartValue]="InvestorChartValue"></app-charts>
+    </div>
+    
+</div>

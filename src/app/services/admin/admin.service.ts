@@ -39,4 +39,40 @@ export class AdminService {
     return this.http.delete(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_deleteProject}/${id}`);
   }
 
+  getAllInvestor(){
+    return this.http.get(`${DATABASE_URL}/${enum_controllers.investor}/${enum_functions.investor_getAllInvestor}`);
+  }
+
+  getAllContractor(){
+    return this.http.get(`${DATABASE_URL}/${enum_controllers.contractor}/${enum_functions.contractor_getAllContractor}`);
+  }
+
+  totalContractor(){
+    return this.http.get(`${DATABASE_URL}/${enum_controllers.contractor}/${enum_functions.contractor_countContractor}`);
+  }
+
+  totalInvestor(){
+    return this.http.get(`${DATABASE_URL}/${enum_controllers.investor}/${enum_functions.investor_countInvestor}`);
+  }
+
+  totalProject(){
+    return this.http.get(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_countProject}`);
+  }
+
+  createProject(body:any){
+    return this.http.post(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_createProject}`,body);
+  }
+
+  createTask(body:any){
+    return this.http.post(`${DATABASE_URL}/${enum_controllers.taskDetail}/${enum_functions.taskDetail_createTask}`,body);
+  }
+
+  createContractor(body:any){
+    return this.http.post(`${DATABASE_URL}/${enum_controllers.contractor}/${enum_functions.contractor_createContractor}`,body);
+  }
+
+  createInvestor(body:any){
+    return this.http.post(`${DATABASE_URL}/${enum_controllers.investor}`,body);
+  }
+
 }

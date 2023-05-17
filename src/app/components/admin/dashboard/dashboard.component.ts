@@ -15,6 +15,7 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   
   ngOnInit(): void {
     this.projects();
+    this.loadCards();
   }
   
   ngAfterViewInit(): void {
@@ -30,10 +31,10 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   ];
 
   // card
-  cardData1=['bi bi-person','Investor','20'];
-  cardData2=['bi bi-person','Contractor','30'];
-  cardData3=['bi bi-buildings','Projects','120'];
-  cardData4=['bi bi-currency-dollar','Funding','220'];
+  investorCard=['bi bi-person','Investor',20];
+  contractorCard=['bi bi-person','Contractor',30];
+  projectCard=['bi bi-buildings','Projects',120];
+  fundCard=['bi bi-currency-dollar','Funding',220];
 
 
   // chart
@@ -47,7 +48,7 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   ProjectKeys: any[]=[];
   ProjectName: any="Project List";
   ProjectRowAction: any=[['View','admin/projects']];
-  ProjectAction: any=['Create Project'];
+  ProjectAction: any=['Project',['projectStatus','projectName','projectStartingDate','projectDeadline','projectTypeName','projectLocationId']];
   Names:any=[];
 
   // tables
@@ -92,6 +93,38 @@ export class DashboardComponent implements OnInit,AfterViewInit {
     }
     
     return [key,value];
+  }
+
+  formatObjectForDetail(keys:any,values:any){
+    for(let i=0;i<values.length;i++){
+      if(typeof values[i] === 'object'){
+        let tmpTitle=[];
+        let tmpDesc=[];
+        let tmp = Object.entries(values[i]);
+        for(let v of tmp){
+          tmpTitle.push(v[0]);
+          tmpDesc.push(v[1]);
+          break;
+        }
+        keys.splice(i,1,...tmpTitle);
+        values.splice(i,1,...tmpDesc);
+      }
+    }
+    return [keys,values];
+  }
+
+  loadCards(){
+
+    this.adminService.totalInvestor().subscribe((count:any)=>{
+      this.investorCard[2]=count;
+    });
+    this.adminService.totalContractor().subscribe((count:any)=>{
+      this.contractorCard[2]=count;
+    });
+    this.adminService.totalProject().subscribe((count:any)=>{
+      this.projectCard[2]=count;
+    });
+
   }
 
 }

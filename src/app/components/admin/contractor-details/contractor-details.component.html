@@ -1,0 +1,18 @@
+<div class="container-fluid p-3 m-1">
+
+    <!-- ============= breadCrumbs And Title ================= -->
+    <div>
+        <h1 style="font-size: 25px"> Contractor </h1>
+        <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
+    </div>
+
+     <!-- ============= Tables ================= -->
+    <app-table [TableName]="ContractorName" [TableAction]="ContractorAction" [TableKeys]="ContractorKeys"  [TableValue]="ContractorValue" [RowAction]="ContractorRowAction"></app-table>
+
+
+    <!-- ============== Chart ================== -->
+     <div class="card shadow p-3 mt-4">
+        <app-charts [chartName]="ContractorChartName" [chartType]="ContractorChartType" [chartLabel]="ContractorChartLabel" [chartValue]="ContractorChartValue"></app-charts>
+    </div>
+    
+</div>

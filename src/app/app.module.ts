@@ -33,6 +33,9 @@ import { TableComponent } from './components/shared/table/table.component';
 import { ChartsComponent } from './components/shared/charts/charts.component';
 import { ProjectDetailsComponent } from './components/admin/project-details/project-details.component';
 import { CardsComponent } from './components/shared/cards/cards.component';
+import { InvestorDetailsComponent } from './components/admin/investor-details/investor-details.component';
+import { ContractorDetailsComponent } from './components/admin/contractor-details/contractor-details.component';
+import { ContectUsComponent } from './components/shared/contect-us/contect-us.component';
 
 
 
@@ -55,6 +58,9 @@ import { CardsComponent } from './components/shared/cards/cards.component';
     ChartsComponent,
     ProjectDetailsComponent,
     CardsComponent,
+    InvestorDetailsComponent,
+    ContractorDetailsComponent,
+    ContectUsComponent,
   ],
   imports: [
     FormsModule,

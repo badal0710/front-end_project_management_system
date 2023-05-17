@@ -24,7 +24,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   TaskValue: any[] = [];
   TaskKeys: any = [];
   TaskName: any = "Task List";
-  TableAction: any = ['Create Task'];
+  TableAction: any = ['Task',['taskName','taskStatus','taskStartingDate','taskDeadLine','allocatedBudget','jobRole','email','contractorId','projectId']];
   TaskRowAction: any = [['View', 'admin/tasks']];
 
   // breadcrumbs

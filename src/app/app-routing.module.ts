@@ -9,6 +9,9 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { ProjectDetailsComponent } from './components/admin/project-details/project-details.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginsComponent } from './components/logins/logins.component';
+import { InvestorDetailsComponent } from './components/admin/investor-details/investor-details.component';
+import { ContractorDetailsComponent } from './components/admin/contractor-details/contractor-details.component';
+import { ContectUsComponent } from './components/shared/contect-us/contect-us.component';
 
 const routes: Routes = [
 
@@ -26,6 +29,12 @@ const routes: Routes = [
       },
       {
         path: 'dashboard', component: DashboardComponent
+      },
+      {
+        path: 'investorDetail', component: InvestorDetailsComponent
+      },
+      {
+        path: 'contractorDetail', component: ContractorDetailsComponent
       },
       {
         path: 'projects', component: ProjectDetailsComponent
@@ -103,7 +112,12 @@ const routes: Routes = [
   //error
   {
     path: 'errorPage', component: LoginComponent
-  }
+  },
+
+  //contect-us
+  {
+    path: 'contectUs', component: ContectUsComponent
+  },
 
 ];
 

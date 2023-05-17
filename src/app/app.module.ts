@@ -29,6 +29,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { TaskDetailsComponent } from './components/admin/task-details/task-details.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 
 
@@ -47,7 +48,8 @@ import { AboutPageComponent } from './components/about-page/about-page.component
     DashboardComponent,
     TaskDetailsComponent,
     HomepageComponent,
-    AboutPageComponent
+    AboutPageComponent,
+    ContactUsComponent
   ],
   imports: [
     FormsModule,

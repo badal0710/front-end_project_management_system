@@ -9,6 +9,7 @@ import { LoginsComponent } from './components/logins/logins.component';
 import { TaskDetailsComponent } from './components/admin/task-details/task-details.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
 
 const routes: Routes = [
 
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'logins',
     component: LoginsComponent
+  },
+  {
+    path: 'Contact-us',
+    component: ContactUsComponent
   },
   {
     path: 'AboutPage',

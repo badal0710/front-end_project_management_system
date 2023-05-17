@@ -85,6 +85,10 @@ export enum enum_functions {
      *     @DeleteMapping("/delete-task/{taskId}")
      */
     taskDetail_deleteTask = 'delete-task',
+    /**
+     *     @GetMapping("/getOneTask/{id}")
+     */
+    taskDetail_getOneTask = 'getOneTask',
 
 
 

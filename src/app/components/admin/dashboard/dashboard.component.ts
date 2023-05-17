@@ -60,24 +60,38 @@ export class DashboardComponent implements OnInit,AfterViewInit {
         this.projectChartLabel.push(project.projectName);
         this.projectChartValue.push(project.projectStatus);
       }
-      console.log(this.Names);
-      this.ProjectValue.map( (obj) => {
-        let v:any = null;
-        for(let i=0;i<=obj.length;i++){
-            if(typeof obj[i]==="object"){
-              // obj.splice(i,1);
-              // this.ProjectKeys.splice(i,1);
-              v=i;
-            }
-        }
-        obj.splice(v,1);
-        this.ProjectKeys.map((obj2)=>{
-          obj2.splice(v,1);
-        });
-      })
+
+      //format objects
+      [this.ProjectKeys,this.ProjectValue] = this.formatObject(this.ProjectKeys,this.ProjectValue);
 
     })
   }
 
+  formatObject(key:any,value:any){
+
+    let v:any[]=[];
+
+    // index which we want to remove
+    for(let task of value){
+      for(let i=0;i<=task.length;i++){
+        if(typeof task[i]==='object'){
+          v.push(i);
+        }
+      }
+    }
+
+    // remove oparation
+    for(let index of v){
+      key.map((obj:any)=>{
+        obj.splice(v[0],1);
+      })
+
+      value.map((obj:any)=>{
+        obj.splice(v[0],1);
+      })
+    }
+    
+    return [key,value];
+  }
 
 }

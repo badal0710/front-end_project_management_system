@@ -18,6 +18,13 @@ export class TaskDetailsComponent implements OnInit {
   TableAction: any=['Create Task'];
   TaskRowAction: any=[['Update','admin/tasks/update'],['Delete','admin/tasks/delete']];
 
+  TaskTitle:any;
+  TaskDesc:any;
+
+  //form
+  formData:any={};
+  formData_original:any={};
+
     // breadcrumbs
   myBreadCrumbs:any = [
       {
@@ -28,15 +35,36 @@ export class TaskDetailsComponent implements OnInit {
 
   constructor(private adminService:AdminService, private route:ActivatedRoute) { }
 
+  deleteTask(){
+
+  }
+
+  updateTask(){
+
+  }
 
   ngOnInit() {
     let id:any;
-    if(this.route.snapshot.paramMap.has("id")){
-      id=this.route.snapshot.paramMap.get("id");
-      this.tasks(id);
-    }else{
-      this.tasks(null);
-    }
+    id=this.route.snapshot.paramMap.get("id");
+    this.getOneTask(id);
+  }
+
+  getOneTask(id:any){
+    this.adminService.getOneTask(id).subscribe((data:any)=>{
+
+      let index=0;
+      this.TaskTitle=Object.keys(data);
+      this.TaskDesc=Object.values(data);
+
+      //format object for display
+      [this.TaskTitle,this.TaskDesc] = this.formatObjectForDetail(this.TaskTitle,this.TaskDesc);
+
+      for(let key of this.TaskTitle){
+        this.formData[key]=this.TaskDesc[index];
+        index++;
+      }
+      this.formData_original=this.formData;
+    })
   }
 
   tasks(id: any){
@@ -45,7 +73,6 @@ export class TaskDetailsComponent implements OnInit {
         for(let task of tasks){
           this.TaskKeys.push(Object.keys(task))
           this.TaskValue.push(Object.values(task));
-          console.log(task);
         }
       })
     }else{
@@ -53,10 +80,27 @@ export class TaskDetailsComponent implements OnInit {
         for(let task of tasks){
           this.TaskKeys.push(Object.keys(task))
           this.TaskValue.push(Object.values(task));
-          console.log(task);
         }
       })
     }
+  }
+
+  formatObjectForDetail(keys:any,values:any){
+    for(let i=0;i<values.length;i++){
+      if(typeof values[i] === 'object'){
+        let tmpTitle=[];
+        let tmpDesc=[];
+        let tmp = Object.entries(values[i]);
+        for(let v of tmp){
+          tmpTitle.push(v[0]);
+          tmpDesc.push(v[1]);
+          break;
+        }
+        keys.splice(i,1,...tmpTitle);
+        values.splice(i,1,...tmpDesc);
+      }
+    }
+    return [keys,values];
   }
 
 }

@@ -49,26 +49,34 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
 
   ngAfterViewInit(): void {
     this.cd.detectChanges();
-    this.p("ngafterview",this.ProjectTitle);
   }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get("id");
     this.loadData(id);
-    this.p("ngoninit",this.ProjectTitle);
   }
 
   tasksOfProject(id: any) {
     this.adminService.getAllTaskOfOneProject(id).subscribe((tasks: any) => {
       for (let task of tasks) {
-        this.TaskKeys.push(Object.keys(task))
-        this.TaskValue.push(Object.values(task));
+        
+        const reversedData:any = {};
+        Object.keys(task).reverse().forEach(key => {
+          reversedData[key] = task[key];
+        });
+        
+        this.TaskKeys.push(Object.keys(reversedData))
+        this.TaskValue.push(Object.values(reversedData));
         this.taskChartLabel.push(task.taskName);
         this.taskChartValue.push(task.taskStatus);
       }
+
+      [this.TaskKeys,this.TaskValue] =this.formatObject(this.TaskKeys,this.TaskValue);
+
       this.cd.detectChanges();
+
     })
-    this.p("taskofproject",this.ProjectTitle);
+
   }
 
   detailOfProject(id:any){
@@ -78,31 +86,15 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
         this.ProjectTitle=Object.keys(project);
         this.ProjectDesc=Object.values(project);
 
-        for(let i=0;i<this.ProjectDesc.length;i++){
-          if(typeof this.ProjectDesc[i] === 'object'){
-            let tmpTitle=[];
-            let tmpDesc=[];
-            let tmp = Object.entries(this.ProjectDesc[i]);
-            for(let v of tmp){
-              tmpTitle.push(v[0]);
-              tmpDesc.push(v[1]);
-            }
-            this.ProjectTitle.splice(i,1,...tmpTitle);
-            this.ProjectDesc.splice(i,1,...tmpDesc);
-          }
-        }
+        //format object for display
+        [this.ProjectTitle,this.ProjectDesc] = this.formatObjectForDetail(this.ProjectTitle,this.ProjectDesc);
 
         for(let key of this.ProjectTitle){
           this.formData[key]=this.ProjectDesc[index];
           index++;
         }
         this.formData_original=this.formData;
-        console.log(this.formData);
-
-        console.log(this.ProjectTitle);
-
     })
-    this.p("detailofproject",this.ProjectTitle);
   }
 
   updateProject(){
@@ -117,7 +109,6 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
       
       this.loadData(this.route.snapshot.paramMap.get("id"));
     })
-    this.p("updateproject",this.ProjectTitle);
   }
 
   deleteProject(){
@@ -129,7 +120,51 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   loadData(id:any){
     this.detailOfProject(id);
     this.tasksOfProject(id);
-    this.p("loadData",this.ProjectTitle);
+  }
+
+  formatObject(key:any,value:any){
+
+    let v:any[]=[];
+
+    // index which we want to remove
+    for(let task of value){
+      for(let i=0;i<=task.length;i++){
+        if(typeof task[i]==='object'){
+          v.push(i);
+        }
+      }
+    }
+
+    // remove oparation
+    for(let index of v){
+      key.map((obj:any)=>{
+        obj.splice(v[0],1);
+      })
+
+      value.map((obj:any)=>{
+        obj.splice(v[0],1);
+      })
+    }
+
+    return [key,value];
+  }
+
+  formatObjectForDetail(keys:any,values:any){
+    for(let i=0;i<values.length;i++){
+      if(typeof values[i] === 'object'){
+        let tmpTitle=[];
+        let tmpDesc=[];
+        let tmp = Object.entries(values[i]);
+        for(let v of tmp){
+          tmpTitle.push(v[0]);
+          tmpDesc.push(v[1]);
+          break;
+        }
+        keys.splice(i,1,...tmpTitle);
+        values.splice(i,1,...tmpDesc);
+      }
+    }
+    return [keys,values];
   }
 
 }

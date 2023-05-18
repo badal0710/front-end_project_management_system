@@ -40,9 +40,13 @@ export enum enum_functions {
      */
     investor_countInvestor = 'totalInvestor',
     /**
-     *   
+     *   @PostMapping("/create-investor")
      */
-    investor_createInvestor = '',
+    investor_createInvestor = 'create-investor',
+    /**
+     *   @DeleteMapping("/delete-investor/{id}")
+     */
+    investor_deleteOne = 'delete-investor',
 
 
 
@@ -132,4 +136,20 @@ export enum enum_functions {
      *     @PostMapping("/login")
      */
     user_login = 'login',
+    /**
+     *     @GetMapping("/authorizeUser/{email}/{type}")
+     */
+    user_authorizeUser = 'authorizeUser',
+    /**
+     *     @PostMapping("/create")
+     */
+    projectInvestor_create = 'create',
+    /**
+     *     @DeleteMapping("/delete/{id}")
+     */
+    projectInvestor_deleteOne = 'delete',
+    /**
+     *     @GetMapping("/getAll")
+     */
+    projectInvestor_getAll = 'getAll',
 }

@@ -15,3 +15,9 @@ header{
     background-color:#f6f9ff;
     /* color: aliceblue; */
 }
+
+@media (max-width: 650px) {
+    #sideIcon {
+      display: none; /* Hide the div on mobile screens */
+    }
+}

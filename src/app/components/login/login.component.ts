@@ -26,7 +26,10 @@ export class LoginComponent implements OnInit {
       this.getAccessToken();
     });
 
-    
+  }
+
+  manageState(email:any){
+    sessionStorage.setItem('UPN',email);
   }
 
   login(){
@@ -41,6 +44,7 @@ export class LoginComponent implements OnInit {
 
   googleLogin(email:any){
     this.loginService.googleLogin(email).subscribe((result:any)=>{
+      this.manageState(email);
       this.navigateMe(result); 
     });
   }

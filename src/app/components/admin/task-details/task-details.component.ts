@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-task-details',
@@ -33,20 +34,37 @@ export class TaskDetailsComponent implements OnInit {
       },
   ];
 
-  constructor(private adminService:AdminService, private route:ActivatedRoute) { }
-
-  deleteTask(){
-
-  }
+  constructor(private adminService:AdminService, private route:ActivatedRoute, private router:Router) { }
 
   updateTask(){
+    this.adminService.updateTask(this.formData,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
+      if (result===200) {
+        Swal.fire('update','Task Updated')
+        this.loadData();
+      } else {
+        Swal.fire('Error',`Error while updating Task: ${result}`)
+      }
+    })
+  }
 
+  deleteTask(){
+    this.adminService.deleteTask(this.route.snapshot.paramMap.get("id")).subscribe((result:any)=>{
+      if(result===200){
+        Swal.fire('Delete','this project was Deleted')
+        this.router.navigateByUrl('/admin/dashboard');
+      }else{
+        Swal.fire('Delete','this project was not Deleted')
+      }
+    });
+    
   }
 
   ngOnInit() {
-    let id:any;
-    id=this.route.snapshot.paramMap.get("id");
-    this.getOneTask(id);
+    this.loadData();
+  }
+
+  loadData(){
+    this.getOneTask(this.route.snapshot.paramMap.get("id"));
   }
 
   getOneTask(id:any){

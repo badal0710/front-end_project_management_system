@@ -5,4 +5,5 @@ export enum enum_controllers {
     projectLocation = 'projectbylocation',
     taskDetail = 'taskofproject',
     user = 'users',
+    projectInvestor = 'projectInvestor',
 }

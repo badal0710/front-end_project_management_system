@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-project-details',
@@ -24,7 +25,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   TaskValue: any[] = [];
   TaskKeys: any = [];
   TaskName: any = "Task List";
-  TableAction: any = ['Task',['taskName','taskStatus','taskStartingDate','taskDeadLine','allocatedBudget','jobRole','email','contractorId','projectId']];
+  TableAction: any = ['Task',['taskName','taskStatus','taskStartingDate','taskDeadLine','projectId','contractorId','allocatedBudget']];
   TaskRowAction: any = [['View', 'admin/tasks']];
 
   // breadcrumbs
@@ -101,9 +102,9 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
     this.adminService.updateProject(this.formData,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
       setTimeout(function () {
         if (result === "OK") {
-          alert("Updated Successfully");
+          Swal.fire('update','Project Updated')
         } else {
-          alert("error Occur while Updating");
+          Swal.fire('Error','Error while updating Project')
         } 
       }, 2000);
       
@@ -113,7 +114,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
 
   deleteProject(){
     this.adminService.deleteProject(this.route.snapshot.paramMap.get("id")).subscribe();
-    alert("deleted")
+    Swal.fire('Delete','this project was Deleted')
     this.router.navigateByUrl('/admin/dashboard');
   }
 

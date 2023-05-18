@@ -29,10 +29,6 @@ export class LoginsComponent implements OnInit {
 
       this.getAccessToken();
 
-      console.log('authState user: ', user.email);
-
-      console.log('Token from state: ', user.authToken)
-
     });
 
   }
@@ -44,8 +40,6 @@ export class LoginsComponent implements OnInit {
   googleClientId = '848983964634-l65hjj1kfa82qm0uejmeebghric7njsk.apps.googleusercontent.com';
 
   getAccessToken(): void {
-
-    console.log('getAccessToken')
 
     this.authService.getAccessToken(GoogleLoginProvider.PROVIDER_ID).then(accessToken => this.accessToken = accessToken);
 

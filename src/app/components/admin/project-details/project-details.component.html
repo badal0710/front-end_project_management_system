@@ -18,9 +18,9 @@
             </div><br>
 
             <div class="row" *ngFor="let title of ProjectTitle;let i = index">
-                <div class="col-lg-3 col-md-4 label "> <b> {{ title }}  </b> </div>
-                <div class="col-lg-1 col-md-1 label "> <b> :  </b> </div>
-                <div class="col-lg-8 col-md-4"> 
+                <div class="col-lg-3 col-md-4 label title"> <b> {{ title }}  </b> </div>
+                <div class="col-lg-1 col-md-1 label saparator"> <b> :  </b> </div>
+                <div class="col-lg-8 col-md-4 desc"> 
                     {{ ProjectDesc[i] }}  
                 </div>
             </div>

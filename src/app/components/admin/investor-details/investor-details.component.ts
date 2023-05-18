@@ -18,10 +18,16 @@ export class InvestorDetailsComponent implements OnInit {
   ];
 
   InvestorName:any='Investor\'s list ';
-  InvestorAction:any=['Investor',['name','email','address','phoneno','experience']];
+  InvestorAction:any=['Investor',['name','email','address','phoneno','experience','investedMoney']];
   InvestorKeys:any=[];
   InvestorValue:any=[];
-  InvestorRowAction:any=[['View','admin/projects']];
+  InvestorRowAction:any=[['Delete','admin/projects']];
+
+  ProjectInvestorName:any='Project Investor list';
+  ProjectInvestorAction:any=['ProjectInvestor',['invested_share','investor_id','project_id']];
+  ProjectInvestorKeys:any=[];
+  ProjectInvestorValue:any=[];
+  ProjectInvestorRowAction:any=[['Delete','admin/projects']];
 
   InvestorChartName:any='Investor Experience';
   InvestorChartType:any='pie';
@@ -33,14 +39,23 @@ export class InvestorDetailsComponent implements OnInit {
     this.adminService.getAllInvestor().subscribe( (investors:any) => {
 
       for(let investor of investors){
-
         this.InvestorKeys.push(Object.keys(investor));
         this.InvestorValue.push(Object.values(investor));
-
-        this.InvestorChartLabel.push(Object.keys(investor)[5])
-        this.InvestorChartValue.push(Object.values(investor.experience))
+        this.InvestorChartLabel.push(Object.values(investor)[1])
+        this.InvestorChartValue.push(Object.values(investor)[6])
       }
     });
+
+    this.adminService.getAllProjectInvestor().subscribe( (projectInvestors: any) => {
+
+      for(let projectInvestor of projectInvestors){
+        this.ProjectInvestorKeys.push(Object.keys(projectInvestor));
+        this.ProjectInvestorValue.push(Object.values(projectInvestor));
+      }
+
+    } );
+
+  
 
   }
 

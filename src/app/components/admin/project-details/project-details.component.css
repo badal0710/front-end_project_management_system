@@ -1,3 +1,17 @@
 .row{
     margin: 20px;
 }
+
+@media (max-width: 765px) {
+    .desc{
+        /* display: none; */
+        margin: 10px;
+    }
+    .saparator{
+        display: none;
+    }
+    .title{
+        /* display: none; */
+        margin: 10px;
+    }
+  }

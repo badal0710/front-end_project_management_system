@@ -21,7 +21,7 @@ export class ContractorDetailsComponent implements OnInit {
   ContractorAction:any=['Contractor',['contractorName','email','phoneNo','jobRole','experience','address']];
   ContractorKeys:any=[];
   ContractorValue:any=[];
-  ContractorRowAction:any=[['View','admin/projects']];;
+  ContractorRowAction:any=[['Delete','admin/projects']];;
 
   ContractorChartName:any;
   ContractorChartType:any='pie';
@@ -37,8 +37,8 @@ export class ContractorDetailsComponent implements OnInit {
         this.ContractorKeys.push(Object.keys(contractor));
         this.ContractorValue.push(Object.values(contractor));
 
-        this.ContractorChartLabel.push(Object.keys(contractor)[6])
-        this.ContractorChartValue.push(Object.values(contractor.experience))
+        this.ContractorChartLabel.push(Object.values(contractor)[1])
+        this.ContractorChartValue.push(Object.values(contractor)[6])
       }
     });
 

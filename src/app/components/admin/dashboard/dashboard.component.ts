@@ -1,7 +1,9 @@
 import {  AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import Chart, { ChartData } from 'chart.js/auto';
 
 import { AdminService } from 'src/app/services/admin/admin.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,10 +12,11 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 })
 export class DashboardComponent implements OnInit,AfterViewInit {
   
-  constructor(private adminService: AdminService, private cd: ChangeDetectorRef) {
+  constructor(private adminService: AdminService, private cd: ChangeDetectorRef, private router:Router) {
   }
   
   ngOnInit(): void {
+    // this.authorizeUser();
     this.projects();
     this.loadCards();
   }
@@ -31,10 +34,10 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   ];
 
   // card
-  investorCard=['bi bi-person','Investor',20];
-  contractorCard=['bi bi-person','Contractor',30];
-  projectCard=['bi bi-buildings','Projects',120];
-  fundCard=['bi bi-currency-dollar','Funding',220];
+  investorCard=['bi bi-currency-dollar','Investor',20,'investorDetail'];
+  contractorCard=['bi bi-person','Contractor',30,'contractorDetail'];
+  projectCard=['bi bi-buildings','Projects',120,'null'];
+  // fundCard=['bi bi-currency-dollar','Funding',220];
 
 
   // chart

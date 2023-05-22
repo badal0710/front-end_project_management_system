@@ -1,0 +1,69 @@
+<div
+  id="task-card-main"
+  class="container card"
+  data-bs-toggle="modal"
+  [attr.data-bs-target]="'#create' + id"
+  style="border-left: 5px green solid"
+>
+  <h3 id="task-name">{{ taskName }}</h3>
+  <div id="task-description">
+    <h4> {{ projectName }} </h4>
+  </div>
+  <div class="progress">
+    <div
+      class="progress-bar progress-bar-striped bg-outline-info active"
+      role="progressbar"
+      [style.width.%]="progressValue" 
+      [attr.aria-valuenow]="progressValue"
+      aria-valuemin="0"
+      aria-valuemax="100">
+       {{ progressValue }}%
+    </div>
+  </div>
+  <br />
+</div>
+
+<!-- ============== model ================== -->
+<div class="modal fade" id="create{{id}}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content container-fluid">
+
+      <div class="modal-header">
+        <h2 class="modal-title" style="font-size: 20px">Update {{ taskName }} </h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close">
+        </button>
+      </div>
+
+      <div class="modal-body container-fluid row" style="align-items: center">
+
+        <div style="display: flex;flex-wrap: wrap;justify-content:space-between">
+          
+          <section> <b> name           </b> <p> {{ taskName }} </p>  </section>
+          <section> <b> Project-name   </b> <p> {{ projectName }} </p>  </section>
+          <section> <b> Start Date     </b> <p> {{ startDate }} </p>  </section>
+          <section> <b> End Date       </b> <p> {{ endDate }} </p>  </section>
+          <section> <b> Budget         </b> <p> ${{ budget }} </p>  </section>
+
+        </div>
+
+        <button class="col-auto btn btn-outline-dark" (click)="decreaseProgress()"> - </button> &nbsp;
+
+        <div class="progress col-10">
+          <div class="progress-bar bg-info" role="progressbar" [style.width.%]="progressValue" [attr.aria-valuenow]="progressValue" aria-valuemin="0" aria-valuemax="100">
+            {{ progressValue }}%
+          </div>
+        </div> &nbsp;
+        
+        <button class="col-auto btn btn-outline-dark" (click)="increaseProgress()"> + </button>
+
+      </div><br><br>
+      
+      <button class="btn btn-success" (click)="updateTaskStatus(id,progressValue)"> Update </button> <br>
+
+    </div>
+  </div>
+</div>

@@ -50,10 +50,15 @@ export enum enum_functions {
 
 
 
+
     /**
      *     @PostMapping("/create-project")
      */
     projectController_createProject = 'create-project',
+    /**
+     *   @GetMapping("/getAllProjectOfOneInvestor/{investorEmail}")
+     */
+    projectController_getAllProjectOfOneInvestor = 'getAllProjectOfOneInvestor',
     /**
      *     @GetMapping("/{projectId}")
      */

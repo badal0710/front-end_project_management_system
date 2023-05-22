@@ -12,6 +12,8 @@ import { LoginsComponent } from './components/logins/logins.component';
 import { InvestorDetailsComponent } from './components/admin/investor-details/investor-details.component';
 import { ContractorDetailsComponent } from './components/admin/contractor-details/contractor-details.component';
 import { ContectUsComponent } from './components/shared/contect-us/contect-us.component';
+import { CdashboardComponent } from './components/contractor/cdashboard/cdashboard.component';
+import { IdashboardComponent } from './components/investor/idashboard/idashboard.component';
 
 const routes: Routes = [
 
@@ -56,22 +58,10 @@ const routes: Routes = [
     path: 'contractor',component: ContractorComponent,
     children: [
       {
-        path: '', component: DashboardComponent
+        path: '', component: CdashboardComponent
       },
       {
-        path: 'dashboard', component: DashboardComponent
-      },
-      {
-        path: 'projects', component: ProjectDetailsComponent
-      },
-      {
-        path: 'projects/:id', component: ProjectDetailsComponent
-      },
-      {
-        path: 'tasks', component: TaskDetailsComponent
-      },
-      {
-        path: 'tasks/:id', component: TaskDetailsComponent
+        path: 'dashboard', component: CdashboardComponent
       }
     ]
   },
@@ -81,23 +71,11 @@ const routes: Routes = [
     path: 'investor',component: InvestorComponent,
     children: [
       {
-        path: '', component: DashboardComponent
+        path: '', component: IdashboardComponent,
       },
       {
-        path: 'dashboard', component: DashboardComponent
+        path: 'dashboard', component: IdashboardComponent,
       },
-      {
-        path: 'projects', component: ProjectDetailsComponent
-      },
-      {
-        path: 'projects/:id', component: ProjectDetailsComponent
-      },
-      {
-        path: 'tasks', component: TaskDetailsComponent
-      },
-      {
-        path: 'tasks/:id', component: TaskDetailsComponent
-      }
     ]
   },
 

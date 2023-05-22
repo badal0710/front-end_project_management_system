@@ -36,6 +36,9 @@ import { CardsComponent } from './components/shared/cards/cards.component';
 import { InvestorDetailsComponent } from './components/admin/investor-details/investor-details.component';
 import { ContractorDetailsComponent } from './components/admin/contractor-details/contractor-details.component';
 import { ContectUsComponent } from './components/shared/contect-us/contect-us.component';
+import { CdashboardComponent } from './components/contractor/cdashboard/cdashboard.component';
+import { IdashboardComponent } from './components/investor/idashboard/idashboard.component';
+import { TaskCardComponent } from './components/shared/cards/task-card/task-card.component';
 
 
 
@@ -61,6 +64,9 @@ import { ContectUsComponent } from './components/shared/contect-us/contect-us.co
     InvestorDetailsComponent,
     ContractorDetailsComponent,
     ContectUsComponent,
+    CdashboardComponent,
+    IdashboardComponent,
+    TaskCardComponent,
   ],
   imports: [
     FormsModule,

@@ -1,0 +1,12 @@
+#task-card-main{
+    margin-top: 10px;
+}
+
+#task-card-main:hover{
+    background-color:beige;
+}
+
+#task-description{
+    display: flex;
+    justify-content: space-between;
+}

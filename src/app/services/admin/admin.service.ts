@@ -115,4 +115,11 @@ export class AdminService {
     return this.http.put(`${DATABASE_URL}/${enum_controllers.contractor}/${enum_functions.contractor_updateContractor}/${id}`,body);
   }
 
+
+  //investors
+  // getAllProjectOfOneInvestor(email: any){
+  //   return this.http.get(`${DATABASE_URL}/${enum_controllers.investor}/${enum_functions.investor_getAllProjectOfOneInvestor}/${email}`);
+  // }
+
+
 }

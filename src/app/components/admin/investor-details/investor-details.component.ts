@@ -49,13 +49,27 @@ export class InvestorDetailsComponent implements OnInit {
     this.adminService.getAllProjectInvestor().subscribe( (projectInvestors: any) => {
 
       for(let projectInvestor of projectInvestors){
-        this.ProjectInvestorKeys.push(Object.keys(projectInvestor));
-        this.ProjectInvestorValue.push(Object.values(projectInvestor));
+
+        let keys = Object.keys(projectInvestor);
+        let firstElement = keys[0];
+        let lastElement = keys[keys.length - 1];
+        let mykeys = [firstElement,lastElement];
+
+        let values = Object.values(projectInvestor);
+        let firstvElement = values[0];
+        let lastvElement = values[values.length - 1];
+        let myvalues = [firstvElement,lastvElement];
+
+        // this.Names=Object.keys(projectInvestor);
+        this.ProjectInvestorKeys.push(mykeys)
+        this.ProjectInvestorValue.push(myvalues);
+
+
+        // this.ProjectInvestorKeys.push(Object.keys(projectInvestor));
+        // this.ProjectInvestorValue.push(Object.values(projectInvestor));
       }
 
     } );
-
-  
 
   }
 

@@ -1,0 +1,25 @@
+<div class="container-fluid p-3 m-1">
+
+    <!-- ============= breadCrumbs And Title ================= -->
+    <div>
+        <h1 style="font-size: 25px"> Dashboard </h1>
+        <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
+    </div>
+     <!-- ============= Cards ================= -->
+    <div class="p-3 mt-4" style="display: flex;justify-content: space-between;flex-wrap: wrap;">
+        <!-- <app-cards [Data]="investorCard"></app-cards>
+        <app-cards [Data]="contractorCard"></app-cards>
+        <app-cards [Data]="projectCard"></app-cards> -->
+        <!-- <app-cards [Data]="fundCard"></app-cards> -->
+    </div>
+
+     <!-- ============= Tables ================= -->
+    <app-table [TableName]="ProjectName" [TableAction]="ProjectAction" [TableKeys]="ProjectKeys"  [TableValue]="ProjectValue" [RowAction]="ProjectRowAction"></app-table>
+
+
+    <!-- ============== Chart ================== -->
+     <div class="card shadow p-3 mt-4">
+        <app-charts [chartName]="projectChartName" [chartType]="projectChartType" [chartLabel]="projectChartLabel" [chartValue]="projectChartValue"></app-charts>
+    </div>
+    
+</div>

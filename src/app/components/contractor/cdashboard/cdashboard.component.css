@@ -1,0 +1,19 @@
+#main {
+  display: flex;
+  justify-content:space-evenly;
+  flex-wrap: wrap;
+  margin: 20px;
+  height:fit-content;
+  background-image: url("https://www.thenology.com/wp-content/uploads/2016/01/608832.jpg");
+}
+
+#main > div{
+    margin: 5px;
+    padding: 10px;
+    margin-bottom: 10px;  
+    background-color:whitesmoke;
+}
+
+#main > div > h3 {
+    margin: 5px;
+}

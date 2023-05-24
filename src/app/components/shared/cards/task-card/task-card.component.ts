@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/services/admin/admin.service';
+import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
 
 @Component({
   selector: 'app-task-card',
@@ -8,7 +9,7 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 })
 export class TaskCardComponent implements OnInit {
 
-  constructor(private adminService: AdminService){}
+  constructor(private taskDetail: TaskdetailService){}
 
   @Input() public id!:number;
 
@@ -36,7 +37,6 @@ export class TaskCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("ngoninit");
     this.loadData(this.id);
   }
 
@@ -45,7 +45,7 @@ export class TaskCardComponent implements OnInit {
   }
 
   loadData(id:Number){
-    this.adminService.getOneTask(id).subscribe( (result:any) => {
+    this.taskDetail.getOneTask(id).subscribe( (result:any) => {
       console.log(result);
       this.taskName = result.taskName;
       this.projectName = result.project.projectName;

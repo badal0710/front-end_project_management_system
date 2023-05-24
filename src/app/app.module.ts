@@ -39,6 +39,7 @@ import { ContectUsComponent } from './components/shared/contect-us/contect-us.co
 import { CdashboardComponent } from './components/contractor/cdashboard/cdashboard.component';
 import { IdashboardComponent } from './components/investor/idashboard/idashboard.component';
 import { TaskCardComponent } from './components/shared/cards/task-card/task-card.component';
+import { ProjectCardComponent } from './components/shared/cards/project-card/project-card/project-card.component';
 
 
 
@@ -67,6 +68,7 @@ import { TaskCardComponent } from './components/shared/cards/task-card/task-card
     CdashboardComponent,
     IdashboardComponent,
     TaskCardComponent,
+    ProjectCardComponent,
   ],
   imports: [
     FormsModule,

@@ -1,0 +1,13 @@
+#project-card-main{
+    margin-top: 10px;
+}
+
+#project-card-main:hover{
+    background-color:beige;
+}
+
+#project-description{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}

@@ -5,9 +5,9 @@
   [attr.data-bs-target]="'#create' + id"
   style="border-left: 5px green solid"
 >
-  <h3 id="task-name">{{ taskName }}</h3>
+  <h3 id="task-name"> <b> Task Name </b> <br> {{ taskName }}</h3>
   <div id="task-description">
-    <h4> {{ projectName }} </h4>
+    <h4> <b> Project Name </b> <br> {{ projectName }} </h4>
   </div>
   <div class="progress">
     <div
@@ -40,24 +40,24 @@
 
       <div class="modal-body container-fluid row" style="align-items: center">
 
-        <div style="display: flex;flex-wrap: wrap;justify-content:space-between">
+        <div style="display: flex;flex-wrap: wrap;justify-content:space-between;flex-direction: column;">
           
-          <section> <b> name           </b> <p> {{ taskName }} </p>  </section>
-          <section> <b> Project-name   </b> <p> {{ projectName }} </p>  </section>
+          <section> <b> Name           </b> <p> {{ taskName }} </p>  </section>
+          <section> <b> Project name   </b> <p> {{ projectName }} </p>  </section>
           <section> <b> Start Date     </b> <p> {{ startDate }} </p>  </section>
           <section> <b> End Date       </b> <p> {{ endDate }} </p>  </section>
           <section> <b> Budget         </b> <p> ${{ budget }} </p>  </section>
 
         </div>
-
-        <button class="col-auto btn btn-outline-dark" (click)="decreaseProgress()"> - </button> &nbsp;
-
+        <b> Task Status </b>
+        
         <div class="progress col-10">
           <div class="progress-bar bg-info" role="progressbar" [style.width.%]="progressValue" [attr.aria-valuenow]="progressValue" aria-valuemin="0" aria-valuemax="100">
             {{ progressValue }}%
           </div>
         </div> &nbsp;
         
+        <button class="col-auto btn btn-outline-dark" (click)="decreaseProgress()"> - </button> &nbsp;
         <button class="col-auto btn btn-outline-dark" (click)="increaseProgress()"> + </button>
 
       </div><br><br>

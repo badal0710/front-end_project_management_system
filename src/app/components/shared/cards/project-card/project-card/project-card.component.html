@@ -1,0 +1,47 @@
+<div
+  id="project-card-main"
+  class="container card"
+  data-bs-toggle="modal"
+  [attr.data-bs-target]="'#create' + id"
+  style="border-left: 5px green solid"
+>
+  <h3 id="project-name"> <b> Project Name </b> <br> {{ projectName }}</h3>
+  <div id="project-description">
+    <h4> <b> Invested Amount </b> <br> ${{ investedAmount }} </h4>
+    <h4> <b> Project Status </b> <br> </h4>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-outline-info active" role="progressbar" [style.width.%]="progressValue"  [attr.aria-valuenow]="progressValue" aria-valuemin="0" aria-valuemax="100">  {{ progressValue }}%
+      </div>
+    </div>
+  </div>
+  <br />
+</div>
+
+<!-- ============== model ================== -->
+<div class="modal fade" id="create{{id}}" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content container-fluid">
+
+      <div class="modal-header"> <h2 class="modal-title" style="font-size: 20px"> Details of {{ projectName }} </h2> <button   type="button"   class="btn-close"   data-bs-dismiss="modal"   aria-label="Close"> </button>
+      </div>
+
+      <div class="modal-body container-fluid row" style="align-items: center">
+        <div style="display: flex;flex-wrap: wrap;justify-content:space-between;flex-direction: column;">      
+          <section> <b> Name             </b> <p> {{ projectName }} </p>  </section> 
+          <section> <b> start Date       </b> <p> {{ startDate }} </p>  </section>   
+          <section> <b> End Date         </b> <p> {{ endDate }} </p>  </section>   
+          <section> <b> Type of Property </b> <p> {{ projectType }} </p>  </section>   
+          <section> <b> location         </b> <p> {{ location }} </p>  </section>
+          <section> <b> Invested Amount  </b> <p> {{ investedAmount }} </p>  </section>
+        </div> 
+      <b *ngIf="taskIds.length>0"> Tasks </b>
+      <div style="display: flex;justify-content:space-around;flex-wrap: wrap;">
+        <section *ngFor="let id of taskIds"> 
+          <app-task-card [id]="id"></app-task-card>
+        </section>
+      </div>
+      </div><br><br>
+
+    </div>
+  </div>
+</div>

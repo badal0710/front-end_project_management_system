@@ -1,25 +1,59 @@
-<div class="container-fluid p-3 m-1">
-
-    <!-- ============= breadCrumbs And Title ================= -->
-    <div>
-        <h1 style="font-size: 25px"> Dashboard </h1>
-        <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
-    </div>
-     <!-- ============= Cards ================= -->
-    <div class="p-3 mt-4" style="display: flex;justify-content: space-between;flex-wrap: wrap;">
-        <!-- <app-cards [Data]="investorCard"></app-cards>
-        <app-cards [Data]="contractorCard"></app-cards>
-        <app-cards [Data]="projectCard"></app-cards> -->
-        <!-- <app-cards [Data]="fundCard"></app-cards> -->
-    </div>
-
-     <!-- ============= Tables ================= -->
-    <app-table [TableName]="ProjectName" [TableAction]="ProjectAction" [TableKeys]="ProjectKeys"  [TableValue]="ProjectValue" [RowAction]="ProjectRowAction"></app-table>
-
-
-    <!-- ============== Chart ================== -->
-     <div class="card shadow p-3 mt-4">
-        <app-charts [chartName]="projectChartName" [chartType]="projectChartType" [chartLabel]="projectChartLabel" [chartValue]="projectChartValue"></app-charts>
-    </div>
+<br><button style="position: absolute;right: 30px;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#investMoney"> New Investment </button><br><br>
+<div id="main">
     
+    <div id="not-start" class="col-sm-3 card">
+          <h2> Not Start Yet </h2>
+        <div *ngFor="let id of notStart">
+           <app-project-card [id]="id"> </app-project-card>
+        </div>
+    </div>
+  
+    <div id="in-progress"  class="col-sm-3 card">
+       <h2> In Progress </h2>
+       <div *ngFor="let id of inProgress">
+          <app-project-card [id]="id"> </app-project-card>
+       </div>
+    </div>
+  
+    <div id="done"  class="col-sm-3 card">
+       <h2> Done </h2>
+       <div *ngFor="let id of done">
+        <app-project-card [id]="id"> </app-project-card>
+     </div> 
+       
+    </div>
+  
 </div>
+
+<!-- ============== model ================== -->
+<div class="modal fade" id="investMoney" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content container-fluid">
+
+      <div class="modal-header"> <h2 class="modal-title" style="font-size: 20px"> New Investment  </h2> <button   type="button"   class="btn-close"   data-bs-dismiss="modal"   aria-label="Close"> </button>
+      </div>
+
+      <div class="modal-body container-fluid row" style="align-items: center">
+        <div style="display: flex;flex-wrap: wrap;justify-content:space-between;flex-direction: column;">      
+         
+         <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Choose Project</label>
+              <select class="form-select">
+                  <option> projectName - projectType - location </option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Amount To Invest</label>
+              <input type="number" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+        </div> 
+      </div><br><br>
+
+    </div>
+  </div>
+</div>
+  

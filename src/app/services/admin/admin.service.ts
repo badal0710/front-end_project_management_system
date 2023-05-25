@@ -11,108 +11,108 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  authorizeUser(email:any,type:any){
-    return this.http.get(`${DATABASE_URL}/${enum_controllers.user}/${enum_functions.user_authorizeUser}/${email}/${type}`);
+  authorizeUser(email: any) {
+    return this.http.post(`${DATABASE_URL}/api/auth/signin`, email);
   }
 
-  getAllProject(){
+  getAllProject() {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_getAllProject}`);
   }
 
-  getOneProject(id:any){
+  getOneProject(id: any) {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_getOneProject}/${id}`);
   }
 
-  getOneTask(id:any){
+  getOneTask(id: any) {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.taskDetail}/${enum_functions.taskDetail_getOneTask}/${id}`);
   }
 
-  getAllTaskOfOneProject(id:any){
+  getAllTaskOfOneProject(id: any) {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_taskDetail}/${id}/filterDates`);
   }
 
-  getAllTasks(){
+  getAllTasks() {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.taskDetail}/${enum_functions.taskDetail_allTask}`);
   }
 
-  getAllInvestor(){
+  getAllInvestor() {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.investor}/${enum_functions.investor_getAllInvestor}`);
   }
 
-  getAllContractor(){
+  getAllContractor() {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.contractor}/${enum_functions.contractor_getAllContractor}`);
   }
 
-  getAllProjectInvestor(){
+  getAllProjectInvestor() {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.projectInvestor}/${enum_functions.projectInvestor_getAll}`);
   }
 
-  totalContractor(){
+  totalContractor() {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.contractor}/${enum_functions.contractor_countContractor}`);
   }
 
-  totalInvestor(){
+  totalInvestor() {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.investor}/${enum_functions.investor_countInvestor}`);
   }
 
-  totalProject(){
+  totalProject() {
     return this.http.get(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_countProject}`);
   }
 
-  createProject(body:any){
-    return this.http.post(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_createProject}`,body);
+  createProject(body: any) {
+    return this.http.post(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_createProject}`, body);
   }
 
-  createTask(body:any){
-    return this.http.post(`${DATABASE_URL}/${enum_controllers.taskDetail}/${enum_functions.taskDetail_createTask}`,body);
+  createTask(body: any) {
+    return this.http.post(`${DATABASE_URL}/${enum_controllers.taskDetail}/${enum_functions.taskDetail_createTask}`, body);
   }
 
-  createContractor(body:any){
-    return this.http.post(`${DATABASE_URL}/${enum_controllers.contractor}/${enum_functions.contractor_createContractor}`,body);
+  createContractor(body: any) {
+    return this.http.post(`${DATABASE_URL}/${enum_controllers.contractor}/${enum_functions.contractor_createContractor}`, body);
   }
 
-  createInvestor(body:any){
-    return this.http.post(`${DATABASE_URL}/${enum_controllers.investor}/${enum_functions.investor_createInvestor}`,body);
+  createInvestor(body: any) {
+    return this.http.post(`${DATABASE_URL}/${enum_controllers.investor}/${enum_functions.investor_createInvestor}`, body);
   }
 
-  createProjectInvestor(body:any){
-    return this.http.post(`${DATABASE_URL}/${enum_controllers.projectInvestor}/${enum_functions.projectInvestor_create}`,body); 
+  createProjectInvestor(body: any) {
+    return this.http.post(`${DATABASE_URL}/${enum_controllers.projectInvestor}/${enum_functions.projectInvestor_create}`, body);
   }
 
-  deleteProjectInvestor(id: any){
+  deleteProjectInvestor(id: any) {
     return this.http.delete(`${DATABASE_URL}/${enum_controllers.projectInvestor}/${enum_functions.projectInvestor_deleteOne}/${id}`);
   }
 
-  deleteProject(id: any){
+  deleteProject(id: any) {
     return this.http.delete(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_deleteProject}/${id}`);
   }
 
-  deleteInvestor(id:any){
+  deleteInvestor(id: any) {
     return this.http.delete(`${DATABASE_URL}/${enum_controllers.investor}/${enum_functions.investor_deleteOne}/${id}`);
   }
 
-  deleteContractor(id:any){
+  deleteContractor(id: any) {
     return this.http.delete(`${DATABASE_URL}/${enum_controllers.contractor}/${enum_functions.contractor_deleteContractor}/${id}`);
   }
 
-  deleteTask(id:any){
+  deleteTask(id: any) {
     return this.http.delete(`${DATABASE_URL}/${enum_controllers.taskDetail}/${enum_functions.taskDetail_deleteTask}/${id}`);
   }
 
-  updateProject(body: any, id: any){
-    return this.http.put(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_updateProject}/${id}`,body);
+  updateProject(body: any, id: any) {
+    return this.http.put(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_updateProject}/${id}`, body);
   }
 
-  updateTask(body: any, id: any){
-    return this.http.put(`${DATABASE_URL}/${enum_controllers.taskDetail}/${enum_functions.taskDetail_updateTask}/${id}`,body);
+  updateTask(body: any, id: any) {
+    return this.http.put(`${DATABASE_URL}/${enum_controllers.taskDetail}/${enum_functions.taskDetail_updateTask}/${id}`, body);
   }
 
-  updateInvestor(body: any, id: any){
-    return this.http.put(`${DATABASE_URL}/${enum_controllers.investor}/${enum_functions.projectController_updateProject}/${id}`,body);
+  updateInvestor(body: any, id: any) {
+    return this.http.put(`${DATABASE_URL}/${enum_controllers.investor}/${enum_functions.projectController_updateProject}/${id}`, body);
   }
 
-  updateContractor(body: any, id: any){
-    return this.http.put(`${DATABASE_URL}/${enum_controllers.contractor}/${enum_functions.contractor_updateContractor}/${id}`,body);
+  updateContractor(body: any, id: any) {
+    return this.http.put(`${DATABASE_URL}/${enum_controllers.contractor}/${enum_functions.contractor_updateContractor}/${id}`, body);
   }
 
 

@@ -16,25 +16,24 @@ export class AdminComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // TODO document why this method 'ngOnInit' is empty    
-    // alert(sessionStorage.getItem('UPN'));
-    // this.authorizeUser('admin');
+    this.authorizeUser('ROLE_ADMIN');
   }
 
-  // authorizeUser(type:any){
-  //   if(sessionStorage.getItem('UPN')===null) {
-  //     Swal.fire('YOU ARE UNAUTHORIZED','Please Login to Continue');
-  //     this.router.navigateByUrl('/login');
-  //   }else{
-  //     this.adminService.authorizeUser(sessionStorage.getItem('UPN'),type).subscribe((result:any)=>{
-  //       if(result!=1){
-  //         Swal.fire('YOU ARE UNAUTHORIZED','You Cannot have a Access of This Page');
-  //         sessionStorage.clear();
-  //         this.googleAuth.signOut();
-  //         this.router.navigateByUrl('/login');
-  //       }
-  //     });
-  //   }
-  // }
+  authorizeUser(type: any) {
+    if (localStorage.getItem('UPN') === null) {
+      Swal.fire('YOU ARE UNAUTHORIZED', 'Please Login to Continue');
+      localStorage.clear();
+      this.router.navigateByUrl('/login');
+    } else {
+      this.adminService.authorizeUser(localStorage.getItem('UPN')).subscribe((result: any) => {
+        if (result.roles[0] !== type) {
+          Swal.fire('YOU ARE UNAUTHORIZED', 'You Cannot have a Access of This Page');
+          localStorage.clear();
+          this.googleAuth.signOut();
+          this.router.navigateByUrl('/login');
+        }
+      });
+    }
+  }
 
 }

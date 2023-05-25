@@ -59,13 +59,19 @@ export class LoginComponent implements OnInit {
       const role = result.roles[0];
       console.log(role)
       if (role === 'ROLE_INVESTOR') {
+        localStorage.setItem("UPN", email);
+        localStorage.setItem("ROLE", "Investor");
         this.router.navigate(['/investor'])
       }
       if (role === 'ROLE_CONTRACTOR') {
+        localStorage.setItem("UPN", email);
+        localStorage.setItem("ROLE", "Contractor");
         this.router.navigate(['/contractor'])
       }
       if (role === "ROLE_ADMIN") {
-        this.router.navigate(['admin'])
+        localStorage.setItem("UPN", email);
+        localStorage.setItem("ROLE", "Admin");
+        this.router.navigate(['/admin'])
       }
       // this.manageState(email);
       // this.navigateMe(result);

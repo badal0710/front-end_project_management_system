@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChartData } from 'chart.js';
 
-import { AdminService } from 'src/app/services/admin/admin.service';
+
+import { LoginService } from 'src/app/services/login/login.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  constructor(private adminService: AdminService, private router: Router, private readonly googleAuth: SocialAuthService) { }
+  constructor(private loginService: LoginService, private router: Router, private readonly googleAuth: SocialAuthService) { }
 
 
   ngOnInit(): void {
@@ -25,7 +26,7 @@ export class AdminComponent implements OnInit {
       localStorage.clear();
       this.router.navigateByUrl('/login');
     } else {
-      this.adminService.authorizeUser(localStorage.getItem('UPN')).subscribe((result: any) => {
+      this.loginService.authorizeUser(localStorage.getItem('UPN')).subscribe((result: any) => {
         if (result.roles[0] !== type) {
           Swal.fire('YOU ARE UNAUTHORIZED', 'You Cannot have a Access of This Page');
           localStorage.clear();

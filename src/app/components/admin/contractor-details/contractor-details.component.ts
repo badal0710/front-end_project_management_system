@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'src/app/services/admin/admin.service';
+
+import { ContractorService } from 'src/app/services/contractor/contractor.service';
 
 @Component({
   selector: 'app-contractor-details',
@@ -8,7 +9,7 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 })
 export class ContractorDetailsComponent implements OnInit {
 
-  constructor(private adminService:AdminService) { }
+  constructor(private contractorService:ContractorService) { }
 
   myBreadCrumbs:any = [
     {
@@ -30,7 +31,7 @@ export class ContractorDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.adminService.getAllContractor().subscribe( (contractors:any) => {
+    this.contractorService.getAllContractor().subscribe( (contractors:any) => {
 
       for(let contractor of contractors){
 

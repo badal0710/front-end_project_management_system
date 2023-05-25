@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserAuthService } from '../login/user-auth.service';
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,52 +8,24 @@ import { UserAuthService } from '../login/user-auth.service';
 export class ProjectsDetailService {
 
   database_url = 'http://localhost:9090';
-  jwtToken = this.authservice.getToken();
+  jwtToken = this.loginService.getToken();
   
+  //controller
   projectController = 'project';
 
-  /**
-  *     @PostMapping("/create-project")
-  */
-  createProject = 'create-project';
-  /**
-   *   @GetMapping("/getAllProjectOfOneInvestor/{investorEmail}")
-   */
+  //function
+  create = 'create-project';
   AllProjectOfOneInvestor = 'getAllProjectOfOneInvestor';
-  /**
-   *     @GetMapping("/{projectId}")
-   */
   getOne = '';
-  /**
-   *     @GetMapping("/AllProjects")
-   */
   getAll = 'AllProjects';
-  /**
-   *     @PutMapping("/update-project/{projectId}")
-   */
   update = 'update-project';
-  /**
-   *     @DeleteMapping("/delete-project/{projectId}")
-   */
   delete = 'delete-project';
-  /**
-   *     @GetMapping("/project-investor/{projectId}")
-   */
   projectInvestor = 'project-investor';
-  /**
-   *     @GetMapping("/task-details/{projectId}/filterDates")
-   */
   taskDetail = 'task-details';
-  /**
-   *     @GetMapping("/project-status-date/{startingDate/{endingDate}/{projectStatus}")
-   */
   projectStatusDate = 'project-status-date';
-  /**
-   *   @GetMapping("/totalProject")
-   */
   countProject = 'totalProject';
 
-  constructor(private http: HttpClient, private authservice: UserAuthService) { }
+  constructor(private http: HttpClient, private loginService: LoginService) { }
 
   getHeaders() {
     return new HttpHeaders().set('Authorization', `Bearer ${this.jwtToken}`);
@@ -84,6 +56,16 @@ export class ProjectsDetailService {
     console.log(this.AllProjectOfOneInvestor)
     const headers = this.getHeaders();
     return this.http.get(`${this.database_url}/${this.projectController}/${this.AllProjectOfOneInvestor}/${email}`,{ headers });
+  }
+
+  totalProject() {
+    const headers = this.getHeaders();
+    return this.http.get(`${this.database_url}/${this.projectController}/${this.countProject}`,{ headers });
+  }
+
+  createProject(body: any) {
+    const headers = this.getHeaders();
+    return this.http.post(`${this.database_url}/${this.projectController}/${this.create}`, body,{ headers });
   }
 
 

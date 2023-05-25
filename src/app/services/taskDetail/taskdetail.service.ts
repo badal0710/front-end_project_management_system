@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserAuthService } from '../login/user-auth.service';
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,19 +8,19 @@ import { UserAuthService } from '../login/user-auth.service';
 export class TaskdetailService {
 
   DATABASE_URL = 'http://localhost:9090';
-  jwtToken = this.authservice.getToken();
+  jwtToken = this.loginService.getToken();
 
   taskDetail = 'taskofproject';
   project = 'project';
 
   allTask = "all-task";
-  createTask = 'create-task';
-  updateTask = 'update-task';
-  deleteTask = 'delete-task';
+  create = 'create-task';
+  update = 'update-task';
+  delete = 'delete-task';
   oneTask = 'getOneTask';
   allTaskOfOneProject = 'task-details';
 
-  constructor(private http: HttpClient, private authservice: UserAuthService) { }
+  constructor(private http: HttpClient, private loginService: LoginService) { }
 
   getHeaders() {
     return new HttpHeaders().set('Authorization', `Bearer ${this.jwtToken}`);
@@ -39,6 +39,18 @@ export class TaskdetailService {
   getAllTaskOfOneProject(id:any){
     const headers = this.getHeaders();
     return this.http.get(`${this.DATABASE_URL}/${this.project}/${this.allTaskOfOneProject}/${id}/filterDates`,{ headers });
+  }
+
+  updateTask(body: any, id: any) {
+    return this.http.put(`${this.DATABASE_URL}/${this.taskDetail}/${this.update}/${id}`, body);
+  }
+
+  deleteTask(id: any) {
+    return this.http.delete(`${this.DATABASE_URL}/${this.taskDetail}/${this.delete}/${id}`);
+  }
+
+  createTask(body: any) {
+    return this.http.post(`${this.DATABASE_URL}/${this.taskDetail}/${this.create}`, body);
   }
   
 }

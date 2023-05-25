@@ -1,7 +1,7 @@
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminService } from 'src/app/services/admin/admin.service';
+import { LoginService } from 'src/app/services/login/login.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class InvestorComponent implements OnInit {
 
-  constructor(private adminService: AdminService, private router: Router, private readonly googleAuth: SocialAuthService) { }
+  constructor(private loginservice: LoginService, private router: Router, private readonly googleAuth: SocialAuthService) { }
 
   ngOnInit(): void {
     this.authorizeUser('ROLE_INVESTOR');
@@ -23,7 +23,7 @@ export class InvestorComponent implements OnInit {
       localStorage.clear();
       this.router.navigateByUrl('/login');
     } else {
-      this.adminService.authorizeUser(localStorage.getItem('UPN')).subscribe((result: any) => {
+      this.loginservice.authorizeUser(localStorage.getItem('UPN')).subscribe((result: any) => {
         if (result.roles[0] !== type) {
           Swal.fire('YOU ARE UNAUTHORIZED', 'You Cannot have a Access of This Page');
           localStorage.clear();

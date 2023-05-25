@@ -1,33 +1,48 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UserAuthService } from '../login/user-auth.service';
+import { LoginService } from '../login/login.service';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class InvestorProjectServiceService {
 
-  constructor(private http: HttpClient, private authservice: UserAuthService) { }
+  constructor(private http: HttpClient, private loginService: LoginService) { }
 
   database_url = 'http://localhost:9090';
+  jwtToken = this.loginService.getToken();
 
-  jwtToken = this.authservice.getToken();
+  //controller
+  projectInvestor = 'projectInvestor';
 
-  investorProjectController = 'projectInvestor';
-
-  /*
-   * @GetMapping("/getInvestedAmount/{email}/{projectid}")
-  */
+  //function
   investedAmount = 'getInvestedAmount';
+
+  create = 'create';
+  deleteOne = 'delete';
+  getAll = 'getAll';
 
   getHeaders() {
     return new HttpHeaders().set('Authorization', `Bearer ${this.jwtToken}`);
   }
 
   getInvestedAmount(email:string|null,projectId:number){
-    console.log("received email: ",email);
     const headers = this.getHeaders();
-    return this.http.get(`${this.database_url}/${this.investorProjectController}/${this.investedAmount}/${email}/${projectId}`,{ headers });
+    return this.http.get(`${this.database_url}/${this.projectInvestor}/${this.investedAmount}/${email}/${projectId}`,{ headers });
+  }
+
+  deleteProjectInvestor(id: any) {
+    return this.http.delete(`${this.database_url}/${this.projectInvestor}/${this.deleteOne}/${id}`);
+  }
+
+  createProjectInvestor(body: any) {
+    return this.http.post(`${this.database_url}/${this.projectInvestor}/${this.create}`, body);
+  }
+
+  getAllProjectInvestor() {
+    return this.http.get(`${this.database_url}/${this.projectInvestor}/${this.getAll}`);
   }
 
 }

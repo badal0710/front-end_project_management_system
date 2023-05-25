@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminService } from 'src/app/services/admin/admin.service';
+import { ContractorService } from 'src/app/services/contractor/contractor.service';
+import { InvestorService } from 'src/app/services/investor/investor.service';
+import { ProjectsDetailService } from 'src/app/services/projectDetail/projects-detail.service';
+import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class TableComponent implements OnInit {
 
-  constructor(private adminService:AdminService,private router:Router) {}
+  constructor(private router:Router, private taskdetailService:TaskdetailService,private projectsDetailService:ProjectsDetailService, private contractorService:ContractorService, private investorService:InvestorService) {}
 
   @Input() TableKeys:any[]=[];
   @Input() TableValue!:any[];
@@ -33,7 +36,7 @@ export class TableComponent implements OnInit {
   delete(table:any,value:any){
 
     if(table==='Contractor'){
-      this.adminService.deleteContractor(value).subscribe((result:any)=>{
+      this.contractorService.deleteContractor(value).subscribe((result:any)=>{
         if(result==200){
           Swal.fire('Delete','Contractor Deleted Successfully');
         }else{
@@ -43,7 +46,7 @@ export class TableComponent implements OnInit {
 
     }else if(table==='Investor'){
 
-      this.adminService.deleteInvestor(value).subscribe((result:any)=>{
+      this.investorService.deleteInvestor(value).subscribe((result:any)=>{
         if(result==200){
           Swal.fire('Delete','Investor Deleted Successfully');
         }else{
@@ -75,7 +78,7 @@ export class TableComponent implements OnInit {
 
       if(this.tableAction[0]==='Task'){
 
-        this.adminService.createTask(this.formData).subscribe((result:any)=>{
+        this.taskdetailService.createTask(this.formData).subscribe((result:any)=>{
           if(result==200){
             Swal.fire('result','Task Successfully Added');
             this.router.navigateByUrl('/admin/dashboard');
@@ -88,7 +91,7 @@ export class TableComponent implements OnInit {
 
       else if(this.tableAction[0]==='Project'){
 
-        this.adminService.createProject(this.formData).subscribe((result:any)=>{
+        this.projectsDetailService.createProject(this.formData).subscribe((result:any)=>{
           if(result=='OK'){
             Swal.fire('result','Project Successfully Added');
             this.router.navigateByUrl('/admin/dashboard');
@@ -101,7 +104,7 @@ export class TableComponent implements OnInit {
 
       else if(this.tableAction[0]==='Investor'){
         
-        this.adminService.createInvestor(this.formData).subscribe((result:any)=>{
+        this.investorService.createInvestor(this.formData).subscribe((result:any)=>{
           if(result==200){
             Swal.fire('result','Investor SuccessFully Added');
             this.router.navigateByUrl('/admin/investorDetail');
@@ -114,7 +117,7 @@ export class TableComponent implements OnInit {
 
       else if(this.tableAction[0]==='Contractor'){
 
-        this.adminService.createContractor(this.formData).subscribe((result:any)=>{
+        this.contractorService.createContractor(this.formData).subscribe((result:any)=>{
           if(result==200){
             Swal.fire('result','Contractor SuccessFully Added');
             this.router.navigateByUrl('/admin/contractorDetail');
@@ -127,7 +130,7 @@ export class TableComponent implements OnInit {
 
       else if(this.tableAction[0]==='ProjectInvestor'){
 
-        this.adminService.createContractor(this.formData).subscribe((result:any)=>{
+        this.contractorService.createContractor(this.formData).subscribe((result:any)=>{
           if(result==200){
             Swal.fire('result','Investor SuccessFully Added to project');
             this.router.navigateByUrl('/admin/contractorDetail');

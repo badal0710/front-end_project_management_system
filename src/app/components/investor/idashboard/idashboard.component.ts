@@ -1,7 +1,5 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdminService } from 'src/app/services/admin/admin.service';
-import { InvestorService } from 'src/app/services/investor/investor.service';
 import { InvestorProjectServiceService } from 'src/app/services/investorProject/investor-project-service.service';
 import { ProjectsDetailService } from 'src/app/services/projectDetail/projects-detail.service';
 import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';

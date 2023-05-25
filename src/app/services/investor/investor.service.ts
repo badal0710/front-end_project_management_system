@@ -1,18 +1,49 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DATABASE_URL } from 'src/app/util/config/configuration';
-import { enum_controllers } from 'src/app/util/enum/enum_controllers';
-import { enum_functions } from 'src/app/util/enum/enum_functions_of_controllers';
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InvestorService {
 
-  constructor(private http: HttpClient) { }
+  DATABASE_URL = 'http://localhost:9090';
+  jwtToken = this.loginService.getToken();
 
-  getAllProjectOfOneInvestor(email: any){
-    return this.http.get(`${DATABASE_URL}/${enum_controllers.projectController}/${enum_functions.projectController_getAllProjectOfOneInvestor}/${email}`);
+  //controller
+  investor = 'investor';
+
+  //functions
+  getOne = ''; 
+  getAll = 'allInvestor';    
+  count = 'totalInvestor';   
+  create = 'create-investor';
+  deleteOne = 'delete-investor';
+
+  constructor(private http: HttpClient, private loginService: LoginService) { }
+
+  getHeaders() {
+    return new HttpHeaders().set('Authorization', `Bearer ${this.jwtToken}`);
+  }
+
+  getAllInvestor() {
+    const headers = this.getHeaders();
+    return this.http.get(`${this.DATABASE_URL}/${this.investor}/${this.getAll}`,{ headers });
+  }
+
+  totalInvestor() {
+    const headers = this.getHeaders();
+    return this.http.get(`${this.DATABASE_URL}/${this.investor}/${this.count}`,{ headers });
+  }
+
+  createInvestor(body: any) {
+    const headers = this.getHeaders();
+    return this.http.post(`${this.DATABASE_URL}/${this.investor}/${this.create}`, body,{ headers });
+  }
+
+  deleteInvestor(id: any) {
+    const headers = this.getHeaders();
+    return this.http.delete(`${this.DATABASE_URL}/${this.investor}/${this.deleteOne}/${id}`,{ headers });
   }
 
 }

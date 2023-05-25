@@ -1,8 +1,9 @@
 import {  AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Chart, { ChartData } from 'chart.js/auto';
-
-import { AdminService } from 'src/app/services/admin/admin.service';
+import { ContractorService } from 'src/app/services/contractor/contractor.service';
+import { InvestorService } from 'src/app/services/investor/investor.service';
+import { ProjectsDetailService } from 'src/app/services/projectDetail/projects-detail.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,11 +13,10 @@ import Swal from 'sweetalert2';
 })
 export class DashboardComponent implements OnInit,AfterViewInit {
   
-  constructor(private adminService: AdminService, private cd: ChangeDetectorRef, private router:Router) {
+  constructor(private cd: ChangeDetectorRef, private router:Router, private projectService: ProjectsDetailService, private investorService: InvestorService, private contractorService: ContractorService) {
   }
   
   ngOnInit(): void {
-    // this.authorizeUser();
     this.projects();
     this.loadCards();
   }
@@ -37,7 +37,6 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   investorCard=['bi bi-currency-dollar','Investor',20,'investorDetail'];
   contractorCard=['bi bi-person','Contractor',30,'contractorDetail'];
   projectCard=['bi bi-buildings','Projects',120,'null'];
-  // fundCard=['bi bi-currency-dollar','Funding',220];
 
 
   // chart
@@ -56,7 +55,7 @@ export class DashboardComponent implements OnInit,AfterViewInit {
 
   // tables
   projects(){
-    this.adminService.getAllProject().subscribe((projects:any)=>{
+    this.projectService.getAllProject().subscribe((projects:any)=>{
       for(let project of projects){
         this.Names=Object.keys(project);
         this.ProjectKeys.push(Object.keys(project))
@@ -118,13 +117,13 @@ export class DashboardComponent implements OnInit,AfterViewInit {
 
   loadCards(){
 
-    this.adminService.totalInvestor().subscribe((count:any)=>{
+    this.investorService.totalInvestor().subscribe((count:any)=>{
       this.investorCard[2]=count;
     });
-    this.adminService.totalContractor().subscribe((count:any)=>{
+    this.contractorService.totalContractor().subscribe((count:any)=>{
       this.contractorCard[2]=count;
     });
-    this.adminService.totalProject().subscribe((count:any)=>{
+    this.projectService.totalProject().subscribe((count:any)=>{
       this.projectCard[2]=count;
     });
 

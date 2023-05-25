@@ -1,9 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { enum_controllers } from 'src/app/util/enum/enum_controllers';
-import { DATABASE_URL } from 'src/app/util/config/configuration';
-import { enum_functions } from 'src/app/util/enum/enum_functions_of_controllers';
-import { UserAuthService } from './user-auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,34 +7,40 @@ import { UserAuthService } from './user-auth.service';
 
 export class LoginService {
 
-  constructor(private http: HttpClient, private userAuthService: UserAuthService) { }
+  database_url = 'http://localhost:9090';
 
-  login(body: any) {
-    return this.http.post(`${DATABASE_URL}/${enum_controllers.user}/${enum_functions.user_login}`, body);
+  constructor(private http: HttpClient) { }
+
+  authorizeUser(email: any) {
+    return this.http.post(`${this.database_url}/api/auth/signin`, email);
   }
 
   googleLogin(email: any) {
-    return this.http.post(`${DATABASE_URL}/api/auth/signin/`, email);
+    return this.http.post(`${this.database_url}/api/auth/signin/`, email);
   }
 
-  // public roleMatch(allowedRoles: any): any {
-  //   let isMatch = false;
+  public setRoles(roles: []) {
+    localStorage.setItem('roles', JSON.stringify(roles));
+  }
 
-  //   const userRoles: any = this.userAuthService.getRoles(allowedRoles);
-  //   if (userRoles != null && userRoles) {
-  //     for (let i = 0; i < userRoles.length; i++) {
-  //       for (let j = 0; j < allowedRoles.length; j++) {
-  //         if (userRoles[i] === allowedRoles[j]) {
-  //           isMatch = true;
-  //           return isMatch;
-  //         }
-  //         else {
-  //           return isMatch;
-  //         }
-  //       }
-  //     }
-  //   }
+  public getRoles() {
+    return localStorage.getItem('roles');
+  }
 
-  // }
+  public setToken(jwtToken: string) {
+    localStorage.setItem('jwtToken', jwtToken);
+  }
+
+  public getToken() {
+    return localStorage.getItem('jwtToken');
+  }
+
+  public clear() {
+    localStorage.clear();
+  }
+
+  public isLoggedIn() {
+    return this.getRoles() && this.getToken();
+  }
 
 }

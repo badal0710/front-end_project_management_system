@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'src/app/services/admin/admin.service';
+import { InvestorService } from 'src/app/services/investor/investor.service';
+import { InvestorProjectServiceService } from 'src/app/services/investorProject/investor-project-service.service';
 
 @Component({
   selector: 'app-investor-details',
@@ -8,7 +9,7 @@ import { AdminService } from 'src/app/services/admin/admin.service';
 })
 export class InvestorDetailsComponent implements OnInit {
   
-  constructor(private adminService: AdminService) { }
+  constructor(private investorService:InvestorService, private investorProjectServiceService: InvestorProjectServiceService) { }
 
   myBreadCrumbs:any = [
     {
@@ -36,7 +37,7 @@ export class InvestorDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.adminService.getAllInvestor().subscribe( (investors:any) => {
+    this.investorService.getAllInvestor().subscribe( (investors:any) => {
 
       for(let investor of investors){
         this.InvestorKeys.push(Object.keys(investor));
@@ -46,7 +47,7 @@ export class InvestorDetailsComponent implements OnInit {
       }
     });
 
-    this.adminService.getAllProjectInvestor().subscribe( (projectInvestors: any) => {
+    this.investorProjectServiceService.getAllProjectInvestor().subscribe( (projectInvestors: any) => {
 
       for(let projectInvestor of projectInvestors){
 
@@ -60,13 +61,9 @@ export class InvestorDetailsComponent implements OnInit {
         let lastvElement = values[values.length - 1];
         let myvalues = [firstvElement,lastvElement];
 
-        // this.Names=Object.keys(projectInvestor);
         this.ProjectInvestorKeys.push(mykeys)
         this.ProjectInvestorValue.push(myvalues);
 
-
-        // this.ProjectInvestorKeys.push(Object.keys(projectInvestor));
-        // this.ProjectInvestorValue.push(Object.values(projectInvestor));
       }
 
     } );

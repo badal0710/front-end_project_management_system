@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Route, Router } from '@angular/router';
-import { AdminService } from 'src/app/services/admin/admin.service';
+import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -34,10 +34,10 @@ export class TaskDetailsComponent implements OnInit {
       },
   ];
 
-  constructor(private adminService:AdminService, private route:ActivatedRoute, private router:Router) { }
+  constructor(private taskdetailService:TaskdetailService ,private route:ActivatedRoute, private router:Router) { }
 
   updateTask(){
-    this.adminService.updateTask(this.formData,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
+    this.taskdetailService.updateTask(this.formData,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
       if (result===200) {
         Swal.fire('update','Task Updated')
         this.loadData();
@@ -48,7 +48,7 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   deleteTask(){
-    this.adminService.deleteTask(this.route.snapshot.paramMap.get("id")).subscribe((result:any)=>{
+    this.taskdetailService.deleteTask(this.route.snapshot.paramMap.get("id")).subscribe((result:any)=>{
       if(result===200){
         Swal.fire('Delete','this project was Deleted')
         this.router.navigateByUrl('/admin/dashboard');
@@ -68,7 +68,7 @@ export class TaskDetailsComponent implements OnInit {
   }
 
   getOneTask(id:any){
-    this.adminService.getOneTask(id).subscribe((data:any)=>{
+    this.taskdetailService.getOneTask(id).subscribe((data:any)=>{
 
       let index=0;
       this.TaskTitle=Object.keys(data);
@@ -87,14 +87,14 @@ export class TaskDetailsComponent implements OnInit {
 
   tasks(id: any){
     if(id==null){
-      this.adminService.getAllTasks().subscribe((tasks:any)=>{
+      this.taskdetailService.getAllTasks().subscribe((tasks:any)=>{
         for(let task of tasks){
           this.TaskKeys.push(Object.keys(task))
           this.TaskValue.push(Object.values(task));
         }
       })
     }else{
-      this.adminService.getAllTaskOfOneProject(id).subscribe((tasks:any)=>{
+      this.taskdetailService.getAllTaskOfOneProject(id).subscribe((tasks:any)=>{
         for(let task of tasks){
           this.TaskKeys.push(Object.keys(task))
           this.TaskValue.push(Object.values(task));

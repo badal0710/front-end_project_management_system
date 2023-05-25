@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdminService } from 'src/app/services/admin/admin.service';
 import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
 import Swal from 'sweetalert2';
 

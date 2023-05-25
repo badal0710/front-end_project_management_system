@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdminService } from 'src/app/services/admin/admin.service';
+import { ProjectsDetailService } from 'src/app/services/projectDetail/projects-detail.service';
+import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -42,7 +43,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   taskChartLabel:any=[];
   taskChartValue:any=[];
 
-  constructor(private adminService: AdminService, private route: ActivatedRoute, private cd:ChangeDetectorRef, private router: Router) { }
+  constructor(private projectsDetailService: ProjectsDetailService, private taskdetailService:TaskdetailService ,private route: ActivatedRoute, private cd:ChangeDetectorRef, private router: Router) { }
  
   p(a:any,b:any){
     console.log(`${a}: ${b}`);
@@ -58,7 +59,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   }
 
   tasksOfProject(id: any) {
-    this.adminService.getAllTaskOfOneProject(id).subscribe((tasks: any) => {
+    this.taskdetailService.getAllTaskOfOneProject(id).subscribe((tasks: any) => {
       for (let task of tasks) {
         
         const reversedData:any = {};
@@ -81,7 +82,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   }
 
   detailOfProject(id:any){
-    this.adminService.getOneProject(id).subscribe((project: any) => {
+    this.projectsDetailService.getOneProject(id).subscribe((project: any) => {
         let index=0;
 
         this.ProjectTitle=Object.keys(project);
@@ -99,7 +100,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   }
 
   updateProject(){
-    this.adminService.updateProject(this.formData,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
+    this.projectsDetailService.updateProject(this.formData,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
       setTimeout(function () {
         if (result === "OK") {
           Swal.fire('update','Project Updated')
@@ -113,7 +114,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   }
 
   deleteProject(){
-    this.adminService.deleteProject(this.route.snapshot.paramMap.get("id")).subscribe();
+    this.projectsDetailService.deleteProject(this.route.snapshot.paramMap.get("id")).subscribe();
     Swal.fire('Delete','this project was Deleted')
     this.router.navigateByUrl('/admin/dashboard');
   }

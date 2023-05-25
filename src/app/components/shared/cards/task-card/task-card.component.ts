@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AdminService } from 'src/app/services/admin/admin.service';
 import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
 
 @Component({

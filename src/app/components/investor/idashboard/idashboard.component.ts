@@ -2,8 +2,10 @@ import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/co
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin/admin.service';
 import { InvestorService } from 'src/app/services/investor/investor.service';
+import { InvestorProjectServiceService } from 'src/app/services/investorProject/investor-project-service.service';
 import { ProjectsDetailService } from 'src/app/services/projectDetail/projects-detail.service';
 import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
+import { FormGroup,FormControl, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-idashboard',
@@ -16,10 +18,20 @@ export class IdashboardComponent implements OnInit {
   notStart: number[] = [];
   done: number[] = [];
 
- constructor(private taskdetail:TaskdetailService, private projectDetail: ProjectsDetailService , private route:ActivatedRoute, private router:Router) { }
+  formData:any;
+
+  // amountToInvest: string='';
+  // selectedProject: string='';
+
+ constructor(private taskdetail:TaskdetailService,private investorProjectServiceService: InvestorProjectServiceService , private projectDetail: ProjectsDetailService , private route:ActivatedRoute, private router:Router) { }
 
  ngOnInit() {
+  // this.formData=new FormGroup({
+  //   project: new FormControl(""),
+  //   amount: new FormControl("")
+  // })
    this.loadData();
+
  }
 
  loadData(){
@@ -28,7 +40,7 @@ export class IdashboardComponent implements OnInit {
      for (let investorProject of investorProjects){
      
       let project = investorProject.project;
-
+      
       if(project.projectStatus===0){
         this.notStart.push(project.projectId);
       }else if(project.projectStatus===100){
@@ -36,9 +48,12 @@ export class IdashboardComponent implements OnInit {
       }else{
         this.inProgress.push(project.projectId);
       }
-
      }
    });
+ }
+
+ invest(data:NgForm){
+  alert(data.value.project + ' = ' + data.value.amount);
  }
 
 }

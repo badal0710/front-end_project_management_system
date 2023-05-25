@@ -36,18 +36,18 @@
       <div class="modal-body container-fluid row" style="align-items: center">
         <div style="display: flex;flex-wrap: wrap;justify-content:space-between;flex-direction: column;">      
          
-         <form>
+         <form #myFormData="ngForm" (ngSubmit)="invest(myFormData)">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Choose Project</label>
-              <select class="form-select">
-                  <option> projectName - projectType - location </option>
+              <select class="form-select" ngModel formControllName="project" name="project">
+                  <option value="1"> projectName - projectType - location </option>
               </select>
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Amount To Invest</label>
-              <input type="number" class="form-control">
+              <label for="exampleInputPassword1" class="form-label" >Amount To Invest</label>
+              <input type="number" ngModel class="form-control" formControllName="amount" name="amount">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary container" data-bs-dismiss="modal" aria-label="Close">Invest</button>
           </form>
 
         </div> 

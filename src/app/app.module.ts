@@ -81,7 +81,8 @@ import { ProjectCardComponent } from './components/shared/cards/project-card/pro
     MatCardModule,
     ReactiveFormsModule,
     SocialLoginModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    ReactiveFormsModule
   ],
   providers: [
     SocialAuthService,

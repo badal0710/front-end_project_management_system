@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public isLoggedIn() {
-    return this.userAuthService.isLoggedIn(this.data);
-  }
+  // public isLoggedIn() {
+  //   return this.userAuthService.isLoggedIn(this.data);
+  // }
 
   // manageState(email: any) {
   //   sessionStorage.setItem('UPN', email);
@@ -53,11 +53,10 @@ export class LoginComponent implements OnInit {
   googleLogin(email: any) {
     this.loginService.googleLogin(email).subscribe((result: any) => {
 
-      this.userAuthService.getRoles(result.accessToken)
-      this.userAuthService.getToken(result.roles)
+      this.userAuthService.setRoles(result.roles);
+      this.userAuthService.setToken(result.accessToken);
 
       const role = result.roles[0];
-      console.log(role)
       if (role === 'ROLE_INVESTOR') {
         localStorage.setItem("UPN", email);
         localStorage.setItem("ROLE", "Investor");

@@ -21,24 +21,24 @@ export class LoginService {
     return this.http.post(`${DATABASE_URL}/api/auth/signin/`, email);
   }
 
-  public roleMatch(allowedRoles: any): any {
-    let isMatch = false;
+  // public roleMatch(allowedRoles: any): any {
+  //   let isMatch = false;
 
-    const userRoles: any = this.userAuthService.getRoles(allowedRoles);
-    if (userRoles != null && userRoles) {
-      for (let i = 0; i < userRoles.length; i++) {
-        for (let j = 0; j < allowedRoles.length; j++) {
-          if (userRoles[i] === allowedRoles[j]) {
-            isMatch = true;
-            return isMatch;
-          }
-          else {
-            return isMatch;
-          }
-        }
-      }
-    }
+  //   const userRoles: any = this.userAuthService.getRoles(allowedRoles);
+  //   if (userRoles != null && userRoles) {
+  //     for (let i = 0; i < userRoles.length; i++) {
+  //       for (let j = 0; j < allowedRoles.length; j++) {
+  //         if (userRoles[i] === allowedRoles[j]) {
+  //           isMatch = true;
+  //           return isMatch;
+  //         }
+  //         else {
+  //           return isMatch;
+  //         }
+  //       }
+  //     }
+  //   }
 
-  }
+  // }
 
 }

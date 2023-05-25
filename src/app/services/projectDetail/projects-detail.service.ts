@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserAuthService } from '../login/user-auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { Injectable } from '@angular/core';
 export class ProjectsDetailService {
 
   database_url = 'http://localhost:9090';
+  jwtToken = this.authservice.getToken();
   
   projectController = 'project';
 
@@ -51,26 +53,37 @@ export class ProjectsDetailService {
    */
   countProject = 'totalProject';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authservice: UserAuthService) { }
+
+  getHeaders() {
+    return new HttpHeaders().set('Authorization', `Bearer ${this.jwtToken}`);
+  }
+
 
   getAllProject(){
-    return this.http.get(`${this.database_url}/${this.projectController}/${this.getAll}`);
+    const headers = this.getHeaders();
+    return this.http.get(`${this.database_url}/${this.projectController}/${this.getAll}`,{ headers });
   }
 
   getOneProject(id:any){
-    return this.http.get(`${this.database_url}/${this.projectController}/${this.getOne}/${id}`);
+    const headers = this.getHeaders();
+    return this.http.get(`${this.database_url}/${this.projectController}/${this.getOne}${id}`,{ headers });
   }
 
   deleteProject(id: any){
-    return this.http.delete(`${this.database_url}/${this.projectController}/${this.delete}/${id}`);
+    const headers = this.getHeaders();
+    return this.http.delete(`${this.database_url}/${this.projectController}/${this.delete}/${id}`,{ headers });
   }
 
   updateProject(body: any, id: any){
-    return this.http.put(`${this.database_url}/${this.projectController}/${this.update}/${id}`,body);
+    const headers = this.getHeaders();
+    return this.http.put(`${this.database_url}/${this.projectController}/${this.update}/${id}`,body,{ headers });
   }
 
   getAllProjectOfOneInvestor(email:string|null){
-    return this.http.get(`${this.database_url}/${this.projectController}/${this.AllProjectOfOneInvestor}/${email}`);
+    console.log(this.AllProjectOfOneInvestor)
+    const headers = this.getHeaders();
+    return this.http.get(`${this.database_url}/${this.projectController}/${this.AllProjectOfOneInvestor}/${email}`,{ headers });
   }
 
 

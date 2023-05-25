@@ -27,7 +27,7 @@ export class HeaderComponent {
 
   Logout(){
     this.googleAuth.signOut();
-    sessionStorage.clear();
+    localStorage.clear();
     this.router.navigateByUrl('/login')
   }
 

@@ -35,7 +35,7 @@ export class IdashboardComponent implements OnInit {
  }
 
  loadData(){
-  let email = sessionStorage.getItem("UPN");
+  let email = localStorage.getItem("UPN");
    this.projectDetail.getAllProjectOfOneInvestor(email).subscribe((investorProjects:any)=>{
      for (let investorProject of investorProjects){
      

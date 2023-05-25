@@ -30,7 +30,7 @@ export class ProjectCardComponent {
   loadData(id:number){
     this.projectDetail.getOneProject(id).subscribe((project:any)=>{
   
-      let email = sessionStorage.getItem("UPN");
+      let email = localStorage.getItem("UPN");
       this.projectName=project.projectName;
       this.progressValue=project.projectStatus;
       this.startDate=project.projectStartingDate;

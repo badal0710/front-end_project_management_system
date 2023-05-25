@@ -11,7 +11,7 @@ export class UserAuthService {
     localStorage.setItem('roles', JSON.stringify(roles));
   }
 
-  public getRoles(data: any) {
+  public getRoles() {
     return localStorage.getItem('roles');
   }
 
@@ -19,7 +19,7 @@ export class UserAuthService {
     localStorage.setItem('jwtToken', jwtToken);
   }
 
-  public getToken(data: any) {
+  public getToken() {
     return localStorage.getItem('jwtToken');
   }
 
@@ -27,7 +27,7 @@ export class UserAuthService {
     localStorage.clear();
   }
 
-  public isLoggedIn(data: any) {
-    return this.getRoles(data) && this.getToken(data);
+  public isLoggedIn() {
+    return this.getRoles() && this.getToken();
   }
 }

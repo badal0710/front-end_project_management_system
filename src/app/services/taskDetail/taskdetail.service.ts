@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { UserAuthService } from '../login/user-auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,7 @@ import { Injectable } from '@angular/core';
 export class TaskdetailService {
 
   DATABASE_URL = 'http://localhost:9090';
+  jwtToken = this.authservice.getToken();
 
   taskDetail = 'taskofproject';
   project = 'project';
@@ -18,20 +20,25 @@ export class TaskdetailService {
   oneTask = 'getOneTask';
   allTaskOfOneProject = 'task-details';
 
+  constructor(private http: HttpClient, private authservice: UserAuthService) { }
 
-
-  constructor(private http: HttpClient) { }
+  getHeaders() {
+    return new HttpHeaders().set('Authorization', `Bearer ${this.jwtToken}`);
+  }
 
   getAllTasks(){
-    return this.http.get(`${this.DATABASE_URL}/${this.taskDetail}/${this.allTask}`);
+    const headers = this.getHeaders();
+    return this.http.get(`${this.DATABASE_URL}/${this.taskDetail}/${this.allTask}`,{ headers });
   }
 
   getOneTask(id:any){
-    return this.http.get(`${this.DATABASE_URL}/${this.taskDetail}/${this.oneTask}/${id}`);
+    const headers = this.getHeaders();
+    return this.http.get(`${this.DATABASE_URL}/${this.taskDetail}/${this.oneTask}/${id}`,{ headers });
   }
 
   getAllTaskOfOneProject(id:any){
-    return this.http.get(`${this.DATABASE_URL}/${this.project}/${this.allTaskOfOneProject}/${id}/filterDates`);
+    const headers = this.getHeaders();
+    return this.http.get(`${this.DATABASE_URL}/${this.project}/${this.allTaskOfOneProject}/${id}/filterDates`,{ headers });
   }
   
 }

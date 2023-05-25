@@ -9,28 +9,28 @@ import Swal from 'sweetalert2';
   templateUrl: './contractor.component.html',
   styleUrls: ['./contractor.component.css']
 })
-export class ContractorComponent implements OnInit  {
+export class ContractorComponent implements OnInit {
 
-  constructor( private adminService: AdminService, private router: Router, private readonly googleAuth: SocialAuthService ) { }
-  
+  constructor(private adminService: AdminService, private router: Router, private readonly googleAuth: SocialAuthService) { }
+
   ngOnInit(): void {
-    this.authorizeUser('contractor');
+    // this.authorizeUser('contractor');
   }
 
-  authorizeUser(type:any){
-    if(sessionStorage.getItem('UPN')===null) {
-      Swal.fire('YOU ARE UNAUTHORIZED','Please Login to Continue');
-      this.router.navigateByUrl('/login');
-    }else{
-      this.adminService.authorizeUser(sessionStorage.getItem('UPN'),type).subscribe((result:any)=>{
-        if(result!=1){
-          Swal.fire('YOU ARE UNAUTHORIZED','You Cannot have a Access of This Page');
-          sessionStorage.clear();
-          this.googleAuth.signOut();
-          this.router.navigateByUrl('/login');
-        }
-      });
-    }
-  }
+  // authorizeUser(type:any){
+  //   if(sessionStorage.getItem('UPN')===null) {
+  //     Swal.fire('YOU ARE UNAUTHORIZED','Please Login to Continue');
+  //     this.router.navigateByUrl('/login');
+  //   }else{
+  //     this.adminService.authorizeUser(sessionStorage.getItem('UPN'),type).subscribe((result:any)=>{
+  //       if(result!=1){
+  //         Swal.fire('YOU ARE UNAUTHORIZED','You Cannot have a Access of This Page');
+  //         sessionStorage.clear();
+  //         this.googleAuth.signOut();
+  //         this.router.navigateByUrl('/login');
+  //       }
+  //     });
+  //   }
+  // }
 
 }

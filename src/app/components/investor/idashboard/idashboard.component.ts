@@ -4,6 +4,7 @@ import { InvestorProjectServiceService } from 'src/app/services/investorProject/
 import { ProjectsDetailService } from 'src/app/services/projectDetail/projects-detail.service';
 import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
 import { FormGroup,FormControl, NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-idashboard',
@@ -15,6 +16,8 @@ export class IdashboardComponent implements OnInit {
   inProgress: number[] = [];
   notStart: number[] = [];
   done: number[] = [];
+
+  notInvestedProject:any[]=[];
 
   formData:any;
 
@@ -40,10 +43,25 @@ export class IdashboardComponent implements OnInit {
       }
      }
    });
+
+   this.investorProjectServiceService.getNotInvestedProjects(email).subscribe((projects:any)=>{
+      for(let project of projects){
+        if(project.projectStatus!==0 && project.projectStatus!==100)
+        console.log(project);
+        this.notInvestedProject.push(project);
+      }
+   });
  }
 
  invest(data:NgForm){
-  alert(data.value.project + ' = ' + data.value.amount);
+  console.log(data.value)
+  this.investorProjectServiceService.createProjectInvestor(data.value,localStorage.getItem("UPN")).subscribe((result:any)=>{
+    if (result === 200) {
+      Swal.fire('Investment request send','Investment Request Send to Admin, wait Untill Admin Approve It')
+    } else {
+      Swal.fire('fail','Error while Sending investment Request to admin')
+    } 
+  })
  }
 
 }

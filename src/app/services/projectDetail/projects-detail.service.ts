@@ -53,7 +53,6 @@ export class ProjectsDetailService {
   }
 
   getAllProjectOfOneInvestor(email:string|null){
-    console.log(this.AllProjectOfOneInvestor)
     const headers = this.getHeaders();
     return this.http.get(`${this.database_url}/${this.projectController}/${this.AllProjectOfOneInvestor}/${email}`,{ headers });
   }

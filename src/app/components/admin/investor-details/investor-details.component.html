@@ -1,19 +1,52 @@
 <div class="container-fluid p-3 m-1">
+  <!-- ============= breadCrumbs And Title ================= -->
+  <div>
+    <h1 style="font-size: 25px">Investor</h1>
+    <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>
+  </div>
 
-    <!-- ============= breadCrumbs And Title ================= -->
-    <div>
-        <h1 style="font-size: 25px"> Investor </h1>
-        <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
+  <div class="card shadow p-3 mt-4">
+    <div
+      class="container-fluid"
+      style="display: flex; justify-content: space-between"
+    >
+      <h1>Investment Requests</h1>
     </div>
+    <br />
+    <table class="table p3 mb-3" style="margin: 10px;">
+      <tr>
+        <td>
+          <b> Investor Name </b>
+        </td>
+        <td>
+          <b>Amount To Invest </b>
+        </td>
+        <td colspan="2">
+          <b> Action </b>
+        </td>
+      </tr>
+      <br />
+      <tr *ngFor="let projectInvestor of projectInvestors">
+        <td> {{ projectInvestor.investor.name }} </td>
+        <td> {{ projectInvestor.investedShare }} </td>
+        <td> <button class="btn btn-outline-success" (click)="acceptInvestmentRequest(projectInvestor.investorProjectId)" > Accept </button></td>
+        <!-- <td> <button class="btn btn-outline-danger" (click)="rejectInvestmentRequest(projectInvestor.investorProjectId)" > Reject </button></td> -->
+      </tr>
+    </table>
+  </div>
 
-     <!-- ============= Tables ================= -->
-    <app-table [TableName]="InvestorName" [TableAction]="InvestorAction" [TableKeys]="InvestorKeys"  [TableValue]="InvestorValue" [RowAction]="InvestorRowAction"></app-table>
-    <app-table [TableName]="ProjectInvestorName" [TableAction]="ProjectInvestorAction" [TableKeys]="ProjectInvestorKeys"  [TableValue]="ProjectInvestorValue" [RowAction]="ProjectInvestorRowAction"></app-table>
+  <!-- ============= Tables ================= -->
+  <app-table
+    [TableName]="InvestorName"
+    [TableAction]="InvestorAction"
+    [TableKeys]="InvestorKeys"
+    [TableValue]="InvestorValue"
+    [RowAction]="InvestorRowAction"
+  ></app-table>
+  <!-- <app-table [TableName]="ProjectInvestorName" [TableAction]="ProjectInvestorAction" [TableKeys]="ProjectInvestorKeys"  [TableValue]="ProjectInvestorValue" [RowAction]="ProjectInvestorRowAction"></app-table> -->
 
-
-    <!-- ============== Chart ================== -->
-     <!-- <div class="card shadow p-3 mt-4">
+  <!-- ============== Chart ================== -->
+  <!-- <div class="card shadow p-3 mt-4">
         <app-charts [chartName]="InvestorChartName" [chartType]="InvestorChartType" [chartLabel]="InvestorChartLabel" [chartValue]="InvestorChartValue"></app-charts>
     </div> -->
-    
 </div>

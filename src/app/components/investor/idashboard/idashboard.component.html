@@ -39,8 +39,8 @@
          <form #myFormData="ngForm" (ngSubmit)="invest(myFormData)">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Choose Project</label>
-              <select class="form-select" ngModel formControllName="project" name="project">
-                  <option value="1"> projectName - projectType - location </option>
+              <select class="form-select" ngModel formControllName="projectid" name="projectid">
+                  <option *ngFor="let project of notInvestedProject" value="{{project.projectId}}"> {{ project.projectName }} - {{ project.projectTypeName }} - {{ project.projectLocation.area }}-{{ project.projectLocation.city }}-{{ project.projectLocation.state }} </option>
               </select>
             </div>
             <div class="mb-3">

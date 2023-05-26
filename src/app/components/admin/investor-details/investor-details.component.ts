@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { InvestorService } from 'src/app/services/investor/investor.service';
 import { InvestorProjectServiceService } from 'src/app/services/investorProject/investor-project-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-investor-details',
@@ -9,7 +11,7 @@ import { InvestorProjectServiceService } from 'src/app/services/investorProject/
 })
 export class InvestorDetailsComponent implements OnInit {
   
-  constructor(private investorService:InvestorService, private investorProjectServiceService: InvestorProjectServiceService) { }
+  constructor(private router:Router,private investorService:InvestorService, private investorProjectServiceService: InvestorProjectServiceService) { }
 
   myBreadCrumbs:any = [
     {
@@ -34,6 +36,8 @@ export class InvestorDetailsComponent implements OnInit {
   InvestorChartType:any='pie';
   InvestorChartLabel:any=[];
   InvestorChartValue:any=[];
+
+  projectInvestors:any[]=[];
 
   ngOnInit(): void {
 
@@ -68,7 +72,26 @@ export class InvestorDetailsComponent implements OnInit {
 
     } );
 
+    this.investorProjectServiceService.getAllProjectInvestor().subscribe( (projectInvestors:any)=>{
+        for(let projectInvestor of projectInvestors){
+          if(projectInvestor.status==='pending'){
+            console.log(projectInvestor)
+            this.projectInvestors.push(projectInvestor);
+          }
+        }
+    });
+
   }
+
+  acceptInvestmentRequest(id:any){
+    Swal.fire('Accepted', 'Investor Added to Project');
+    this.investorProjectServiceService.acceptInvestmentRequest(id).subscribe((result:any)=>{
+    });
+    this.router.navigate(['/admin']);
+  }
+
+  // rejectInvestmentRequest(data:any){
+  // }
 
 
 }

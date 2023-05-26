@@ -1,53 +1,94 @@
-<main>
-  <div>
-    <img style="
-        height: 100vh;
-        width: 100vb;
-        position: absolute;
-        justify-content: center;
-      " src="../../../assets/image/home2.jpg" alt="" />
+<section class="background-radial-gradient overflow-hidden">
 
-    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
-            <div style="margin-top: -200px" class="d-flex justify-content-center py-4">
-              <a href="index.html" class="logo d-flex align-items-center w-auto">
-              </a>
-            </div>
+   <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+  
+    <div class="row gx-lg-5 align-items-center mb-5">
+  
+     <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+  
+      <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+  
+       The best offer <br />
+  
+       <span style="color: hsl(218, 81%, 75%)">for your business</span>
+  
+      </h1>
+  
+      <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+  
+         <span style="color: hsl(218, 81%, 75%)">Welcome to our Real Estate Project Management Website!</span><br>
 
-            <div style="position: absolute; right: 150px; top: 80px" class="d-flex justify-content-center py-4">
-              <a href="index.html" class="logo d-flex align-items-center w-auto">
-                <img height="200px" src="assets/image/logo.png" alt="" />
-              </a>
-            </div>
+         we understand that managing real estate projects can be complex and time-consuming. 
+         That's why we've developed a comprehensive online platform specifically designed to streamline and enhance your real estate project management experience. 
+         Our website offers a range of powerful tools and features to help you effectively plan, track, and collaborate on your projects from start to finish.
+  
+      </p>
+  
+     </div>
+  
+  
+  
+  
+     <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+  
+      <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+  
+      <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+      <div class="card bg-glass">
+  
+       <div class="card-body px-4 py-5 px-md-5">
+  
+        <form>
+  
+         <div class="d-flex justify-content-center py-4">
+  
+          <a href="index.html" class="logo d-flex align-items-center w-auto">
+  
+           <img height="300rem" src="assets/image/logo.png" alt="" />
+  
+          </a>
+  
+         </div>
 
-            <div class="card mb-3 shadow" style="position: absolute; right: 150px">
-              <div class="card-body">
-                <div class="pt-4 pb-2">
-                  <h5 class="card-title text-center pb-0 fs-4">
-                    Login to Your Account
-                  </h5>
-                </div>
-              </div>
-
-              <div class="container p-3 mb-3">
-                <div class="google-btn container">
-                  <asl-google-signin-button type="standard" shape="rectangular" size="medium"
-                    theme="filled_blue" text="signin_with" locale="en-IN" logo_alignment="left"
-                    (signIn)="getAccessToken()" class="container" style="
+         <div class="text-center">
+  
+          <div class="container p-3 mb-3">
+  
+           <div class="google-btn container">
+  
+            <asl-google-signin-button type="standard" shape="rectangular" size="medium" theme="filled_blue"
+  
+             text="signin_with" locale="en-IN" logo_alignment="left" class="container" style="
+  
                       justify-content: center;
+  
                       display: flex;
+  
                       align-items: center;
-                    ">
-                  </asl-google-signin-button>
-                </div>
-              </div>
-            </div>
+  
+                     
+  
+                     " (signIn)="getAccessToken()">
+  
+            </asl-google-signin-button>
+  
+           </div>
+  
           </div>
-        </div>
+  
+         </div>
+  
+        </form>
+  
+       </div>
+  
       </div>
-    </section>
-  </div>
-</main>
-<!-- End #main -->
+  
+     </div>
+  
+    </div>
+  
+   </div>
+  
+  </section>

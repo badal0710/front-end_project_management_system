@@ -57,11 +57,13 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   projects(){
     this.projectService.getAllProject().subscribe((projects:any)=>{
       for(let project of projects){
-        this.Names=Object.keys(project);
-        this.ProjectKeys.push(Object.keys(project))
-        this.ProjectValue.push(Object.values(project));
-        this.projectChartLabel.push(project.projectName);
-        this.projectChartValue.push(project.projectStatus);
+        if(project.projectStatus!==0 && project.projectStatus!==100){
+          this.Names=Object.keys(project);
+          this.ProjectKeys.push(Object.keys(project))
+          this.ProjectValue.push(Object.values(project));
+          this.projectChartLabel.push(project.projectName);
+          this.projectChartValue.push(project.projectStatus);
+        }
       }
 
       //format objects

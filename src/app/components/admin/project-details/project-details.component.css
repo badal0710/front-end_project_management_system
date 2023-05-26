@@ -2,6 +2,22 @@
     margin: 20px;
 }
 
+#allTasks > app-task-card {
+    margin: 5%;
+    min-width: 400px;
+}
+
+#detailsOfProject > div{
+    margin-bottom: 20px;
+}
+
+#allTasks{
+    display: flex;
+    flex-direction: row;
+    /* justify-content:center; */
+    flex-wrap: wrap;
+}
+
 @media (max-width: 765px) {
     .desc{
         /* display: none; */

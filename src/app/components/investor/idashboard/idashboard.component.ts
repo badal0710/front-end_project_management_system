@@ -18,18 +18,10 @@ export class IdashboardComponent implements OnInit {
 
   formData:any;
 
-  // amountToInvest: string='';
-  // selectedProject: string='';
-
  constructor(private taskdetail:TaskdetailService,private investorProjectServiceService: InvestorProjectServiceService , private projectDetail: ProjectsDetailService , private route:ActivatedRoute, private router:Router) { }
 
  ngOnInit() {
-  // this.formData=new FormGroup({
-  //   project: new FormControl(""),
-  //   amount: new FormControl("")
-  // })
    this.loadData();
-
  }
 
  loadData(){

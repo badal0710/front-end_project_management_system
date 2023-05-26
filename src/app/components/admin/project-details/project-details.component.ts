@@ -1,6 +1,9 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ContractorService } from 'src/app/services/contractor/contractor.service';
 import { ProjectsDetailService } from 'src/app/services/projectDetail/projects-detail.service';
+import { ProjectLocationService } from 'src/app/services/projectLocation/project-location.service';
 import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
 import Swal from 'sweetalert2';
 
@@ -11,23 +14,10 @@ import Swal from 'sweetalert2';
 })
 export class ProjectDetailsComponent implements OnInit,AfterViewInit {
 
-  data: any = [];
+  formData!:any;
+  locations:any[]=[];
+  contractors:any[]=[];
 
-  //project's detail
-  ProjectRows:any;
-  ProjectTitle:any;
-  ProjectDesc:any;
-
-  //form
-  formData:any={};
-  formData_original:any={};
-
-  //task
-  TaskValue: any[] = [];
-  TaskKeys: any = [];
-  TaskName: any = "Task List";
-  TableAction: any = ['Task',['taskName','taskStatus','taskStartingDate','taskDeadLine','projectId','contractorId','allocatedBudget']];
-  TaskRowAction: any = [['View', 'admin/tasks']];
 
   // breadcrumbs
   myBreadCrumbs: any = [
@@ -37,80 +27,58 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
     },
   ];
 
-  // chart
-  taskChartName="Project's Chart";
-  taskChartType="pie";
-  taskChartLabel:any=[];
-  taskChartValue:any=[];
+  projectId!:string | null;
+  allTasks:number[]=[];
 
-  constructor(private projectsDetailService: ProjectsDetailService, private taskdetailService:TaskdetailService ,private route: ActivatedRoute, private cd:ChangeDetectorRef, private router: Router) { }
- 
-  p(a:any,b:any){
-    console.log(`${a}: ${b}`);
-  }
+  projectDetail!:any;
+
+  constructor(private projectLocationService:ProjectLocationService, private contractorService:ContractorService ,private projectsDetailService: ProjectsDetailService, private taskdetailService:TaskdetailService ,private route: ActivatedRoute, private cd:ChangeDetectorRef, private router: Router) { }
 
   ngAfterViewInit(): void {
     this.cd.detectChanges();
   }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get("id");
-    this.loadData(id);
+    this.projectId = this.route.snapshot.paramMap.get("id");
+    this.loadData(this.projectId);
   }
 
   tasksOfProject(id: any) {
     this.taskdetailService.getAllTaskOfOneProject(id).subscribe((tasks: any) => {
       for (let task of tasks) {
-        
-        const reversedData:any = {};
-        Object.keys(task).reverse().forEach(key => {
-          reversedData[key] = task[key];
-        });
-        
-        this.TaskKeys.push(Object.keys(reversedData))
-        this.TaskValue.push(Object.values(reversedData));
-        this.taskChartLabel.push(task.taskName);
-        this.taskChartValue.push(task.taskStatus);
+        this.allTasks.push(task.taskId);
       }
-
-      [this.TaskKeys,this.TaskValue] =this.formatObject(this.TaskKeys,this.TaskValue);
-
-      this.cd.detectChanges();
-
     })
 
   }
 
   detailOfProject(id:any){
     this.projectsDetailService.getOneProject(id).subscribe((project: any) => {
-        let index=0;
-
-        this.ProjectTitle=Object.keys(project);
-        this.ProjectDesc=Object.values(project);
-
-        //format object for display
-        [this.ProjectTitle,this.ProjectDesc] = this.formatObjectForDetail(this.ProjectTitle,this.ProjectDesc);
-
-        for(let key of this.ProjectTitle){
-          this.formData[key]=this.ProjectDesc[index];
-          index++;
-        }
-        this.formData_original=this.formData;
+      console.log(project);
+      this.projectDetail=project;
     })
   }
 
-  updateProject(){
-    this.projectsDetailService.updateProject(this.formData,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
-      setTimeout(function () {
-        if (result === "OK") {
-          Swal.fire('update','Project Updated')
-        } else {
-          Swal.fire('Error','Error while updating Project')
-        } 
-      }, 2000);
-      
+  updateProject(data:NgForm){
+    this.projectsDetailService.updateProject(data.value,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
+      if (result === "OK") {
+        Swal.fire('update','Project Updated')
+      } else {
+        Swal.fire('Error','Error while updating Project')
+      } 
       this.loadData(this.route.snapshot.paramMap.get("id"));
     })
+  }
+
+  createTask(data:NgForm){
+    this.taskdetailService.createTask(data.value).subscribe((result:any)=>{
+      if (result === "OK") {
+        Swal.fire('Created','New Task Created')
+      } else {
+        Swal.fire('Error','Error while Creating Task')
+      } 
+      this.loadData(this.route.snapshot.paramMap.get("id"));
+    });
   }
 
   deleteProject(){
@@ -122,51 +90,26 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   loadData(id:any){
     this.detailOfProject(id);
     this.tasksOfProject(id);
+    this.Alllocations();
+    this.allContractors();
   }
 
-  formatObject(key:any,value:any){
-
-    let v:any[]=[];
-
-    // index which we want to remove
-    for(let task of value){
-      for(let i=0;i<=task.length;i++){
-        if(typeof task[i]==='object'){
-          v.push(i);
-        }
+  allContractors(){
+    this.contractorService.getAllContractor().subscribe((contractors:any)=>{
+      for(let contractor of contractors){
+        console.log(contractor);
+        this.contractors.push(contractor);
       }
-    }
-
-    // remove oparation
-    for(let index of v){
-      key.map((obj:any)=>{
-        obj.splice(v[0],1);
-      })
-
-      value.map((obj:any)=>{
-        obj.splice(v[0],1);
-      })
-    }
-
-    return [key,value];
+    });
   }
 
-  formatObjectForDetail(keys:any,values:any){
-    for(let i=0;i<values.length;i++){
-      if(typeof values[i] === 'object'){
-        let tmpTitle=[];
-        let tmpDesc=[];
-        let tmp = Object.entries(values[i]);
-        for(let v of tmp){
-          tmpTitle.push(v[0]);
-          tmpDesc.push(v[1]);
-          break;
-        }
-        keys.splice(i,1,...tmpTitle);
-        values.splice(i,1,...tmpDesc);
+  Alllocations(){
+    this.projectLocationService.getAllLocation().subscribe((locations:any)=>{
+      for(let location of locations){
+        this.locations.push(location);
       }
-    }
-    return [keys,values];
+    });
   }
+
 
 }

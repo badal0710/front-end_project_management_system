@@ -7,7 +7,7 @@
     </div>
 
     <!-- ============= Details ================= -->
-    <div class="card shadow p-3 mt-4">
+    <div class="card shadow p-3 mt-4" style="display: flex;flex-direction: column;">
 
             <div class="card-title" style="display: flex;justify-content: space-between;">
                     <h1> Project Details </h1>
@@ -17,22 +17,43 @@
                     </div>
             </div><br>
 
-            <div class="row" *ngFor="let title of ProjectTitle;let i = index">
-                <div class="col-lg-3 col-md-4 label title"> <b> {{ title }}  </b> </div>
-                <div class="col-lg-1 col-md-1 label saparator"> <b> :  </b> </div>
-                <div class="col-lg-8 col-md-4 desc"> 
-                    {{ ProjectDesc[i] }}  
-                </div>
+            <div id="detailsOfProject" class="row">
+                <div class="col-lg-3 col-md-4 label title"> <b> Project Name  </b> </div>
+                <div class="col-lg-8 col-md-4 desc">  {{ projectDetail.projectName }} </div>
+
+                <div class="col-lg-3 col-md-4 label title"> <b> Type Of Project  </b> </div>
+                <div class="col-lg-8 col-md-4 desc">  {{ projectDetail.projectTypeName }} </div>
+
+                <div class="col-lg-3 col-md-4 label title"> <b> Start Date  </b> </div>
+                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectStartingDate }}  </div>
+
+                <div class="col-lg-3 col-md-4 label title"> <b> Dead Line  </b> </div>
+                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectDeadline }}  </div>
+
+                <div class="col-lg-3 col-md-4 label title"> <b> Project Progress </b> </div>
+                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectStatus }}  </div>
+
+                <div class="col-lg-3 col-md-4 label title"> <b> Location Area  </b> </div>
+                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.area }}  </div>
+
+                <div class="col-lg-3 col-md-4 label title"> <b> City  </b> </div>
+                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.city }}  </div>
+
+                <div class="col-lg-3 col-md-4 label title"> <b> State  </b> </div>
+                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.state }}  </div>
             </div>
 
     </div>
 
     <!-- ============= Tables ================= -->
-    <app-table [TableName]="TaskName" [TableAction]="TableAction" [TableValue]="TaskValue" [TableKeys]="TaskKeys" [RowAction]="TaskRowAction"></app-table>
-
-    <!-- ============== Chart ================== -->
     <div class="card shadow p-3 mt-4">
-        <app-charts [chartName]="taskChartName" [chartType]="taskChartType" [chartLabel]="taskChartLabel" [chartValue]="taskChartValue"></app-charts>
+      <div style="display: flex;justify-content: space-between;">
+        <h1> Tasks </h1>
+        <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#create"> Create Task </button>
+      </div>
+      <div id="allTasks" *ngFor="let taskid of allTasks">
+        <app-task-card [id]="taskid" [user]="'admin'"></app-task-card>
+      </div>
     </div>
     
 </div>
@@ -50,11 +71,91 @@
 
       <div class="modal-body">
 
-        <form (submit)="updateProject()">
+        <form #editData="ngForm" (ngSubmit)="updateProject(editData)">
 
-          <div class="mb-3" *ngFor="let title of ProjectTitle;let i = index">
-            <label for="{{ title }}" class="col-form-label">{{ title }}:</label>
-            <input type="text" class="form-control" [(ngModel)]="formData[title]" [ngModelOptions]="{ standalone: true }"/>
+            <div class="mb-3">
+              <label for="name" class="form-label">Project Name</label>
+              <input type="text" ngModel class="form-control" formControllName="amount" name="amount">
+            </div>
+
+            <div class="mb-3">
+              <label for="type" class="form-label">Project type</label>
+              <input type="text" ngModel class="form-control" formControllName="type" name="type">
+            </div>
+
+            <div class="mb-3">
+              <label for="start" class="form-label">Project Start Date</label>
+              <input type="text" placeholder="yyyy-mm-dd" ngModel class="form-control" formControllName="start" name="start">
+            </div>
+
+            <div class="mb-3">
+              <label for="end" class="form-label">Project End Date</label>
+              <input type="text" placeholder="yyyy-mm-dd" ngModel class="form-control" formControllName="end" name="end">
+            </div>
+
+            <div class="mb-3">
+              <label for="status" class="form-label">Project Progress</label>
+              <input type="number" placeholder="" ngModel class="form-control" formControllName="status" name="status">
+            </div>
+
+            <div class="mb-3">
+              <label for="location" class="form-label">Project Location</label>
+              <select class="form-select" ngModel formControllName="location" name="location">
+                <option *ngFor="let location of locations" value="{{location.projectLocationId}}"> {{location.area}} - {{location.city}} - {{location.state}}  </option>
+            </select>
+            </div>        
+
+          <div>
+            <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close"> Update </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============== model ================== -->
+<div class="modal fade" id="create" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" style="font-size: 20px;"> Add New Task </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form #createData="ngForm"  (submit)="createTask(createData)">
+        
+          <div class="mb-3">
+            <label for="name" class="form-label">Task Name</label>
+            <input type="text" ngModel class="form-control" formControllName="name" name="name">
+          </div>
+
+          <div class="mb-3">
+            <label for="start" class="form-label">Task StartDate</label>
+            <input type="text" placeholder="yyyy-mm-dd" ngModel class="form-control" formControllName="start" name="start">
+          </div>
+
+          <div class="mb-3">
+            <label for="end" class="form-label">Task Deadline</label>
+            <input type="text" placeholder="yyyy-mm-dd" ngModel class="form-control" formControllName="end" name="end">
+          </div>
+
+          <div class="mb-3">
+            <label for="budget" class="form-label">Task Budget</label>
+            <input type="number" ngModel class="form-control" formControllName="budget" name="budget">
+          </div>
+
+          <div class="mb-3">
+            <label for="contractor" class="form-label">Choose Contractor</label>
+            <select class="form-select" ngModel formControllName="location" name="location">
+              <option *ngFor="let contractor of contractors" value="{{contractor}}"> {{contractor.contractorName}} </option>
+            </select>
           </div>
 
           <div>

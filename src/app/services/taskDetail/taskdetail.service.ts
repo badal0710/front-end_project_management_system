@@ -42,15 +42,18 @@ export class TaskdetailService {
   }
 
   updateTask(body: any, id: any) {
-    return this.http.put(`${this.DATABASE_URL}/${this.taskDetail}/${this.update}/${id}`, body);
+    const headers = this.getHeaders();
+    return this.http.put(`${this.DATABASE_URL}/${this.taskDetail}/${this.update}/${id}`, body,{ headers });
   }
 
   deleteTask(id: any) {
-    return this.http.delete(`${this.DATABASE_URL}/${this.taskDetail}/${this.delete}/${id}`);
+    const headers = this.getHeaders();
+    return this.http.delete(`${this.DATABASE_URL}/${this.taskDetail}/${this.delete}/${id}`,{ headers });
   }
 
   createTask(body: any) {
-    return this.http.post(`${this.DATABASE_URL}/${this.taskDetail}/${this.create}`, body);
+    const headers = this.getHeaders();
+    return this.http.post(`${this.DATABASE_URL}/${this.taskDetail}/${this.create}`, body,{ headers });
   }
   
 }

@@ -13,6 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class IdashboardComponent implements OnInit {
 
+  requestToInvest: number[] = [];
   inProgress: number[] = [];
   notStart: number[] = [];
   done: number[] = [];
@@ -31,15 +32,18 @@ export class IdashboardComponent implements OnInit {
   let email = localStorage.getItem("UPN");
    this.projectDetail.getAllProjectOfOneInvestor(email).subscribe((investorProjects:any)=>{
      for (let investorProject of investorProjects){
-     
       let project = investorProject.project;
       
-      if(project.projectStatus===0){
-        this.notStart.push(project.projectId);
-      }else if(project.projectStatus===100){
-        this.done.push(project.projectId);
+      if(investorProject.status==='pending'){
+        this.requestToInvest.push(project.projectId);
       }else{
-        this.inProgress.push(project.projectId);
+        if(project.projectStatus===0){
+          this.notStart.push(project.projectId);
+        }else if(project.projectStatus===100){
+          this.done.push(project.projectId);
+        }else{
+          this.inProgress.push(project.projectId);
+        }
       }
      }
    });
@@ -47,14 +51,13 @@ export class IdashboardComponent implements OnInit {
    this.investorProjectServiceService.getNotInvestedProjects(email).subscribe((projects:any)=>{
       for(let project of projects){
         if(project.projectStatus!==0 && project.projectStatus!==100)
-        console.log(project);
+        
         this.notInvestedProject.push(project);
       }
    });
  }
 
  invest(data:NgForm){
-  console.log(data.value)
   this.investorProjectServiceService.createProjectInvestor(data.value,localStorage.getItem("UPN")).subscribe((result:any)=>{
     if (result === 200) {
       Swal.fire('Investment request send','Investment Request Send to Admin, wait Untill Admin Approve It')
@@ -62,6 +65,14 @@ export class IdashboardComponent implements OnInit {
       Swal.fire('fail','Error while Sending investment Request to admin')
     } 
   })
+  setTimeout(() => {
+    this.reloadParent();
+  }, 3000);
+
  }
+
+ reloadParent(){
+  location.reload();
+}
 
 }

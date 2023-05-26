@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { InvestorProjectServiceService } from 'src/app/services/investorProject/investor-project-service.service';
 import { ProjectsDetailService } from 'src/app/services/projectDetail/projects-detail.service';
 import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
@@ -13,6 +13,7 @@ export class ProjectCardComponent {
   constructor(private projectDetail: ProjectsDetailService, private investorProjectServiceService:InvestorProjectServiceService, private taskdetailService:TaskdetailService){}
 
   @Input() public id!:number;
+  @Output() reloadParent = new EventEmitter<string>();
 
   projectName!: string;
   investedAmount!: number;

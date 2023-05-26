@@ -12,27 +12,39 @@
     >
       <h1>Investment Requests</h1>
     </div>
-    <br />
-    <table class="table p3 mb-3" style="margin: 10px;">
-      <tr>
-        <td>
-          <b> Investor Name </b>
-        </td>
-        <td>
-          <b>Amount To Invest </b>
-        </td>
-        <td colspan="2">
-          <b> Action </b>
-        </td>
-      </tr>
-      <br />
-      <tr *ngFor="let projectInvestor of projectInvestors">
-        <td> {{ projectInvestor.investor.name }} </td>
-        <td> {{ projectInvestor.investedShare }} </td>
-        <td> <button class="btn btn-outline-success" (click)="acceptInvestmentRequest(projectInvestor.investorProjectId)" > Accept </button></td>
-        <!-- <td> <button class="btn btn-outline-danger" (click)="rejectInvestmentRequest(projectInvestor.investorProjectId)" > Reject </button></td> -->
-      </tr>
-    </table>
+
+    <div class="p-3 mb-3">
+
+      <table class="table p3 mb-3" style="margin: 10px;">
+        
+        <thead  style="background-color:aliceblue; height: 30px;align-items: center;justify-content: center;">
+          <td>
+            <b> Investor Name </b>
+          </td>
+          <td>
+            <b>Amount To Invest </b>
+          </td>
+          <td>
+            <b>Project To Invest </b>
+          </td>
+          <td colspan="2">
+            <b> Action </b>
+          </td>
+        </thead>
+        <br>
+        <tbody>
+          <tr *ngFor="let projectInvestor of projectInvestors">
+            <td> {{ projectInvestor.investor.name }} </td>
+            <td> {{ projectInvestor.investedShare }} </td>
+            <td> {{ projectInvestor.project.projectName }} </td>
+            <td> <button class="btn btn-outline-success" (click)="acceptInvestmentRequest(projectInvestor.investorProjectId)" > Accept </button></td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+    
   </div>
 
   <!-- ============= Tables ================= -->

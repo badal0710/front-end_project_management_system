@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
 import Swal from 'sweetalert2';
 
@@ -9,10 +10,12 @@ import Swal from 'sweetalert2';
 })
 export class TaskCardComponent implements OnInit {
 
-  constructor(private taskDetail: TaskdetailService){}
+  constructor(private taskDetail: TaskdetailService,private router:Router){}
 
   @Input() public id!:number;
   @Input() public user!:string;
+
+  @Output() reloadParent = new EventEmitter<string>();
 
   taskName:string='';
   projectName:string='';
@@ -34,13 +37,17 @@ export class TaskCardComponent implements OnInit {
   }
 
   updateTaskStatus(progressValue:number) {
-    this.taskDetail.updateTask(progressValue,this.id).subscribe((result:any)=>{
-      if (result === "OK") {
-        Swal.fire('update','Task Updated')
-      } else {
-        Swal.fire('Error','Error while updating Task')
-      } 
-    });
+    try {
+      const body = {
+        "taskStatus":progressValue
+      }
+      this.taskDetail.updateTask(body,this.id).subscribe((result:any)=>{
+          Swal.fire('update','Task Status Updated'); 
+      });
+      this.reloadParent.emit('updatePage');
+    } catch (error) {
+      Swal.fire('Error','Error while updating Status of Task');
+    }
   }
 
   deleteTask(){

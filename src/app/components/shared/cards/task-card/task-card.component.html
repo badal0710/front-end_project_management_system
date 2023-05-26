@@ -30,12 +30,7 @@
 
       <div class="modal-header">
         <h2 class="modal-title" style="font-size: 20px">{{ taskName }} </h2>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close">
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
       <div class="modal-body container-fluid row" style="align-items: center">
@@ -62,7 +57,7 @@
 
       </div><br><br>
       
-        <button class="btn btn-success col-auto" (click)="updateTaskStatus(progressValue)"> Update </button> <br>
+        <button class="btn btn-success col-auto" (click)="updateTaskStatus(progressValue)" data-bs-dismiss="modal" aria-label="Close"> Update </button> <br>
         <button *ngIf="user=='admin'" class="btn btn-danger col-auto" (click)="deleteTask()"> Delete </button> <br>
 
     </div>

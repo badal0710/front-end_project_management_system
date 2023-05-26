@@ -1,17 +1,24 @@
 <br><button style="position: absolute;right: 30px;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#investMoney"> New Investment </button><br><br>
 <div id="main">
+
+      <div id="not-start" class="col-sm-3 card">
+        <h2> Requested for Investment </h2>
+        <div *ngFor="let id of requestToInvest">
+          <app-project-card [id]="id" (reloadParent)="reloadParent()"> </app-project-card>
+        </div>
+    </div>
     
     <div id="not-start" class="col-sm-3 card">
           <h2> Not Start Yet </h2>
         <div *ngFor="let id of notStart">
-           <app-project-card [id]="id"> </app-project-card>
+           <app-project-card [id]="id" (reloadParent)="reloadParent()"> </app-project-card>
         </div>
     </div>
   
     <div id="in-progress"  class="col-sm-3 card">
        <h2> In Progress </h2>
        <div *ngFor="let id of inProgress">
-          <app-project-card [id]="id"> </app-project-card>
+          <app-project-card [id]="id" (reloadParent)="reloadParent()"> </app-project-card>
        </div>
     </div>
   

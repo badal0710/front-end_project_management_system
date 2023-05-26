@@ -3,21 +3,21 @@
   <div id="not-start" class="col-sm-3 card">
         <h2> Not Start Yet </h2>
       <div *ngFor="let id of notStart">
-         <app-task-card [id]="id"> </app-task-card>
+         <app-task-card [id]="id" (reloadParent)="reloadParent()" > </app-task-card>
       </div>
   </div>
 
   <div id="in-progress"  class="col-sm-3 card">
      <h2> In Progress </h2>
      <div *ngFor="let id of inProgress">
-        <app-task-card [id]="id"> </app-task-card>
+        <app-task-card [id]="id" (reloadParent)="reloadParent()"> </app-task-card>
      </div>
   </div>
 
   <div id="done"  class="col-sm-3 card">
      <h2> Done </h2>
      <div *ngFor="let id of done">
-      <app-task-card [id]="id"> </app-task-card>
+      <app-task-card [id]="id" (reloadParent)="reloadParent()"> </app-task-card>
    </div> 
      
   </div>

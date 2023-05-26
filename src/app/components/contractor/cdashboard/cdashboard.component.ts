@@ -35,4 +35,10 @@ export class CdashboardComponent implements OnInit {
     });
   }
 
+  reloadParent(){
+    setTimeout(() => {
+      location.reload();
+    }, 3000);
+  }
+
 }

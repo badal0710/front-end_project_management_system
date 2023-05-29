@@ -5,6 +5,7 @@ import { ContractorService } from 'src/app/services/contractor/contractor.servic
 import { ProjectsDetailService } from 'src/app/services/projectDetail/projects-detail.service';
 import { ProjectLocationService } from 'src/app/services/projectLocation/project-location.service';
 import { TaskdetailService } from 'src/app/services/taskDetail/taskdetail.service';
+import { typeOfTask,typeOfProject } from 'src/app/components/shared/helper/list';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -18,6 +19,8 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   locations:any[]=[];
   contractors:any[]=[];
 
+  listOfTaskType:string[]=typeOfTask;
+  listOfProjectType:string[]=typeOfProject;
 
   // breadcrumbs
   myBreadCrumbs: any = [
@@ -54,15 +57,27 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
 
   detailOfProject(id:any){
     this.projectsDetailService.getOneProject(id).subscribe((project: any) => {
-      console.log(project);
       this.projectDetail=project;
     })
   }
 
   updateProject(data:NgForm){
-    this.projectsDetailService.updateProject(data.value,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
+    console.log(data.value);
+    
+    const body = {
+      "projectStatus":parseInt(data.value.status),
+      "projectName":data.value.name,
+      "projectStartingDate":data.value.start,
+      "projectDeadline":data.value.end,
+      "projectTypeName":data.value.typeOfProject,
+      "projectLocationId":parseInt(data.value.location)
+    };
+    
+
+    this.projectsDetailService.updateProject(body,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
       if (result === "OK") {
         Swal.fire('update','Project Updated')
+        this.reloadPage();
       } else {
         Swal.fire('Error','Error while updating Project')
       } 
@@ -71,14 +86,34 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   }
 
   createTask(data:NgForm){
-    this.taskdetailService.createTask(data.value).subscribe((result:any)=>{
-      if (result === "OK") {
-        Swal.fire('Created','New Task Created')
-      } else {
-        Swal.fire('Error','Error while Creating Task')
-      } 
-      this.loadData(this.route.snapshot.paramMap.get("id"));
-    });
+    console.log(data.value);
+    const body = {
+      taskName:data.value.name,
+      projectId:this.route.snapshot.paramMap.get("id"),
+      contractorId:data.value.contractorId,
+      taskStartingDate:data.value.start,
+      taskDeadLine:data.value.end,
+      allocatedBudget:data.value.budget
+    };
+
+    try {
+      this.taskdetailService.createTask(body).subscribe((result:any)=>{
+        try {
+          if (result === 200) {
+            Swal.fire('Created','New Task Created')
+          } else {
+            Swal.fire('Error','Error while Creating Task')
+          }
+        } catch (error) {
+          Swal.fire('Error','Error while Creating Task')
+        }
+        this.reloadPage();
+        this.loadData(this.route.snapshot.paramMap.get("id"));
+      });
+    } catch (error) {
+      Swal.fire('Error','Error while Creating Task');
+    }
+
   }
 
   deleteProject(){
@@ -97,7 +132,6 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   allContractors(){
     this.contractorService.getAllContractor().subscribe((contractors:any)=>{
       for(let contractor of contractors){
-        console.log(contractor);
         this.contractors.push(contractor);
       }
     });
@@ -109,6 +143,12 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
         this.locations.push(location);
       }
     });
+  }
+
+  reloadPage(){
+    setTimeout(() => {
+      location.reload();
+    }, 3000);
   }
 
 

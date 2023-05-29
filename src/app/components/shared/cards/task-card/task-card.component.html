@@ -37,11 +37,14 @@
 
         <div style="display: flex;flex-wrap: wrap;justify-content:space-between;flex-direction: column;">
           
-          <section> <b> Name           </b> <p> {{ taskName }} </p>  </section>
-          <section> <b> Project name   </b> <p> {{ projectName }} </p>  </section>
-          <section> <b> Start Date     </b> <p> {{ startDate }} </p>  </section>
-          <section> <b> End Date       </b> <p> {{ endDate }} </p>  </section>
-          <section> <b> Budget         </b> <p> ${{ budget }} </p>  </section>
+          <section> <b> Name           </b> <p> {{ task.taskName }} </p>  </section>
+          <section> <b> Project name   </b> <p> {{ task.project.projectName }} </p>  </section>
+          <section> <b> Start Date     </b> <p> {{ task.taskStartingDate }} </p>  </section>
+          <section> <b> End Date       </b> <p> {{ task.taskDeadLine }} </p>  </section>
+          <section *ngIf="user=='admin'"> <b> Contractor Name       </b> <p> {{ task.contractor.contractorName }} </p>  </section>
+          <section *ngIf="user=='admin'"> <b> Contractor Number       </b> <p> {{ task.contractor.phoneNo }} </p>  </section>
+          <section> <b> Budget         </b> <p> ${{ task.allocatedBudget }} </p>  </section>
+
 
         </div>
         <b> Task Status </b>
@@ -58,7 +61,7 @@
       </div><br><br>
       
         <button class="btn btn-success col-auto" (click)="updateTaskStatus(progressValue)" data-bs-dismiss="modal" aria-label="Close"> Update </button> <br>
-        <button *ngIf="user=='admin'" class="btn btn-danger col-auto" (click)="deleteTask()"> Delete </button> <br>
+        <button *ngIf="user=='admin'" class="btn btn-danger col-auto" (click)="deleteTask()" data-bs-dismiss="modal" aria-label="Close"> Delete </button> <br>
 
     </div>
   </div>

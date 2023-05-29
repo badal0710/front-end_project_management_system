@@ -23,6 +23,7 @@ export class TaskCardComponent implements OnInit {
   endDate:string='';
   budget:string='';
   progressValue: number = 50;
+  task:any=[];
 
   increaseProgress() {
     if (this.progressValue < 100) {
@@ -51,13 +52,20 @@ export class TaskCardComponent implements OnInit {
   }
 
   deleteTask(){
-    this.taskDetail.deleteTask(this.id).subscribe((result:any)=>{
-      if (result === "OK") {
-        Swal.fire('update','Task Updated')
-      } else {
-        Swal.fire('Error','Error while updating Task')
-      } 
-    });
+    try {
+      this.taskDetail.deleteTask(this.id).subscribe((result:any)=>{
+        console.log(result);
+        if (result === 200) {
+          Swal.fire('Deleted','Task Deleted')
+        } else {
+          Swal.fire('Error','Error while updating Task')
+        } 
+      });
+      this.reloadParent.emit('updatePage');
+    } catch (error) {
+      Swal.fire('Error','Error while updating Task')
+    }
+    
   }
 
   ngOnInit(): void {
@@ -70,6 +78,7 @@ export class TaskCardComponent implements OnInit {
 
   loadData(id:Number){
     this.taskDetail.getOneTask(id).subscribe( (result:any) => {
+      this.task=result;
       this.taskName = result.taskName;
       this.projectName = result.project.projectName;
       this.startDate = result.taskStartingDate;

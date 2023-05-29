@@ -19,6 +19,9 @@
         
         <thead  style="background-color:aliceblue; height: 30px;align-items: center;justify-content: center;">
           <td>
+            <b> # </b>
+          </td>
+          <td>
             <b> Investor Name </b>
           </td>
           <td>
@@ -33,7 +36,8 @@
         </thead>
         <br>
         <tbody>
-          <tr *ngFor="let projectInvestor of projectInvestors">
+          <tr *ngFor="let projectInvestor of projectInvestors;let i = index">
+            <td> {{ i+1 }} </td>
             <td> {{ projectInvestor.investor.name }} </td>
             <td> {{ projectInvestor.investedShare }} </td>
             <td> {{ projectInvestor.project.projectName }} </td>
@@ -55,10 +59,5 @@
     [TableValue]="InvestorValue"
     [RowAction]="InvestorRowAction"
   ></app-table>
-  <!-- <app-table [TableName]="ProjectInvestorName" [TableAction]="ProjectInvestorAction" [TableKeys]="ProjectInvestorKeys"  [TableValue]="ProjectInvestorValue" [RowAction]="ProjectInvestorRowAction"></app-table> -->
 
-  <!-- ============== Chart ================== -->
-  <!-- <div class="card shadow p-3 mt-4">
-        <app-charts [chartName]="InvestorChartName" [chartType]="InvestorChartType" [chartLabel]="InvestorChartLabel" [chartValue]="InvestorChartValue"></app-charts>
-    </div> -->
 </div>

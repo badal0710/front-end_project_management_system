@@ -12,10 +12,10 @@
 }
 
 #allTasks{
-    display: flex;
-    flex-direction: row;
+    /* display: flex; */
+    /* flex-direction: row; */
     /* justify-content:center; */
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 
 @media (max-width: 765px) {

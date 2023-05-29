@@ -9,7 +9,7 @@
 
   <div id="in-progress"  class="col-sm-3 card">
      <h2> In Progress </h2>
-     <div *ngFor="let id of inProgress">
+     <div  *ngFor="let id of inProgress">
         <app-task-card [id]="id" (reloadParent)="reloadParent()"> </app-task-card>
      </div>
   </div>

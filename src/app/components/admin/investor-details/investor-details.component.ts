@@ -75,7 +75,6 @@ export class InvestorDetailsComponent implements OnInit {
     this.investorProjectServiceService.getAllProjectInvestor().subscribe( (projectInvestors:any)=>{
         for(let projectInvestor of projectInvestors){
           if(projectInvestor.status==='pending'){
-            console.log(projectInvestor)
             this.projectInvestors.push(projectInvestor);
           }
         }

@@ -23,7 +23,6 @@ export class CdashboardComponent implements OnInit {
   loadData(){
     this.taskdetail.getAllTasks().subscribe((tasks:any)=>{
       for (let task of tasks) {
-        console.log(task);
         if(task.taskStatus===0){
           this.notStart.push(task.taskId);
         }else if(task.taskStatus===100){

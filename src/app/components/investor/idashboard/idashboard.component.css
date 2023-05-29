@@ -14,6 +14,8 @@
       padding: 10px;
       margin-bottom: 30px;  
       background-color:whitesmoke;
+      max-height:80vb;
+      overflow-y: auto;
   }
   
   #main > div > h3 {

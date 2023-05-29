@@ -48,6 +48,7 @@ export class ProjectsDetailService {
   }
 
   updateProject(body: any, id: any){
+    console.log("body: ",body);
     const headers = this.getHeaders();
     return this.http.put(`${this.database_url}/${this.projectController}/${this.update}/${id}`,body,{ headers });
   }

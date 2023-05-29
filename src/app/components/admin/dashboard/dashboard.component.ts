@@ -1,30 +1,30 @@
 import {  AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { NgForm, NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
 import Chart, { ChartData } from 'chart.js/auto';
 import { ContractorService } from 'src/app/services/contractor/contractor.service';
 import { InvestorService } from 'src/app/services/investor/investor.service';
 import { ProjectsDetailService } from 'src/app/services/projectDetail/projects-detail.service';
 import Swal from 'sweetalert2';
+import { typeOfProject } from '../../shared/helper/list';
+import { ProjectLocationService } from 'src/app/services/projectLocation/project-location.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit,AfterViewInit {
+export class DashboardComponent implements OnInit {
   
-  constructor(private cd: ChangeDetectorRef, private router:Router, private projectService: ProjectsDetailService, private investorService: InvestorService, private contractorService: ContractorService) {
+  constructor(private cd: ChangeDetectorRef, private router:Router, private projectService: ProjectsDetailService, private investorService: InvestorService, private contractorService: ContractorService, private projectLocationService:ProjectLocationService) {
   }
   
   ngOnInit(): void {
     this.projects();
     this.loadCards();
+    this.Alllocations();
   }
   
-  ngAfterViewInit(): void {
-    this.cd.detectChanges();
-  }
-
   // breadcrumbs
   myBreadCrumbs:any = [
     {
@@ -38,83 +38,59 @@ export class DashboardComponent implements OnInit,AfterViewInit {
   contractorCard=['bi bi-person','Contractor',30,'contractorDetail'];
   projectCard=['bi bi-buildings','Projects',120,'null'];
 
+  filterProjects:any='all';
+  allProjects:any[]=[];
+  notStartedProjects:any[]=[];
+  onGoingProjects:any[]=[];
+  doneProjects:any[]=[];
 
-  // chart
-  projectChartName="Project's Chart";
-  projectChartType="pie";
-  projectChartLabel:any=[];
-  projectChartValue:any=[];
+  listOfProjectType:string[]=typeOfProject;  
+  locations:any[]=[];
 
-  //project
-  ProjectValue: any[]=[];
-  ProjectKeys: any[]=[];
-  ProjectName: any="Project List";
-  ProjectRowAction: any=[['View','admin/projects']];
-  ProjectAction: any=['Project',['projectStatus','projectName','projectStartingDate','projectDeadline','projectTypeName','projectLocationId']];
-  Names:any=[];
-
-  // tables
   projects(){
     this.projectService.getAllProject().subscribe((projects:any)=>{
       for(let project of projects){
-        if(project.projectStatus!==0 && project.projectStatus!==100){
-          this.Names=Object.keys(project);
-          this.ProjectKeys.push(Object.keys(project))
-          this.ProjectValue.push(Object.values(project));
-          this.projectChartLabel.push(project.projectName);
-          this.projectChartValue.push(project.projectStatus);
+        this.allProjects.push(project);
+        if(project.projectStatus===0){
+          this.notStartedProjects.push(project);
+        }else if(project.projectStatus===100){
+          this.doneProjects.push(project);
+        }else{
+          this.onGoingProjects.push(project);
         }
       }
-
-      //format objects
-      [this.ProjectKeys,this.ProjectValue] = this.formatObject(this.ProjectKeys,this.ProjectValue);
-
     })
   }
 
-  formatObject(key:any,value:any){
-
-    let v:any[]=[];
-
-    // index which we want to remove
-    for(let task of value){
-      for(let i=0;i<=task.length;i++){
-        if(typeof task[i]==='object'){
-          v.push(i);
-        }
-      }
-    }
-
-    // remove oparation
-    for(let index of v){
-      key.map((obj:any)=>{
-        obj.splice(v[0],1);
-      })
-
-      value.map((obj:any)=>{
-        obj.splice(v[0],1);
-      })
-    }
-    
-    return [key,value];
+  async view(projectId:number){
+    await this.router.navigate(['admin/projects',projectId]);
   }
 
-  formatObjectForDetail(keys:any,values:any){
-    for(let i=0;i<values.length;i++){
-      if(typeof values[i] === 'object'){
-        let tmpTitle=[];
-        let tmpDesc=[];
-        let tmp = Object.entries(values[i]);
-        for(let v of tmp){
-          tmpTitle.push(v[0]);
-          tmpDesc.push(v[1]);
-          break;
-        }
-        keys.splice(i,1,...tmpTitle);
-        values.splice(i,1,...tmpDesc);
+  createProject(data:NgForm){
+    const body = {
+      "projectStatus":parseInt("10"),
+      "projectName":data.value.name,
+      "projectStartingDate":data.value.start,
+      "projectDeadline":data.value.end,
+      "projectTypeName":data.value.typeOfProject,
+      "projectLocationId":parseInt(data.value.location)
+    };
+    this.projectService.createProject(body).subscribe((result:any)=>{
+      try {
+        Swal.fire("Created","Project Successfully Created");
+      } catch (error) {
+        Swal.fire("Error","Error while creating New Project");
       }
-    }
-    return [keys,values];
+    });
+  }
+
+  Alllocations(){
+    this.projectLocationService.getAllLocation().subscribe((locations:any)=>{
+      for(let location of locations){
+        this.locations.push(location);
+      }
+    });
+    console.log(this.locations);
   }
 
   loadCards(){

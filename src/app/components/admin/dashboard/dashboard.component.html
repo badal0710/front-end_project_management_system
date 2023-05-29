@@ -10,16 +10,179 @@
         <app-cards [Data]="investorCard"></app-cards>
         <app-cards [Data]="contractorCard"></app-cards>
         <app-cards [Data]="projectCard"></app-cards>
-        <!-- <app-cards [Data]="fundCard"></app-cards> -->
     </div>
 
      <!-- ============= Tables ================= -->
-    <app-table [TableName]="ProjectName" [TableAction]="ProjectAction" [TableKeys]="ProjectKeys"  [TableValue]="ProjectValue" [RowAction]="ProjectRowAction"></app-table>
-
-
-    <!-- ============== Chart ================== -->
-     <!-- <div class="card shadow p-3 mt-4">
-        <app-charts [chartName]="projectChartName" [chartType]="projectChartType" [chartLabel]="projectChartLabel" [chartValue]="projectChartValue"></app-charts>
-    </div> -->
+    <div class="card shadow p-3 mt-4">
+        <div
+          class="container-fluid"
+          style="display: flex; justify-content: space-between">
+          <div class="btn-group-toggle" data-toggle="buttons">
+              <h1> Project List </h1>
+              <label class="btn btn-outline-primary">
+                <input type="radio" name="radio" value="all" checked [(ngModel)]="filterProjects"> All
+              </label> &nbsp;
+              <label class="btn btn-outline-primary">
+                <input type="radio" name="radio" value="notStart" checked [(ngModel)]="filterProjects"> Not Start
+              </label> &nbsp;
+              <label class="btn btn-outline-primary">
+                <input type="radio" name="radio" value="onGoing" [(ngModel)]="filterProjects"> Ongoing
+              </label> &nbsp;
+              <label class="btn btn-outline-primary">
+                <input type="radio" name="radio" value="done" [(ngModel)]="filterProjects"> Done
+              </label>
+          </div><br>
+          <div>
+            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create"> Create Project </button>
+          </div>
+        </div>
     
+        <div class="p-3 mb-3">
+    
+          <table class="table p3 mb-3" style="margin: 10px;">
+            
+            <thead  style="background-color:aliceblue; height: 30px;align-items: center;justify-content: center;">
+              <td>
+                <b> # </b>
+              </td>
+              <td>
+                <b> Name </b>
+              </td>
+              <td>
+                <b> Type Of Project </b>
+              </td>
+              <td>
+                <b> Start Date </b>
+              </td>
+              <td>
+                <b> End Date </b>
+              </td>
+              <td>
+                <b> Status </b>
+              </td>
+              <td>
+                <b> Location </b>
+              </td>
+              <td colspan="2">
+                <b> Action </b>
+              </td>
+            </thead>
+            <br>
+            <tbody>
+
+              <ng-container *ngIf="filterProjects==='all'">
+                <tr *ngFor="let project of allProjects;let i = index;">
+                  <td> {{ i+1 }} </td>
+                  <td> {{ project.projectName }} </td>
+                  <td> {{ project.projectTypeName }} </td>
+                  <td> {{ project.projectStartingDate }} </td>
+                  <td> {{ project.projectDeadline }} </td>
+                  <td> {{ project.projectStatus }} </td>
+                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{ project.projectLocation.state }} </td>
+                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )" > View </button></td>
+                </tr>
+              </ng-container>
+
+              <ng-container *ngIf="filterProjects==='notStart'">
+                <tr *ngFor="let project of notStartedProjects;let i = index;">
+                  <td> {{ i+1 }} </td>
+                  <td> {{ project.projectName }} </td>
+                  <td> {{ project.projectTypeName }} </td>
+                  <td> {{ project.projectStartingDate }} </td>
+                  <td> {{ project.projectDeadline }} </td>
+                  <td> {{ project.projectStatus }} </td>
+                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{ project.projectLocation.state }} </td>
+                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )" > View </button></td>
+                </tr>
+              </ng-container>
+
+              <ng-container *ngIf="filterProjects==='onGoing'">
+                <tr *ngFor="let project of onGoingProjects;let i = index;">
+                  <td> {{ i+1 }} </td>
+                  <td> {{ project.projectName }} </td>
+                  <td> {{ project.projectTypeName }} </td>
+                  <td> {{ project.projectStartingDate }} </td>
+                  <td> {{ project.projectDeadline }} </td>
+                  <td> {{ project.projectStatus }} </td>
+                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{ project.projectLocation.state }} </td>
+                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )" > View </button></td>
+                </tr>
+              </ng-container>
+
+              <ng-container *ngIf="filterProjects==='done'">
+                <tr *ngFor="let project of doneProjects;let i = index;">
+                  <td> {{ i+1 }} </td>
+                  <td> {{ project.projectName }} </td>
+                  <td> {{ project.projectTypeName }} </td>
+                  <td> {{ project.projectStartingDate }} </td>
+                  <td> {{ project.projectDeadline }} </td>
+                  <td> {{ project.projectStatus }} </td>
+                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{ project.projectLocation.state }} </td>
+                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )" > View </button></td>
+                </tr>
+              </ng-container>
+
+            </tbody>
+    
+          </table>
+    
+        </div>
+        
+    </div>
+    
+</div>
+
+<!-- ============== model ================== -->
+<div class="modal fade" id="create" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" style="font-size: 20px;"> Create New Project </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form #createData="ngForm" (ngSubmit)="createProject(createData)">
+
+            <div class="mb-3">
+              <label for="name" class="form-label">Project Name</label>
+              <input type="text" ngModel class="form-control" name="name">
+            </div>
+
+            <div class="mb-3">
+              <label for="type" class="form-label">Project type</label>
+              <select class="form-select" ngModel name="typeOfProject">
+                <option *ngFor="let typeOfProject of listOfProjectType"> {{typeOfProject}}  </option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="start" class="form-label">Project Start Date</label>
+              <input type="date" ngModel class="form-control" name="start">
+            </div>
+
+            <div class="mb-3">
+              <label for="end" class="form-label">Project End Date</label>
+              <input type="date" ngModel class="form-control" name="end">
+            </div>
+
+            <div class="mb-3">
+              <label for="location" class="form-label">Project Location</label>
+              <select class="form-select" ngModel name="location">
+                <option *ngFor="let location of locations" value="{{location.projectLocationId}}"> {{location.area}} - {{location.city}} - {{location.state}}  </option>
+              </select>
+            </div>        
+
+          <div>
+            <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close"> Update </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
 </div>

@@ -1,16 +1,16 @@
 <div class="container-fluid p-3 m-1">
 
-    <!-- ============= breadCrumbs And Title ================= -->
-    <div>
-        <h1 style="font-size: 25px"> Dashboard </h1>
-        <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
-    </div>
-     <!-- ============= Cards ================= -->
-    <div class="p-3 mt-4" style="display: flex;justify-content: space-between;flex-wrap: wrap;">
-        <app-cards [Data]="investorCard"></app-cards>
-        <app-cards [Data]="contractorCard"></app-cards>
-        <app-cards [Data]="projectCard"></app-cards>
-    </div>
+  <!-- ============= breadCrumbs And Title ================= -->
+  <div>
+    <h1 style="font-size: 25px"> Dashboard </h1>
+    <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>
+  </div>
+  <!-- ============= Cards ================= -->
+  <div class="p-3 mt-4" style="display: flex;justify-content: space-between;flex-wrap: wrap;">
+    <app-cards [Data]="investorCard"></app-cards>
+    <app-cards [Data]="contractorCard"></app-cards>
+    <app-cards [Data]="projectCard"></app-cards>
+  </div>
 
      <!-- ============= Tables ================= -->
     <div class="card shadow p-3 mt-4">
@@ -72,66 +72,74 @@
             <br>
             <tbody>
 
-              <ng-container *ngIf="filterProjects==='all'">
-                <tr *ngFor="let project of allProjects;let i = index;">
-                  <td> {{ i+1 }} </td>
-                  <td> {{ project.projectName }} </td>
-                  <td> {{ project.projectTypeName }} </td>
-                  <td> {{ project.projectStartingDate }} </td>
-                  <td> {{ project.projectDeadline }} </td>
-                  <td> {{ project.projectStatus }} </td>
-                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{ project.projectLocation.state }} </td>
-                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )" > View </button></td>
-                </tr>
-              </ng-container>
+          <ng-container *ngIf="filterProjects==='all'">
+            <tr *ngFor="let project of allProjects;let i = index;">
+              <td> {{ i+1 }} </td>
+              <td> {{ project.projectName }} </td>
+              <td> {{ project.projectTypeName }} </td>
+              <td> {{ project.projectStartingDate }} </td>
+              <td> {{ project.projectDeadline }} </td>
+              <td> {{ project.projectStatus }} </td>
+              <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
+                project.projectLocation.state }} </td>
+              <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"><i
+                    class="bi bi-view-list"></i> View </button></td>
+            </tr>
+          </ng-container>
 
-              <ng-container *ngIf="filterProjects==='notStart'">
-                <tr *ngFor="let project of notStartedProjects;let i = index;">
-                  <td> {{ i+1 }} </td>
-                  <td> {{ project.projectName }} </td>
-                  <td> {{ project.projectTypeName }} </td>
-                  <td> {{ project.projectStartingDate }} </td>
-                  <td> {{ project.projectDeadline }} </td>
-                  <td> {{ project.projectStatus }} </td>
-                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{ project.projectLocation.state }} </td>
-                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )" > View </button></td>
-                </tr>
-              </ng-container>
+          <ng-container *ngIf="filterProjects==='notStart'">
+            <tr *ngFor="let project of notStartedProjects;let i = index;">
+              <td> {{ i+1 }} </td>
+              <td> {{ project.projectName }} </td>
+              <td> {{ project.projectTypeName }} </td>
+              <td> {{ project.projectStartingDate }} </td>
+              <td> {{ project.projectDeadline }} </td>
+              <td> {{ project.projectStatus }} </td>
+              <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
+                project.projectLocation.state }} </td>
+              <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"><i
+                    class="bi bi-view-list"></i> View </button></td>
+            </tr>
+          </ng-container>
 
-              <ng-container *ngIf="filterProjects==='onGoing'">
-                <tr *ngFor="let project of onGoingProjects;let i = index;">
-                  <td> {{ i+1 }} </td>
-                  <td> {{ project.projectName }} </td>
-                  <td> {{ project.projectTypeName }} </td>
-                  <td> {{ project.projectStartingDate }} </td>
-                  <td> {{ project.projectDeadline }} </td>
-                  <td> {{ project.projectStatus }} </td>
-                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{ project.projectLocation.state }} </td>
-                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )" > View </button></td>
-                </tr>
-              </ng-container>
+          <ng-container *ngIf="filterProjects==='onGoing'">
+            <tr *ngFor="let project of onGoingProjects;let i = index;">
+              <td> {{ i+1 }} </td>
+              <td> {{ project.projectName }} </td>
+              <td> {{ project.projectTypeName }} </td>
+              <td> {{ project.projectStartingDate }} </td>
+              <td> {{ project.projectDeadline }} </td>
+              <td> {{ project.projectStatus }} </td>
+              <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
+                project.projectLocation.state }} </td>
+              <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"> <i
+                    class="bi bi-view-list"></i>View </button></td>
+            </tr>
+          </ng-container>
 
-              <ng-container *ngIf="filterProjects==='done'">
-                <tr *ngFor="let project of doneProjects;let i = index;">
-                  <td> {{ i+1 }} </td>
-                  <td> {{ project.projectName }} </td>
-                  <td> {{ project.projectTypeName }} </td>
-                  <td> {{ project.projectStartingDate }} </td>
-                  <td> {{ project.projectDeadline }} </td>
-                  <td> {{ project.projectStatus }} </td>
-                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{ project.projectLocation.state }} </td>
-                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )" > View </button></td>
-                </tr>
-              </ng-container>
+          <ng-container *ngIf="filterProjects==='done'">
+            <tr *ngFor="let project of doneProjects;let i = index;">
+              <td> {{ i+1 }} </td>
+              <td> {{ project.projectName }} </td>
+              <td> {{ project.projectTypeName }} </td>
+              <td> {{ project.projectStartingDate }} </td>
+              <td> {{ project.projectDeadline }} </td>
+              <td> {{ project.projectStatus }} </td>
+              <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
+                project.projectLocation.state }} </td>
+              <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"><i
+                    class="bi bi-view-list"></i> View </button></td>
+            </tr>
+          </ng-container>
 
-            </tbody>
-    
-          </table>
-    
-        </div>
-        
+        </tbody>
+
+      </table>
+
     </div>
-    
+
+  </div>
+
 </div>
 
 <!-- ============== model ================== -->
@@ -148,37 +156,39 @@
 
         <form #createData="ngForm" (ngSubmit)="createProject(createData)">
 
-            <div class="mb-3">
-              <label for="name" class="form-label">Project Name</label>
-              <input type="text" ngModel class="form-control" name="name">
-            </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Project Name</label>
+            <input type="text" ngModel class="form-control" name="name">
+          </div>
 
-            <div class="mb-3">
-              <label for="type" class="form-label">Project type</label>
-              <select class="form-select" ngModel name="typeOfProject">
-                <option *ngFor="let typeOfProject of listOfProjectType"> {{typeOfProject}}  </option>
-              </select>
-            </div>
+          <div class="mb-3">
+            <label for="type" class="form-label">Project type</label>
+            <select class="form-select" ngModel name="typeOfProject">
+              <option *ngFor="let typeOfProject of listOfProjectType"> {{typeOfProject}} </option>
+            </select>
+          </div>
 
-            <div class="mb-3">
-              <label for="start" class="form-label">Project Start Date</label>
-              <input type="date" ngModel class="form-control" name="start">
-            </div>
+          <div class="mb-3">
+            <label for="start" class="form-label">Project Start Date</label>
+            <input type="date" ngModel class="form-control" name="start">
+          </div>
 
-            <div class="mb-3">
-              <label for="end" class="form-label">Project End Date</label>
-              <input type="date" ngModel class="form-control" name="end">
-            </div>
+          <div class="mb-3">
+            <label for="end" class="form-label">Project End Date</label>
+            <input type="date" ngModel class="form-control" name="end">
+          </div>
 
-            <div class="mb-3">
-              <label for="location" class="form-label">Project Location</label>
-              <select class="form-select" ngModel name="location">
-                <option *ngFor="let location of locations" value="{{location.projectLocationId}}"> {{location.area}} - {{location.city}} - {{location.state}}  </option>
-              </select>
-            </div>        
+          <div class="mb-3">
+            <label for="location" class="form-label">Project Location</label>
+            <select class="form-select" ngModel name="location">
+              <option *ngFor="let location of locations" value="{{location.projectLocationId}}"> {{location.area}} -
+                {{location.city}} - {{location.state}} </option>
+            </select>
+          </div>
 
           <div>
-            <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close"> Update </button>
+            <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close">
+              Update </button>
           </div>
 
         </form>

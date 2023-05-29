@@ -16,6 +16,16 @@ header{
     /* color: aliceblue; */
 }
 
+.nav-link{
+    margin-top: 5px;
+    font-size: 25px; 
+} 
+
+img{
+    height: 70px;
+    margin-left: -25px;
+}
+
 @media (max-width: 650px) {
     #sideIcon {
       display: none; /* Hide the div on mobile screens */

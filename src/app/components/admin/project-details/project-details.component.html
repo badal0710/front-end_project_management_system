@@ -1,61 +1,63 @@
 <div class="container-fluid p-3 m-1">
 
-    <!-- ============= breadCrumbs And Title ================= -->
-    <div>
-        <h1 style="font-size: 25px"> Project </h1>
-        <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>  
-    </div>
+  <!-- ============= breadCrumbs And Title ================= -->
+  <div>
+    <h1 style="font-size: 25px"> Project </h1>
+    <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>
+  </div>
 
-    <!-- ============= Details ================= -->
-    <div class="card shadow p-3 mt-4" style="display: flex;flex-direction: column;">
+  <!-- ============= Details ================= -->
+  <div class="card shadow p-3 mt-4" style="display: flex;flex-direction: column;">
 
-            <div class="card-title" style="display: flex;justify-content: space-between;">
-                    <h1> Project Details </h1>
-                    <div style="justify-content: space-between;">
-                        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit"> Edit </button> &nbsp; &nbsp;
-                        <button class="btn btn-danger" (click)="deleteProject()"> Delete </button>
-                    </div>
-            </div><br>
-
-            <div id="detailsOfProject" class="row">
-                <div class="col-lg-3 col-md-4 label title"> <b> Project Name  </b> </div>
-                <div class="col-lg-8 col-md-4 desc">  {{ projectDetail.projectName }} </div>
-
-                <div class="col-lg-3 col-md-4 label title"> <b> Type Of Project  </b> </div>
-                <div class="col-lg-8 col-md-4 desc">  {{ projectDetail.projectTypeName }} </div>
-
-                <div class="col-lg-3 col-md-4 label title"> <b> Start Date  </b> </div>
-                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectStartingDate }}  </div>
-
-                <div class="col-lg-3 col-md-4 label title"> <b> Dead Line  </b> </div>
-                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectDeadline }}  </div>
-
-                <div class="col-lg-3 col-md-4 label title"> <b> Project Progress </b> </div>
-                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectStatus }}  </div>
-
-                <div class="col-lg-3 col-md-4 label title"> <b> Location Area  </b> </div>
-                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.area }}  </div>
-
-                <div class="col-lg-3 col-md-4 label title"> <b> City  </b> </div>
-                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.city }}  </div>
-
-                <div class="col-lg-3 col-md-4 label title"> <b> State  </b> </div>
-                <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.state }}  </div>
-            </div>
-
-    </div>
-
-    <!-- ============= Tables ================= -->
-    <div class="card shadow p-3 mt-4">
-      <div style="display: flex;justify-content: space-between;">
-        <h1> Tasks </h1>
-        <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#create"> Create Task </button>
+    <div class="card-title" style="display: flex;justify-content: space-between;">
+      <h1> Project Details </h1>
+      <div style="justify-content: space-between;">
+        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pen-fill"></i> Edit
+        </button> &nbsp; &nbsp;
+        <button class="btn btn-danger" (click)="deleteProject()"><i class="bi bi-trash-fill"></i> Delete </button>
       </div>
-      <div id="allTasks" *ngFor="let taskid of allTasks">
-        <app-task-card [id]="taskid" [user]="'admin'" (reloadParent)="reloadPage()"></app-task-card>
-      </div>
+    </div><br>
+
+    <div id="detailsOfProject" class="row">
+      <div class="col-lg-3 col-md-4 label title"> <b> Project Name </b> </div>
+      <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectName }} </div>
+
+      <div class="col-lg-3 col-md-4 label title"> <b> Type Of Project </b> </div>
+      <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectTypeName }} </div>
+
+      <div class="col-lg-3 col-md-4 label title"> <b> Start Date </b> </div>
+      <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectStartingDate }} </div>
+
+      <div class="col-lg-3 col-md-4 label title"> <b> Dead Line </b> </div>
+      <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectDeadline }} </div>
+
+      <div class="col-lg-3 col-md-4 label title"> <b> Project Progress </b> </div>
+      <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectStatus }} </div>
+
+      <div class="col-lg-3 col-md-4 label title"> <b> Location Area </b> </div>
+      <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.area }} </div>
+
+      <div class="col-lg-3 col-md-4 label title"> <b> City </b> </div>
+      <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.city }} </div>
+
+      <div class="col-lg-3 col-md-4 label title"> <b> State </b> </div>
+      <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.state }} </div>
     </div>
-    
+
+  </div>
+
+  <!-- ============= Tables ================= -->
+  <div class="card shadow p-3 mt-4">
+    <div style="display: flex;justify-content: space-between;">
+      <h1> Tasks </h1>
+      <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#create"><i class="bi bi-plus-lg"></i>
+        Create Task </button>
+    </div>
+    <div id="allTasks" *ngFor="let taskid of allTasks">
+      <app-task-card [id]="taskid" [user]="'admin'" (reloadParent)="reloadPage()"></app-task-card>
+    </div>
+  </div>
+
 </div>
 
 
@@ -73,42 +75,45 @@
 
         <form #editData="ngForm" (ngSubmit)="updateProject(editData)">
 
-            <div class="mb-3">
-              <label for="name" class="form-label">Project Name</label>
-              <input type="text" ngModel class="form-control" name="name" [(ngModel)]="projectDetail.projectName">
-            </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Project Name</label>
+            <input type="text" ngModel class="form-control" name="name" [(ngModel)]="projectDetail.projectName">
+          </div>
 
-            <div class="mb-3">
-              <label for="type" class="form-label">Project type</label>
-              <select class="form-select" ngModel name="typeOfProject">
-                <option *ngFor="let typeOfProject of listOfProjectType"> {{typeOfProject}}  </option>
-              </select>
-            </div>
+          <div class="mb-3">
+            <label for="type" class="form-label">Project type</label>
+            <select class="form-select" ngModel name="typeOfProject">
+              <option *ngFor="let typeOfProject of listOfProjectType"> {{typeOfProject}} </option>
+            </select>
+          </div>
 
-            <div class="mb-3">
-              <label for="status" class="form-label">Project Start Date</label>
-              <input type="number" ngModel class="form-control" name="status" [(ngModel)]="projectDetail.projectStatus" >
-            </div>
+          <div class="mb-3">
+            <label for="status" class="form-label">Project Start Date</label>
+            <input type="number" ngModel class="form-control" name="status" [(ngModel)]="projectDetail.projectStatus">
+          </div>
 
-            <div class="mb-3">
-              <label for="start" class="form-label">Project Start Date</label>
-              <input type="date" ngModel class="form-control" name="start" [(ngModel)]="projectDetail.projectStartingDate" >
-            </div>
+          <div class="mb-3">
+            <label for="start" class="form-label">Project Start Date</label>
+            <input type="date" ngModel class="form-control" name="start"
+              [(ngModel)]="projectDetail.projectStartingDate">
+          </div>
 
-            <div class="mb-3">
-              <label for="end" class="form-label">Project End Date</label>
-              <input type="date" ngModel class="form-control" name="end" [(ngModel)]="projectDetail.projectDeadline">
-            </div>
+          <div class="mb-3">
+            <label for="end" class="form-label">Project End Date</label>
+            <input type="date" ngModel class="form-control" name="end" [(ngModel)]="projectDetail.projectDeadline">
+          </div>
 
-            <div class="mb-3">
-              <label for="location" class="form-label">Project Location</label>
-              <select class="form-select" ngModel name="location">
-                <option *ngFor="let location of locations" value="{{location.projectLocationId}}"> {{location.area}} - {{location.city}} - {{location.state}}  </option>
-              </select>
-            </div>        
+          <div class="mb-3">
+            <label for="location" class="form-label">Project Location</label>
+            <select class="form-select" ngModel name="location">
+              <option *ngFor="let location of locations" value="{{location.projectLocationId}}"> {{location.area}} -
+                {{location.city}} - {{location.state}} </option>
+            </select>
+          </div>
 
           <div>
-            <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close"> Update </button>
+            <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close">
+              Update </button>
           </div>
 
         </form>
@@ -131,8 +136,8 @@
 
       <div class="modal-body">
 
-        <form #createData="ngForm"  (submit)="createTask(createData)">
-        
+        <form #createData="ngForm" (submit)="createTask(createData)">
+
           <div class="mb-3">
             <label for="name" class="form-label">Task Name</label>
             <select ngModel class="form-select" formControllName="name" name="name">
@@ -142,7 +147,8 @@
 
           <div class="mb-3">
             <label for="start" class="form-label">Task StartDate</label>
-            <input type="date" placeholder="yyyy-mm-dd" ngModel class="form-control" formControllName="start" name="start">
+            <input type="date" placeholder="yyyy-mm-dd" ngModel class="form-control" formControllName="start"
+              name="start">
           </div>
 
           <div class="mb-3">
@@ -158,12 +164,14 @@
           <div class="mb-3">
             <label for="contractor" class="form-label">Choose Contractor</label>
             <select class="form-select" ngModel formControllName="contractorId" name="contractorId">
-              <option *ngFor="let contractor of contractors" value="{{contractor.contractorId}}"> {{contractor.contractorName}} </option>
+              <option *ngFor="let contractor of contractors" value="{{contractor.contractorId}}">
+                {{contractor.contractorName}} </option>
             </select>
           </div>
 
           <div>
-            <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close"> Submit </button>
+            <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close">
+              Submit </button>
           </div>
 
         </form>

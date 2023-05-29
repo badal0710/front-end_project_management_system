@@ -8,17 +8,19 @@
     /* background-image: url("https://www.thenology.com/wp-content/uploads/2016/01/608832.jpg"); */
   }
   
-  #main > div{
-      /* margin: 5px; */
-      margin-right: 55px;
-      padding: 10px;
-      margin-bottom: 30px;  
-      background-color:whitesmoke;
-      max-height:80vb;
-      overflow-y: auto;
-  }
-  
-  #main > div > h3 {
-      margin: 5px;
-  }
-  
+#main > div{
+    margin-right: 55px;
+    padding: 10px;
+    margin-bottom: 30px;  
+    background-color:whitesmoke;
+    max-height:80vb;
+    overflow-y: auto;
+}
+
+#main > div > h3 {
+    margin: 5px;
+}
+
+.absolute-r-30{
+  position: absolute;right: 30px;
+}

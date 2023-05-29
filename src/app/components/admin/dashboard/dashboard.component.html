@@ -2,23 +2,22 @@
 
   <!-- ============= breadCrumbs And Title ================= -->
   <div>
-    <h1 style="font-size: 25px"> Dashboard </h1>
+    <h1 class="title"> Dashboard </h1>
     <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>
   </div>
+
   <!-- ============= Cards ================= -->
-  <div class="p-3 mt-4" style="display: flex;justify-content: space-between;flex-wrap: wrap;">
+  <div class="p-3 mt-4 flex-space-between flex-wrap">
     <app-cards [Data]="investorCard"></app-cards>
     <app-cards [Data]="contractorCard"></app-cards>
     <app-cards [Data]="projectCard"></app-cards>
   </div>
 
-     <!-- ============= Tables ================= -->
-    <div class="card shadow p-3 mt-4">
+  <!-- ============= Tables ================= -->
+  <div class="card shadow p-3 mt-4">
       
       <!-- filter -->
-        <div
-          class="container-fluid"
-          style="display: flex; justify-content: space-between">
+        <div id="filter" class="container-fluid">
           <div class="btn-group-toggle" data-toggle="buttons">
               <h1> Project List </h1>
               <label class="btn btn-outline-primary">
@@ -33,17 +32,17 @@
               <label class="btn btn-outline-primary">
                 <input type="radio" name="radio" value="done" [(ngModel)]="filterProjects"> Done
               </label>
-          </div><br>
+          </div>
           <div>
             <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create"> Create Project </button>
           </div>
-        </div>
+        </div> <br>
     
         <div class="p-3 mb-3">
     
-          <table class="table p3 mb-3" style="margin: 10px;">
+          <table class="table">
             
-            <thead  style="background-color:aliceblue; height: 30px;align-items: center;justify-content: center;">
+            <thead  id="tableHead">
               <td>
                 <b> # </b>
               </td>
@@ -71,72 +70,70 @@
             </thead>
             <br>
             <tbody>
+              <ng-container *ngIf="filterProjects==='all'">
+                <tr *ngFor="let project of allProjects;let i = index;">
+                  <td> {{ i+1 }} </td>
+                  <td> {{ project.projectName }} </td>
+                  <td> {{ project.projectTypeName }} </td>
+                  <td> {{ project.projectStartingDate }} </td>
+                  <td> {{ project.projectDeadline }} </td>
+                  <td> {{ project.projectStatus }} </td>
+                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
+                    project.projectLocation.state }} </td>
+                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"><i
+                        class="bi bi-view-list"></i> View </button></td>
+                </tr>
+              </ng-container>
 
-          <ng-container *ngIf="filterProjects==='all'">
-            <tr *ngFor="let project of allProjects;let i = index;">
-              <td> {{ i+1 }} </td>
-              <td> {{ project.projectName }} </td>
-              <td> {{ project.projectTypeName }} </td>
-              <td> {{ project.projectStartingDate }} </td>
-              <td> {{ project.projectDeadline }} </td>
-              <td> {{ project.projectStatus }} </td>
-              <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
-                project.projectLocation.state }} </td>
-              <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"><i
-                    class="bi bi-view-list"></i> View </button></td>
-            </tr>
-          </ng-container>
+              <ng-container *ngIf="filterProjects==='notStart'">
+                <tr *ngFor="let project of notStartedProjects;let i = index;">
+                  <td> {{ i+1 }} </td>
+                  <td> {{ project.projectName }} </td>
+                  <td> {{ project.projectTypeName }} </td>
+                  <td> {{ project.projectStartingDate }} </td>
+                  <td> {{ project.projectDeadline }} </td>
+                  <td> {{ project.projectStatus }} </td>
+                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
+                    project.projectLocation.state }} </td>
+                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"><i
+                        class="bi bi-view-list"></i> View </button></td>
+                </tr>
+              </ng-container>
 
-          <ng-container *ngIf="filterProjects==='notStart'">
-            <tr *ngFor="let project of notStartedProjects;let i = index;">
-              <td> {{ i+1 }} </td>
-              <td> {{ project.projectName }} </td>
-              <td> {{ project.projectTypeName }} </td>
-              <td> {{ project.projectStartingDate }} </td>
-              <td> {{ project.projectDeadline }} </td>
-              <td> {{ project.projectStatus }} </td>
-              <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
-                project.projectLocation.state }} </td>
-              <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"><i
-                    class="bi bi-view-list"></i> View </button></td>
-            </tr>
-          </ng-container>
+              <ng-container *ngIf="filterProjects==='onGoing'">
+                <tr *ngFor="let project of onGoingProjects;let i = index;">
+                  <td> {{ i+1 }} </td>
+                  <td> {{ project.projectName }} </td>
+                  <td> {{ project.projectTypeName }} </td>
+                  <td> {{ project.projectStartingDate }} </td>
+                  <td> {{ project.projectDeadline }} </td>
+                  <td> {{ project.projectStatus }} </td>
+                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
+                    project.projectLocation.state }} </td>
+                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"> <i
+                        class="bi bi-view-list"></i>View </button></td>
+                </tr>
+              </ng-container>
 
-          <ng-container *ngIf="filterProjects==='onGoing'">
-            <tr *ngFor="let project of onGoingProjects;let i = index;">
-              <td> {{ i+1 }} </td>
-              <td> {{ project.projectName }} </td>
-              <td> {{ project.projectTypeName }} </td>
-              <td> {{ project.projectStartingDate }} </td>
-              <td> {{ project.projectDeadline }} </td>
-              <td> {{ project.projectStatus }} </td>
-              <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
-                project.projectLocation.state }} </td>
-              <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"> <i
-                    class="bi bi-view-list"></i>View </button></td>
-            </tr>
-          </ng-container>
+              <ng-container *ngIf="filterProjects==='done'">
+                <tr *ngFor="let project of doneProjects;let i = index;">
+                  <td> {{ i+1 }} </td>
+                  <td> {{ project.projectName }} </td>
+                  <td> {{ project.projectTypeName }} </td>
+                  <td> {{ project.projectStartingDate }} </td>
+                  <td> {{ project.projectDeadline }} </td>
+                  <td> {{ project.projectStatus }} </td>
+                  <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
+                    project.projectLocation.state }} </td>
+                  <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"><i
+                        class="bi bi-view-list"></i> View </button></td>
+                </tr>
+              </ng-container>
+            </tbody>
 
-          <ng-container *ngIf="filterProjects==='done'">
-            <tr *ngFor="let project of doneProjects;let i = index;">
-              <td> {{ i+1 }} </td>
-              <td> {{ project.projectName }} </td>
-              <td> {{ project.projectTypeName }} </td>
-              <td> {{ project.projectStartingDate }} </td>
-              <td> {{ project.projectDeadline }} </td>
-              <td> {{ project.projectStatus }} </td>
-              <td> {{ project.projectLocation.area }},{{ project.projectLocation.city }},{{
-                project.projectLocation.state }} </td>
-              <td> <button class="btn btn-outline-success" (click)="view(project.projectId )"><i
-                    class="bi bi-view-list"></i> View </button></td>
-            </tr>
-          </ng-container>
+          </table>
 
-        </tbody>
-
-      </table>
-
-    </div>
+        </div>
 
   </div>
 
@@ -148,7 +145,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" style="font-size: 20px;"> Create New Project </h5>
+        <h5 class="modal-title title"> Create New Project </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 

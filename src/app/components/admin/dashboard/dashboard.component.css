@@ -1,0 +1,28 @@
+#filter{
+    display: flex; 
+    justify-content: space-between
+}
+
+.title{
+    font-size: 20px
+}
+
+#tableHead{
+    background-color:aliceblue; 
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
+}
+
+.flex-space-between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.model-title{
+    font-size: 20px;
+}

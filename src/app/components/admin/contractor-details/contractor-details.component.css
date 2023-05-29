@@ -1,0 +1,11 @@
+.flex-space-between{    
+    display: flex;
+    justify-content: space-between;
+}
+
+.tableHead{
+    background-color:aliceblue; 
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+}

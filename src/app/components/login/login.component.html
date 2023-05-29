@@ -4,19 +4,19 @@
   
     <div class="row gx-lg-5 align-items-center mb-5">
   
-     <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+     <div class="col-lg-6 mb-5 mb-lg-0 z-10">
   
-      <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
+      <h1 class="my-5 display-5 fw-bold ls-tight color-95">
   
        The best offer <br />
   
-       <span style="color: hsl(218, 81%, 75%)">for your business</span>
+       <span class="color-75">for your business</span>
   
       </h1>
   
-      <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+      <p class="mb-4 opacity-70 color-85">
   
-         <span style="color: hsl(218, 81%, 75%)">Welcome to our Real Estate Project Management Website!</span><br>
+         <span>Welcome to our Real Estate Project Management Website!</span><br>
 
          we understand that managing real estate projects can be complex and time-consuming. 
          That's why we've developed a comprehensive online platform specifically designed to streamline and enhance your real estate project management experience. 
@@ -25,9 +25,6 @@
       </p>
   
      </div>
-  
-  
-  
   
      <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
   
@@ -42,43 +39,22 @@
         <form>
   
          <div class="d-flex justify-content-center py-4">
-  
           <a href="index.html" class="logo d-flex align-items-center w-auto">
-  
            <img height="300rem" src="assets/image/logo.png" alt="" />
-  
           </a>
-  
          </div>
 
          <div class="text-center">
-  
           <div class="container p-3 mb-3">
-  
            <div class="google-btn container">
-  
             <asl-google-signin-button type="standard" shape="rectangular" size="medium" theme="filled_blue"
-  
-             text="signin_with" locale="en-IN" logo_alignment="left" class="container" style="
-  
-                      justify-content: center;
-  
-                      display: flex;
-  
-                      align-items: center;
-  
-                     
-  
-                     " (signIn)="getAccessToken()">
-  
+             text="signin_with" locale="en-IN" logo_alignment="left" class="container flex-center" (signIn)="getAccessToken()">
             </asl-google-signin-button>
   
-           </div>
-  
+           </div>  
           </div>
-  
          </div>
-  
+
         </form>
   
        </div>

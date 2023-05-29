@@ -1,23 +1,22 @@
 <div class="container-fluid p-3 m-1">
   <!-- ============= breadCrumbs And Title ================= -->
   <div>
-    <h1 style="font-size: 25px">Investor</h1>
+    <h1 class="title">Investor</h1>
     <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>
   </div>
 
   <div class="card shadow p-3 mt-4">
+
     <div
-      class="container-fluid"
-      style="display: flex; justify-content: space-between"
-    >
+      class="container-fluid flex-space-between">
       <h1>Investment Requests</h1>
     </div>
 
     <div class="p-3 mb-3">
 
-      <table class="table p3 mb-3" style="margin: 10px;">
+      <table class="table p3 mb-3">
         
-        <thead  style="background-color:aliceblue; height: 30px;align-items: center;justify-content: center;">
+        <thead id="tableHead">
           <td>
             <b> # </b>
           </td>
@@ -34,7 +33,9 @@
             <b> Action </b>
           </td>
         </thead>
+
         <br>
+
         <tbody>
           <tr *ngFor="let projectInvestor of projectInvestors;let i = index">
             <td> {{ i+1 }} </td>
@@ -49,23 +50,23 @@
 
     </div>
     
-  </div> <br><br><br>
+  </div> 
+  
+  <br><br><br>
 
   <!-- ============= Tables ================= -->
 
   <div class="p-3 mb-3 card shadow">
-    <div
-      class="container-fluid"
-      style="display: flex; justify-content: space-between">
+    <div class="container-fluid flex-space-between">
       <h1> All Investors </h1>
       <div>
         <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create"> Add Investor </button>
       </div>
     </div>
     
-    <table class="table p3 mb-3" style="margin: 10px;">
+    <table class="table p3 mb-3">
       
-      <thead  style="background-color:aliceblue; height: 30px;align-items: center;justify-content: center;">
+      <thead id="tableHead">
         <td>
           <b> # </b>
         </td>
@@ -113,7 +114,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" style="font-size: 20px;"> Add New Investor </h5>
+        <h5 class="modal-title title"> Add New Investor </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 

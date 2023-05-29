@@ -10,3 +10,24 @@
     display: flex;
     justify-content: space-between;
 }
+
+.border-left-5{
+    border-left: 5px green solid
+}
+
+.align-center{
+    align-items: center
+}
+
+.flex-space-between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-direction-column{
+    flex-direction: column;
+}
+
+.flex-wrap{
+    flex-wrap: wrap;
+}

@@ -1,10 +1,8 @@
 <div
   id="task-card-main"
-  class="container card"
+  class="container card border-left-5"
   data-bs-toggle="modal"
-  [attr.data-bs-target]="'#create' + id"
-  style="border-left: 5px green solid"
->
+  [attr.data-bs-target]="'#create' + id">
   <h3 id="task-name"> <b> Task Name </b> <br> {{ taskName }}</h3>
   <div id="task-description">
     <h4> <b> Project Name </b> <br> {{ projectName }} </h4>
@@ -29,13 +27,13 @@
     <div class="modal-content container-fluid">
 
       <div class="modal-header">
-        <h2 class="modal-title" style="font-size: 20px">{{ taskName }} </h2>
+        <h2 class="modal-title title">{{ taskName }} </h2>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
-      <div class="modal-body container-fluid row" style="align-items: center">
+      <div class="modal-body container-fluid row align-center">
 
-        <div style="display: flex;flex-wrap: wrap;justify-content:space-between;flex-direction: column;">
+        <div class="flex-direction-column flex-space-between flex-wrap">
           
           <section> <b> Name           </b> <p> {{ task.taskName }} </p>  </section>
           <section> <b> Project name   </b> <p> {{ task.project.projectName }} </p>  </section>

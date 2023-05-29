@@ -11,11 +11,22 @@
     margin-bottom: 20px;
 }
 
-#allTasks{
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* justify-content:center; */
-    /* flex-wrap: wrap; */
+.title{
+    font-size: 20px
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+#space-between{
+    justify-content: space-between;
+}
+
+.flex-space-between{    
+    display: flex;
+    justify-content: space-between;
 }
 
 @media (max-width: 765px) {

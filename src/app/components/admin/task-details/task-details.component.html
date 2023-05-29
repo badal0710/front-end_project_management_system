@@ -2,16 +2,16 @@
 
     <!-- ============= breadCrumbs And Title ================= -->
     <div>
-        <h1 style="font-size: 25px"> Project's </h1>
+        <h1 class="title"> Project's </h1>
         <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>
     </div>
 
     <!-- ============= Details ================= -->
     <div class="card shadow p-3 mt-4">
 
-        <div class="card-title" style="display: flex;justify-content: space-between;">
+        <div class="card-title flex-space-between">
             <h1> Task Details </h1>
-            <div style="justify-content: space-between;">
+            <div>
                 <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editTask"> Edit </button> &nbsp;
                 &nbsp;
                 <button class="btn btn-danger" (click)="deleteTask()"><i class="bi bi-trash-fill"></i> Delete </button>
@@ -35,7 +35,7 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title" style="font-size: 20px;"><i class="bi bi-pen-fill"></i> Edit </h5>
+                    <h5 class="modal-title title"><i class="bi bi-pen-fill"></i> Edit </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 

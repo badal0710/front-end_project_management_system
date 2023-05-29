@@ -1,4 +1,4 @@
-<br><button style="position: absolute;right: 30px;" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#investMoney"> New Investment </button><br><br>
+<br><button class="btn btn-success absolute-r-30" data-bs-toggle="modal" data-bs-target="#investMoney"> New Investment </button><br><br>
 <div id="main">
 
       <div id="not-start" class="col-sm-3 card">
@@ -37,11 +37,11 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content container-fluid">
 
-      <div class="modal-header"> <h2 class="modal-title" style="font-size: 20px"> New Investment  </h2> <button   type="button"   class="btn-close"   data-bs-dismiss="modal"   aria-label="Close"> </button>
+      <div class="modal-header"> <h2 class="modal-title title"> New Investment  </h2> <button   type="button"   class="btn-close"   data-bs-dismiss="modal"   aria-label="Close"> </button>
       </div>
 
-      <div class="modal-body container-fluid row" style="align-items: center">
-        <div style="display: flex;flex-wrap: wrap;justify-content:space-between;flex-direction: column;">      
+      <div class="modal-body container-fluid row align-items-center">
+        <div class="flex-space-between flex-wrap flex-direction-column">      
          
          <form #myFormData="ngForm" (ngSubmit)="invest(myFormData)">
             <div class="mb-3">

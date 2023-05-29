@@ -2,45 +2,47 @@
 
   <!-- ============= breadCrumbs And Title ================= -->
   <div>
-    <h1 style="font-size: 25px"> Project </h1>
+    <h1 class="title"> Project </h1>
     <app-breadcrumbs [data]="myBreadCrumbs"></app-breadcrumbs>
   </div>
 
   <!-- ============= Details ================= -->
-  <div class="card shadow p-3 mt-4" style="display: flex;flex-direction: column;">
+  <div class="card shadow p-3 mt-4 flex-column">
 
-    <div class="card-title" style="display: flex;justify-content: space-between;">
+    <div class="card-title flex-space-between">
       <h1> Project Details </h1>
-      <div style="justify-content: space-between;">
+      <div>
         <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pen-fill"></i> Edit
         </button> &nbsp; &nbsp;
-        <button class="btn btn-danger" (click)="deleteProject()"><i class="bi bi-trash-fill"></i> Delete </button>
+        <button class="btn btn-danger" (click)="deleteProject()">
+          <i class="bi bi-trash-fill"></i> Delete 
+        </button>
       </div>
     </div><br>
 
     <div id="detailsOfProject" class="row">
-      <div class="col-lg-3 col-md-4 label title"> <b> Project Name </b> </div>
+      <div class="col-lg-3 col-md-4 label"> <b> Project Name </b> </div>
       <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectName }} </div>
 
-      <div class="col-lg-3 col-md-4 label title"> <b> Type Of Project </b> </div>
+      <div class="col-lg-3 col-md-4 label"> <b> Type Of Project </b> </div>
       <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectTypeName }} </div>
 
-      <div class="col-lg-3 col-md-4 label title"> <b> Start Date </b> </div>
+      <div class="col-lg-3 col-md-4 label"> <b> Start Date </b> </div>
       <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectStartingDate }} </div>
 
-      <div class="col-lg-3 col-md-4 label title"> <b> Dead Line </b> </div>
+      <div class="col-lg-3 col-md-4 label"> <b> Dead Line </b> </div>
       <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectDeadline }} </div>
 
-      <div class="col-lg-3 col-md-4 label title"> <b> Project Progress </b> </div>
+      <div class="col-lg-3 col-md-4 label"> <b> Project Progress </b> </div>
       <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectStatus }} </div>
 
-      <div class="col-lg-3 col-md-4 label title"> <b> Location Area </b> </div>
+      <div class="col-lg-3 col-md-4 label"> <b> Location Area </b> </div>
       <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.area }} </div>
 
-      <div class="col-lg-3 col-md-4 label title"> <b> City </b> </div>
+      <div class="col-lg-3 col-md-4 label"> <b> City </b> </div>
       <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.city }} </div>
 
-      <div class="col-lg-3 col-md-4 label title"> <b> State </b> </div>
+      <div class="col-lg-3 col-md-4 label"> <b> State </b> </div>
       <div class="col-lg-8 col-md-4 desc"> {{ projectDetail.projectLocation.state }} </div>
     </div>
 
@@ -48,7 +50,7 @@
 
   <!-- ============= Tables ================= -->
   <div class="card shadow p-3 mt-4">
-    <div style="display: flex;justify-content: space-between;">
+    <div class="flex-space-between">
       <h1> Tasks </h1>
       <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#create"><i class="bi bi-plus-lg"></i>
         Create Task </button>
@@ -67,7 +69,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" style="font-size: 20px;"> Edit </h5>
+        <h5 class="modal-title title"> Edit </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -106,8 +108,9 @@
           <div class="mb-3">
             <label for="location" class="form-label">Project Location</label>
             <select class="form-select" ngModel name="location">
-              <option *ngFor="let location of locations" value="{{location.projectLocationId}}"> {{location.area}} -
-                {{location.city}} - {{location.state}} </option>
+              <option *ngFor="let location of locations" value="{{location.projectLocationId}}"> 
+                {{location.area}} - {{location.city}} - {{location.state}} 
+              </option>
             </select>
           </div>
 
@@ -130,7 +133,7 @@
     <div class="modal-content">
 
       <div class="modal-header">
-        <h5 class="modal-title" style="font-size: 20px;"> Add New Task </h5>
+        <h5 class="modal-title title"> Add New Task </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 

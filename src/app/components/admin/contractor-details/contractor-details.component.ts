@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { ContractorService } from 'src/app/services/contractor/contractor.service';
+import { typeOfContractor } from '../../shared/helper/list';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-contractor-details',
@@ -17,32 +20,55 @@ export class ContractorDetailsComponent implements OnInit {
       url:'/admin'
     }
   ];
-
-  ContractorName:any='Contractor\'s List';
-  ContractorAction:any=['Contractor',['contractorName','email','phoneNo','jobRole','experience','address']];
-  ContractorKeys:any=[];
-  ContractorValue:any=[];
-  ContractorRowAction:any=[['Delete','admin/projects']];;
-
-  ContractorChartName:any;
-  ContractorChartType:any='pie';
-  ContractorChartLabel:any=[];
-  ContractorChartValue:any=[];
+  listOfContractorType:string[]=typeOfContractor;
+  contractors:any[]=[];
 
   ngOnInit(): void {
+    this.allContractors();
+  }
 
+  allContractors(){
     this.contractorService.getAllContractor().subscribe( (contractors:any) => {
-
       for(let contractor of contractors){
-
-        this.ContractorKeys.push(Object.keys(contractor));
-        this.ContractorValue.push(Object.values(contractor));
-
-        this.ContractorChartLabel.push(Object.values(contractor)[1])
-        this.ContractorChartValue.push(Object.values(contractor)[6])
+         this.contractors.push(contractor);
       }
     });
+  }
 
+  delete(contractorId:any){
+    this.contractorService.deleteContractor(contractorId).subscribe((result:any)=>{
+      Swal.fire("Deleted","Contractor Deleted SuccessFully");
+      this.reloadPage();
+    });
+  }
+
+  createContractor(data:NgForm){
+
+    const body = {
+      "contractorId":null,
+      "contractorName":data.value.name,
+      "jobRole":data.value.type,
+      "email":data.value.email,
+      "phoneNo":data.value.phone,
+      "address":data.value.address,
+      "experience":data.value.experience
+    }
+
+    this.contractorService.createContractor(body).subscribe((result:any)=>{
+      if(result==200){
+        Swal.fire("Created","New Contractor Added");
+      }else{
+        Swal.fire("Error","Error while Adding Contractor");
+      }
+      this.reloadPage();
+    });
+    
+  }
+
+  reloadPage(){
+    setTimeout(() => {
+      location.reload();
+    }, 3000);
   }
 
 }

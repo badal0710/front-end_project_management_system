@@ -57,3 +57,13 @@ export const typeOfProject: string[] = [
     'REITs',
     'Property Flipping'
 ];
+
+export const typeOfContractor: string[] = [
+    'General Contractors',
+    'Specialty Contractors',
+    'Maintenance Contractors',
+    'Design-Build Contractors',
+    'Civil Engineering Contractors',
+];
+
+

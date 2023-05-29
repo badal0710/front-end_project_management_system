@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InvestorService } from 'src/app/services/investor/investor.service';
 import { InvestorProjectServiceService } from 'src/app/services/investorProject/investor-project-service.service';
@@ -39,47 +40,55 @@ export class InvestorDetailsComponent implements OnInit {
 
   projectInvestors:any[]=[];
 
+  Investors:any[]=[];
+
   ngOnInit(): void {
 
-    this.investorService.getAllInvestor().subscribe( (investors:any) => {
+    this.allInvestors();
+    this.getRequestOfInvestments();
 
-      for(let investor of investors){
-        this.InvestorKeys.push(Object.keys(investor));
-        this.InvestorValue.push(Object.values(investor));
-        this.InvestorChartLabel.push(Object.values(investor)[1])
-        this.InvestorChartValue.push(Object.values(investor)[6])
-      }
-    });
 
-    this.investorProjectServiceService.getAllProjectInvestor().subscribe( (projectInvestors: any) => {
+    // this.investorProjectServiceService.getAllProjectInvestor().subscribe( (projectInvestors: any) => {
 
-      for(let projectInvestor of projectInvestors){
+    //   for(let projectInvestor of projectInvestors){
 
-        let keys = Object.keys(projectInvestor);
-        let firstElement = keys[0];
-        let lastElement = keys[keys.length - 1];
-        let mykeys = [firstElement,lastElement];
+    //     let keys = Object.keys(projectInvestor);
+    //     let firstElement = keys[0];
+    //     let lastElement = keys[keys.length - 1];
+    //     let mykeys = [firstElement,lastElement];
 
-        let values = Object.values(projectInvestor);
-        let firstvElement = values[0];
-        let lastvElement = values[values.length - 1];
-        let myvalues = [firstvElement,lastvElement];
+    //     let values = Object.values(projectInvestor);
+    //     let firstvElement = values[0];
+    //     let lastvElement = values[values.length - 1];
+    //     let myvalues = [firstvElement,lastvElement];
 
-        this.ProjectInvestorKeys.push(mykeys)
-        this.ProjectInvestorValue.push(myvalues);
+    //     this.ProjectInvestorKeys.push(mykeys)
+    //     this.ProjectInvestorValue.push(myvalues);
 
-      }
+    //   }
 
-    } );
+    // } );
 
+
+  }
+
+  getRequestOfInvestments(){
     this.investorProjectServiceService.getAllProjectInvestor().subscribe( (projectInvestors:any)=>{
-        for(let projectInvestor of projectInvestors){
-          if(projectInvestor.status==='pending'){
-            this.projectInvestors.push(projectInvestor);
-          }
+      for(let projectInvestor of projectInvestors){
+        if(projectInvestor.status==='pending'){
+          this.projectInvestors.push(projectInvestor);
         }
+      }
     });
+  }
 
+  allInvestors(){
+      this.investorService.getAllInvestor().subscribe((investors:any)=>{
+        for(let investor of investors){
+          console.log(investor);
+          this.Investors.push(investor);
+        }
+      })
   }
 
   acceptInvestmentRequest(id:any){
@@ -91,6 +100,42 @@ export class InvestorDetailsComponent implements OnInit {
 
   // rejectInvestmentRequest(data:any){
   // }
+
+  delete(investorId:any){
+    this.investorService.deleteInvestor(investorId).subscribe((result:any)=>{
+      Swal.fire("Deleted","Investor Deleted SuccessFully");
+      this.reloadPage();
+    });
+  }
+
+  createInvestor(data:NgForm){
+    
+    const body = {
+      "investorId":null,
+      "name":data.value.name,
+      "InvestedMoney":0,
+      "email":data.value.email,
+      "phoneno":data.value.phone,
+      "address":data.value.address,
+      "experience":data.value.experience
+    }
+
+    this.investorService.createInvestor(body).subscribe((result:any)=>{
+      if(result==200){
+        Swal.fire("Created","New Contractor Added");
+      }else{
+        Swal.fire("Error","Error while Adding Contractor");
+      }
+      this.reloadPage();
+    });
+    
+  }
+
+  reloadPage(){
+    setTimeout(() => {
+      location.reload();
+    }, 3000);
+  }
 
 
 }

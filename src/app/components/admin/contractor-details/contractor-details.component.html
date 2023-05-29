@@ -7,12 +7,119 @@
     </div>
 
      <!-- ============= Tables ================= -->
-    <app-table [TableName]="ContractorName" [TableAction]="ContractorAction" [TableKeys]="ContractorKeys"  [TableValue]="ContractorValue" [RowAction]="ContractorRowAction"></app-table>
-
-
-    <!-- ============== Chart ================== -->
-     <!-- <div class="card shadow p-3 mt-4">
-        <app-charts [chartName]="ContractorChartName" [chartType]="ContractorChartType" [chartLabel]="ContractorChartLabel" [chartValue]="ContractorChartValue"></app-charts>
-    </div> -->
+    <div class="p-3 mb-3 card shadow">
+        <div
+          class="container-fluid"
+          style="display: flex; justify-content: space-between">
+          <h1> All Contractors </h1>
+          <div>
+            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#create"> Add Contractor </button>
+          </div>
+        </div>
+        
+        <table class="table p3 mb-3" style="margin: 10px;">
+          
+          <thead  style="background-color:aliceblue; height: 30px;align-items: center;justify-content: center;">
+            <td>
+              <b> # </b>
+            </td>
+            <td>
+              <b> Name </b>
+            </td>
+            <td>
+              <b> Type </b>
+            </td>
+            <td>
+              <b> Email </b>
+            </td>
+            <td>
+              <b> Phone number </b>
+            </td>
+            <td>
+              <b> Experience </b>
+            </td>
+            <td>
+              <b> Address </b>
+            </td>
+            <td colspan="1">
+              <b> Action </b>
+            </td>
+          </thead>
+          <br>
+          <tbody>
+            <tr *ngFor="let contractor of contractors;let i = index;">
+              <td> {{ i+1 }} </td>
+              <td> {{ contractor.contractorName }} </td>
+              <td> {{ contractor.jobRole }} </td>
+              <td> {{ contractor.email }} </td>
+              <td> {{ contractor.phoneNo }} </td>
+              <td> {{ contractor.experience }} </td>
+              <td> {{ contractor.address }} </td>
+              <td> <button class="btn btn-outline-danger" (click)="delete(contractor.contractorId)" > Delete </button></td>
+            </tr>
+          </tbody>
     
+        </table>
+    
+    </div>
+
+    
+</div>
+
+<!-- ============== model ================== -->
+<div class="modal fade" id="create" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" style="font-size: 20px;"> Add New Investor </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form #createData="ngForm" (ngSubmit)="createContractor(createData)">
+
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" ngModel class="form-control" name="name">
+            </div>
+
+            <div class="mb-3">
+              <label for="type" class="form-label">type</label>
+              <select class="form-select" ngModel name="type">
+                <option *ngFor="let typeOfContractor of listOfContractorType"> {{typeOfContractor}}  </option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="type" class="form-label">Email</label>
+              <input type="email" ngModel class="form-control" name="email">
+            </div>
+
+            <div class="mb-3">
+              <label for="start" class="form-label">Phone number</label>
+              <input type="number" ngModel class="form-control" name="phone">
+            </div>
+
+            <div class="mb-3">
+              <label for="end" class="form-label">Address</label>
+              <input type="text" ngModel class="form-control" name="address">
+            </div>   
+            
+            <div class="mb-3">
+              <label for="start" class="form-label">Experience</label>
+              <input type="number" ngModel class="form-control" name="experience">
+            </div>
+
+          <div>
+            <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close"> Create </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
 </div>

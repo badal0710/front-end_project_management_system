@@ -19,7 +19,7 @@ const routes: Routes = [
 
   //release
   {
-    path: '', component: ReleasePageComponent
+    path: '', component: LoginComponent
   },
 
   //admin
@@ -50,7 +50,7 @@ const routes: Routes = [
       {
         path: 'tasks/:id', component: TaskDetailsComponent
       }
-    ]  
+    ]
   },
 
   //component

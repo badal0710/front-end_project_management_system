@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { DATABASE_URL } from 'src/app/components/shared/helper/list';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,8 @@ import { Injectable } from '@angular/core';
 
 export class LoginService {
 
-  database_url = 'http://localhost:9090';
+  // DATABASE_URL = 'http://localhost:9090';
+  database_url = DATABASE_URL;
 
   constructor(private http: HttpClient) { }
 

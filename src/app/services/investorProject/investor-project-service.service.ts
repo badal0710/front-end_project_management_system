@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginService } from '../login/login.service';
+import { DATABASE_URL } from 'src/app/components/shared/helper/list';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ export class InvestorProjectServiceService {
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
-  database_url = 'http://localhost:9090';
+  // DATABASE_URL = 'http://localhost:9090';
+  database_url = DATABASE_URL;
   jwtToken = this.loginService.getToken();
 
   //controller

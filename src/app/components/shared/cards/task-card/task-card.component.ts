@@ -24,6 +24,7 @@ export class TaskCardComponent implements OnInit {
   budget:string='';
   progressValue: number = 50;
   task:any=[];
+  taskId:any;
 
   increaseProgress() {
     if (this.progressValue < 100) {
@@ -77,6 +78,7 @@ export class TaskCardComponent implements OnInit {
   }
 
   loadData(id:Number){
+    this.taskId=id;
     this.taskDetail.getOneTask(id).subscribe( (result:any) => {
       this.task=result;
       this.taskName = result.taskName;

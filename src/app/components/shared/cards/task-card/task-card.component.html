@@ -23,7 +23,7 @@
 
 <!-- ============== model ================== -->
 <div class="modal fade" id="create{{id}}" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable model-lg">
     <div class="modal-content container-fluid">
 
       <div class="modal-header">
@@ -47,14 +47,16 @@
         </div>
         <b> Task Status </b>
         
-        <div class="progress col-10">
+        <div class="progress col-9">
           <div class="progress-bar bg-info" role="progressbar" [style.width.%]="progressValue" [attr.aria-valuenow]="progressValue" aria-valuemin="0" aria-valuemax="100">
             {{ progressValue }}%
           </div>
-        </div> &nbsp;
+        </div> &nbsp;&nbsp;
         
         <button class="col-auto btn btn-outline-dark" (click)="decreaseProgress()"> - </button> &nbsp;
         <button class="col-auto btn btn-outline-dark" (click)="increaseProgress()"> + </button>
+
+        <app-comment-card [taskId]="taskId"></app-comment-card>
 
       </div><br><br>
       

@@ -1,0 +1,19 @@
+<div class="container-fluid mt-3">
+    <h3> <b> Comments </b> </h3>
+    <form #createComment="ngForm" (ngSubmit)="addComment(createComment)">
+    <section style="display: flex;justify-content: space-between;">
+        <span class="person"> <i class="bi bi-person" style="font-size: 35px;"></i> </span> &nbsp;&nbsp;
+            <input ngModel class="container-fluid" placeholder="write a comment..." type="address" name="commentText">&nbsp;&nbsp;
+            <button class="btn btn-outline-dark" type="submit"> Save </button>
+        </section>
+    </form> 
+
+    <section class="mt-4 listOfComments" *ngFor="let comment of comments">
+        <span class="person"> <i class="bi bi-person" style="font-size: 35px;"></i> </span> &nbsp;&nbsp;&nbsp;&nbsp;
+        <div>
+             <span class="author"> {{comment.contractorName}}  </span> <br>
+             <span class="msg"> {{comment.comment_info}} </span> <br>
+             <span class="date"> {{comment.comment_date}} </span>  <br>
+        </div>
+    </section>
+</div>

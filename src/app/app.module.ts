@@ -40,6 +40,7 @@ import { CdashboardComponent } from './components/contractor/cdashboard/cdashboa
 import { IdashboardComponent } from './components/investor/idashboard/idashboard.component';
 import { TaskCardComponent } from './components/shared/cards/task-card/task-card.component';
 import { ProjectCardComponent } from './components/shared/cards/project-card/project-card/project-card.component';
+import { CommentCardComponent } from './components/shared/cards/comment-card/comment-card.component';
 
 
 
@@ -69,6 +70,7 @@ import { ProjectCardComponent } from './components/shared/cards/project-card/pro
     IdashboardComponent,
     TaskCardComponent,
     ProjectCardComponent,
+    CommentCardComponent,
   ],
   imports: [
     FormsModule,

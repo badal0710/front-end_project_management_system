@@ -8,7 +8,6 @@ import { DATABASE_URL } from 'src/app/components/shared/helper/list';
 })
 export class ContractorService {
 
-  // DATABASE_URL = 'http://localhost:9090';
   DATABASE_URL = DATABASE_URL;
   jwtToken = this.loginService.getToken();
 

@@ -1,0 +1,25 @@
+.person {
+    border-radius: 55px;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.listOfComments{
+    display: flex;
+    justify-content:flex-start;
+}
+
+.date{
+    font-style: italic;
+    font-size: small;
+}
+
+.msg{
+    
+}
+
+.author{
+    font-weight: bold;
+}

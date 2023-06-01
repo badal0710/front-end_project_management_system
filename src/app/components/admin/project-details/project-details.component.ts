@@ -62,58 +62,149 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   }
 
   updateProject(data:NgForm){
-    console.log(data.value);
-    
-    const body = {
-      "projectStatus":parseInt(data.value.status),
-      "projectName":data.value.name,
-      "projectStartingDate":data.value.start,
-      "projectDeadline":data.value.end,
-      "projectTypeName":data.value.typeOfProject,
-      "projectLocationId":parseInt(data.value.location)
-    };
-    
+    if(this.isValidForEdit(data)){
 
-    this.projectsDetailService.updateProject(body,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
-      if (result === "OK") {
-        Swal.fire('update','Project Updated')
-        this.reloadPage();
-      } else {
-        Swal.fire('Error','Error while updating Project')
-      } 
-      this.loadData(this.route.snapshot.paramMap.get("id"));
-    })
+      const body = {
+        "projectStatus":parseInt(data.value.status),
+        "projectName":data.value.name,
+        "projectStartingDate":data.value.start,
+        "projectDeadline":data.value.end,
+        "projectTypeName":data.value.typeOfProject,
+        "projectLocationId":parseInt(data.value.location)
+      };
+    
+      this.projectsDetailService.updateProject(body,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
+        if (result === "OK") {
+          Swal.fire('update','Project Updated')
+          this.reloadPage();
+        } else {
+          Swal.fire('Error','Error while updating Project')
+        } 
+        this.loadData(this.route.snapshot.paramMap.get("id"));
+      })
+    }
   }
 
   createTask(data:NgForm){
-    console.log(data.value);
-    const body = {
-      taskName:data.value.name,
-      projectId:this.route.snapshot.paramMap.get("id"),
-      contractorId:data.value.contractorId,
-      taskStartingDate:data.value.start,
-      taskDeadLine:data.value.end,
-      allocatedBudget:data.value.budget
-    };
-
-    try {
-      this.taskdetailService.createTask(body).subscribe((result:any)=>{
-        try {
-          if (result === 200) {
-            Swal.fire('Created','New Task Created')
-          } else {
+    if(this.isValidForCreate(data)){
+      const body = {
+        taskName:data.value.name,
+        projectId:this.route.snapshot.paramMap.get("id"),
+        contractorId:data.value.contractorId,
+        taskStartingDate:data.value.start,
+        taskDeadLine:data.value.end,
+        allocatedBudget:data.value.budget
+      };
+      
+      try {
+        this.taskdetailService.createTask(body).subscribe((result:any)=>{
+          try {
+            if (result === 200) {
+              Swal.fire('Created','New Task Created')
+            } else {
+              Swal.fire('Error','Error while Creating Task')
+            }
+          } catch (error) {
             Swal.fire('Error','Error while Creating Task')
           }
-        } catch (error) {
-          Swal.fire('Error','Error while Creating Task')
-        }
-        this.reloadPage();
-        this.loadData(this.route.snapshot.paramMap.get("id"));
-      });
-    } catch (error) {
-      Swal.fire('Error','Error while Creating Task');
+          this.reloadPage();
+          this.loadData(this.route.snapshot.paramMap.get("id"));
+        });
+      } catch (error) {
+        Swal.fire('Error','Error while Creating Task');
+      }
+    }   
+  }
+    
+  isValidForCreate(formValues: NgForm): boolean {
+    let msg = '<ui style="text-align:left">';
+    let error = 0;
+    if (!formValues.value.name || formValues.value.name.trim() === '') {
+      msg += '<li>Name is require</li>';
+      error++; 
+    }
+  
+    if (!formValues.value.contractorId) {
+      msg += '<li>Please choose Contractor </li>';
+      error++;
+    }
+  
+    if (!formValues.value.start) {
+      msg += '<li>StartDate is require</li>';
+      error++;
+    }
+  
+    if (!formValues.value.end) {
+      msg += '<li>Enddate is require</li>';
+      error++;
+    }
+  
+    if (!formValues.value.budget) {
+      msg += '<li>Please choose Task Budget </li>';
+      error++;
     }
 
+    if(new Date(formValues.value.start).getTime() > new Date(formValues.value.end).getTime()){
+      msg += '<li>EndDate is always Greater than StartDate</li>';
+      error++;
+    }
+
+    if(error==0){
+      return true;
+    }else{
+      msg += '</ui></div>';
+      Swal.fire('Error',msg,'error');
+      return false;
+    }
+  
+  }
+
+  isValidForEdit(formValues: NgForm): boolean {
+    let msg = '<ui style="text-align:left">';
+    let error = 0;
+    if (!formValues.value.name || formValues.value.name.trim() === '') {
+      msg += '<li>Name is require</li>';
+      error++; 
+    }
+  
+    // if (!formValues.value.status) {
+    //   msg += '<li>Please choose Status </li>';
+    //   error++;
+    // }
+  
+    if (!formValues.value.start) {
+      msg += '<li>StartDate is require</li>';
+      error++;
+    }
+  
+    if (!formValues.value.end) {
+      msg += '<li>Enddate is require</li>';
+      error++;
+    }
+  
+    if (!formValues.value.typeOfProject) {
+      msg += '<li>Please choose Type Of Project </li>';
+      error++;
+    }
+
+    if (!formValues.value.location) {
+      msg += `<li>Please choose Location </li>`;
+      error++;
+    }
+
+    if(new Date(formValues.value.start).getTime() > new Date(formValues.value.end).getTime()){
+      msg += '<li>EndDate is always Greater than StartDate</li>';
+      error++;
+    }
+
+    if(error==0){
+      return true;
+    }else{
+      msg += '</ui></div>';
+      Swal.fire('Error',msg,'error');
+      return false;
+    }
+  
   }
 
   deleteProject(){

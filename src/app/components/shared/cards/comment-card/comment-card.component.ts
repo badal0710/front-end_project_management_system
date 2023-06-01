@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 export class CommentCardComponent implements OnInit {
 
   @Input() taskId!:any;
-
+  user:string|null=localStorage.getItem('ROLE');
   ngOnInit(): void {
     this.loadData();
   }
@@ -24,7 +24,7 @@ export class CommentCardComponent implements OnInit {
     this.commentService.getTaskComment(this.taskId).subscribe((comments:any)=>{
       for(let comment of comments){
         this.comments.push(comment);
-        console.log(comment);
+
       }
     });
   }
@@ -37,7 +37,7 @@ export class CommentCardComponent implements OnInit {
       "taskId":this.taskId,
       "contractorEmail":localStorage.getItem("UPN")
     }
-    console.log("body: ",body);
+
     try {
       this.commentService.createTaskComment(body).subscribe();
     } catch (error) {

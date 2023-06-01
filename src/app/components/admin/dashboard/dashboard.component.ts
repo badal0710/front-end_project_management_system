@@ -67,22 +67,69 @@ export class DashboardComponent implements OnInit {
   }
 
   createProject(data:NgForm){
-    const body = {
-      "projectStatus":parseInt("10"),
-      "projectName":data.value.name,
-      "projectStartingDate":data.value.start,
-      "projectDeadline":data.value.end,
-      "projectTypeName":data.value.typeOfProject,
-      "projectLocationId":parseInt(data.value.location)
-    };
-    this.projectService.createProject(body).subscribe((result:any)=>{
-      try {
-        Swal.fire("Created","Project Successfully Created");
-      } catch (error) {
-        Swal.fire("Error","Error while creating New Project");
-      }
-    });
+    if(this.isValid(data)){
+      const body = {
+        "projectStatus":parseInt("10"),
+        "projectName":data.value.name,
+        "projectStartingDate":data.value.start,
+        "projectDeadline":data.value.end,
+        "projectTypeName":data.value.typeOfProject,
+        "projectLocationId":parseInt(data.value.location)
+      };
+      this.projectService.createProject(body).subscribe((result:any)=>{
+        try {
+          Swal.fire("Created","Project Successfully Created");
+        } catch (error) {
+          Swal.fire("Error","Error while creating New Project");
+        }
+      });
+    }
   }
+
+  isValid(formValues: NgForm): boolean {
+
+    let msg = '<ui style="text-align:left">';
+    let error = 0;
+    if (!formValues.value.name || formValues.value.name.trim() === '') {
+      msg += '<li>Name is require</li>';
+      error++; 
+    }
+  
+    if (!formValues.value.typeOfProject) {
+      msg += '<li>type of Project is require</li>';
+      error++;
+    }
+  
+    if (!formValues.value.start) {
+      msg += '<li>StartDate is require</li>';
+      error++;
+    }
+  
+    if (!formValues.value.end) {
+      msg += '<li>Enddate is require</li>';
+      error++;
+    }
+  
+    if (!formValues.value.location) {
+      msg += '<li>Please choose Location</li>';
+      error++;
+    }
+
+    if(new Date(formValues.value.start).getTime() > new Date(formValues.value.end).getTime()){
+      msg += '<li>EndDate is always Greater than StartDate</li>';
+      error++;
+    }
+
+    if(error==0){
+      return true;
+    }else{
+      msg += '</ui></div>';
+      Swal.fire('Error',msg,'error');
+      return false;
+    }
+  
+  }
+  
 
   Alllocations(){
     this.projectLocationService.getAllLocation().subscribe((locations:any)=>{
@@ -90,7 +137,6 @@ export class DashboardComponent implements OnInit {
         this.locations.push(location);
       }
     });
-    console.log(this.locations);
   }
 
   loadCards(){

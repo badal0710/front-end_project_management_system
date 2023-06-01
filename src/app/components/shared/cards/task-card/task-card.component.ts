@@ -55,7 +55,7 @@ export class TaskCardComponent implements OnInit {
   deleteTask(){
     try {
       this.taskDetail.deleteTask(this.id).subscribe((result:any)=>{
-        console.log(result);
+       
         if (result === 200) {
           Swal.fire('Deleted','Task Deleted')
         } else {

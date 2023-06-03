@@ -17,6 +17,7 @@ export class ProjectLocationService {
 
   //function
   all = 'allLocation';
+  create = 'create-location';
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
   
@@ -28,4 +29,11 @@ export class ProjectLocationService {
     const headers = this.getHeaders();
     return this.http.get(`${this.database_url}/${this.projectLocation}/${this.all}`,{ headers });
   }
+
+  async createLocation(body:any){
+    const headers = this.getHeaders();
+    return this.http.post(`${this.database_url}/${this.projectLocation}/${this.create}`,body,{ headers });
+    
+  }
+
 }

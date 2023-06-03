@@ -151,7 +151,7 @@
 
       <div class="modal-body">
 
-        <form #createData="ngForm" (ngSubmit)="createProject(createData)">
+        <form #createData="ngForm">
 
           <div class="mb-3">
             <label for="name" class="form-label">Project Name</label>
@@ -177,15 +177,60 @@
 
           <div class="mb-3">
             <label for="location" class="form-label">Project Location</label>
-            <select class="form-select" ngModel name="location">
-              <option *ngFor="let location of locations" value="{{location.projectLocationId}}"> {{location.area}} -
-                {{location.city}} - {{location.state}} </option>
-            </select>
+           <section style="display: flex;">
+              <select class="form-select" ngModel name="location">
+                <option *ngFor="let location of locations" value="{{location.projectLocationId}}"> {{location.area}} -
+                  {{location.city}} - {{location.state}} </option>
+              </select> &nbsp;&nbsp;
+              <button class="btn btn-outline-dark bi bi-plus" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#createLocation"> </button>
+           </section>
+            
           </div>
 
           <div>
-            <button type="submit" class="btn btn-success container-fluid" data-bs-dismiss="modal" aria-label="Close">
-              Update </button>
+            <button (click)="createProject(createData)" class="btn btn-success container-fluid" data-bs-dismiss="modal">
+              Create </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="createLocation" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title title"> Create New Location </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+
+        <form #createData2="ngForm">
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Location Area</label>
+            <input type="text" ngModel class="form-control" name="area">
+          </div>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Location City</label>
+            <input type="text" ngModel class="form-control" name="city">
+          </div>
+
+          <div class="mb-3">
+            <label for="name" class="form-label">Location State</label>
+            <input type="text" ngModel class="form-control" name="state">
+          </div>
+
+          <div>
+            <button (click)="createLocation(createData2)" class="btn btn-success container-fluid" aria-label="Close" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#create">
+              Create </button>
           </div>
 
         </form>

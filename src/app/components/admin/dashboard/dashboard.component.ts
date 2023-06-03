@@ -83,6 +83,7 @@ export class DashboardComponent implements OnInit {
           Swal.fire("Error","Error while creating New Project");
         }
       });
+      location.reload();
     }
   }
 
@@ -136,6 +137,22 @@ export class DashboardComponent implements OnInit {
       for(let location of locations){
         this.locations.push(location);
       }
+    });
+  }
+
+  async createLocation(data:NgForm){
+    let location = {
+      'city':data.value.city,
+      'state':data.value.state,
+      'area':data.value.area
+    }
+    await this.projectLocationService.createLocation(location).then(async(result)=>{
+      console.log(result.subscribe());
+      await Swal.fire('Created','new Location Created','success');
+      this.locations=[];
+      this.Alllocations();
+    }).catch(async()=>{
+      await Swal.fire('Error','Error while creating new location','error');
     });
   }
 

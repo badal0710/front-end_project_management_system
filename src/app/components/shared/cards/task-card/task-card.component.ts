@@ -52,6 +52,35 @@ export class TaskCardComponent implements OnInit {
     }
   }
 
+  isdue() {
+    const endDateTime = new Date(this.endDate).getTime();
+    const todayDateTime = new Date().getTime();
+    if (endDateTime < todayDateTime) {
+      if(this.progressValue == 100){
+        return false;
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isSoonToBeOverdue() {
+    const endDateTime = new Date(this.endDate).getTime();
+    const todayDateTime = new Date().getTime();
+    const differenceInMilliseconds = endDateTime - todayDateTime;
+    const differenceInDays = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+    if (differenceInDays <= 7 && differenceInDays >= 0) {
+      if(this.progressValue == 100){
+        return false;
+      }
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+
   deleteTask(){
     try {
       this.taskDetail.deleteTask(this.id).subscribe((result:any)=>{

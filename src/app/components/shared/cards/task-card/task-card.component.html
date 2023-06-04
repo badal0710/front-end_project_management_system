@@ -3,7 +3,13 @@
   class="container card border-left-5"
   data-bs-toggle="modal"
   [attr.data-bs-target]="'#create' + id">
-  <h3 id="task-name"> <b> Task Name </b> <br> {{ taskName }}</h3>
+  <span *ngIf="isSoonToBeOverdue()" class="card m-2 p-2 text-center background-orange"> Soon to be Overdue </span>
+  <span *ngIf="isdue()" class="card m-2 p-2 text-center background-red"> Overdue </span>
+  <h3 id="task-name"> 
+    <b> Task Name </b> 
+    <br>
+    {{ taskName }}
+  </h3>
   <div id="task-description">
     <h4> <b> Project Name </b> <br> {{ projectName }} </h4>
   </div>
@@ -61,7 +67,7 @@
       </div><br><br>
       
         <button class="btn btn-success col-auto" (click)="updateTaskStatus(progressValue)" data-bs-dismiss="modal" aria-label="Close"> Update </button> <br>
-        <button *ngIf="user=='admin'" class="btn btn-danger col-auto" (click)="deleteTask()" data-bs-dismiss="modal" aria-label="Close"> Delete </button> <br>
+        <button *ngIf="user=='admin' && progressValue==0" class="btn btn-danger col-auto" (click)="deleteTask()" data-bs-dismiss="modal" aria-label="Close"> Delete </button> <br>
 
     </div>
   </div>

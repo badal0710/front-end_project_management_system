@@ -12,9 +12,9 @@
     <div class="card-title flex-space-between">
       <h1> Project Details </h1>
       <div>
-        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pen-fill"></i> Edit
+        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#edit"><i class="bi bi-pen-fill"></i> Edit
         </button> &nbsp; &nbsp;
-        <button class="btn btn-danger" (click)="deleteProject()">
+        <button class="btn btn-outline-danger" (click)="deleteProject()">
           <i class="bi bi-trash-fill"></i> Delete 
         </button>
       </div>
@@ -52,7 +52,7 @@
   <div class="card shadow p-3 mt-4">
     <div class="flex-space-between">
       <h1> Tasks </h1>
-      <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#create"><i class="bi bi-plus-lg"></i>
+      <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#create"><i class="bi bi-plus-lg"></i>
         Create Task </button>
     </div>
     <div id="allTasks" *ngFor="let taskid of allTasks">

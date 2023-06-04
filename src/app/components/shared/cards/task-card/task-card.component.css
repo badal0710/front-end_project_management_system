@@ -3,12 +3,26 @@
 }
 
 #task-card-main:hover{
-    background-color:beige;
+    background-color:#5c95e0;
+    color: white;
+    /* border-left: 5px #1772eb solid */
 }
 
 #task-description{
     display: flex;
     justify-content: space-between;
+}
+
+.background-orange{
+    background-color: orangered;
+    font-size: larger;
+    color: white;
+}
+
+.background-red{
+    background-color: red;
+    font-size: larger;
+    color: white;
 }
 
 .border-left-5{

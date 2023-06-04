@@ -3,7 +3,8 @@
 }
 
 #project-card-main:hover{
-    background-color:beige;
+    background-color:#5c95e0;
+    color: white;
 }
 
 #project-description{

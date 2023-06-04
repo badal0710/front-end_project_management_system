@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
     <span class="breadcrump-item" *ngFor="let item of myBreadCrumbs">
-    <li class="breadcrump-item"> <span  *ngIf="myBreadCrumbs.indexOf(item) !== 0"> &nbsp; / &nbsp; </span> <a class="btn btn-info" routerLink="{{ item.url }}"> {{ item.name }} </a>  </li>
+    <li class="breadcrump-item"> <span  *ngIf="myBreadCrumbs.indexOf(item) !== 0"> &nbsp; / &nbsp; </span> <a class="btn btn-outline-primary" routerLink="{{ item.url }}"> {{ item.name }} </a>  </li>
     <!-- <li class="breadcrump-item"> <span *ngIf="myBreadCrumbs.indexOf(item) !== 0"> &nbsp; / &nbsp; </span>  {{ item.name }} </li> -->
     </span>
 </ol>

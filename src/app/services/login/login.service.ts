@@ -8,10 +8,13 @@ import { DATABASE_URL } from 'src/app/components/shared/helper/list';
 
 export class LoginService {
 
-  // DATABASE_URL = 'http://localhost:9090';
   database_url = DATABASE_URL;
 
   constructor(private http: HttpClient) { }
+
+  userSignUp(body:any){
+    return this.http.post(`${this.database_url}/api/auth/signup`, body);
+  }
 
   authorizeUser(email: any) {
     return this.http.post(`${this.database_url}/api/auth/signin`, email);

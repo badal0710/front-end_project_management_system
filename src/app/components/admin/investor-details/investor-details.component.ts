@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InvestorService } from 'src/app/services/investor/investor.service';
 import { InvestorProjectServiceService } from 'src/app/services/investorProject/investor-project-service.service';
+import { LoginService } from 'src/app/services/login/login.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class InvestorDetailsComponent implements OnInit {
   
-  constructor(private router:Router,private investorService:InvestorService, private investorProjectServiceService: InvestorProjectServiceService) { }
+  constructor(private router:Router,private investorService:InvestorService, private investorProjectServiceService: InvestorProjectServiceService, private loginService:LoginService) { }
 
   myBreadCrumbs:any = [
     {
@@ -56,9 +57,6 @@ export class InvestorDetailsComponent implements OnInit {
     this.reloadPage();
   }
 
-  // rejectInvestmentRequest(data:any){
-  // }
-
   delete(investorId:any){
     this.investorService.deleteInvestor(investorId).subscribe((result:any)=>{
       Swal.fire("Deleted","Investor Deleted SuccessFully",'success');
@@ -81,6 +79,7 @@ export class InvestorDetailsComponent implements OnInit {
   
       this.investorService.createInvestor(body).subscribe((result:any)=>{
         if(result==200){
+          this.signUpInvestor(body);
           Swal.fire("Created","New Contractor Added",'success');
         }else{
           Swal.fire("Error","Error while Adding Contractor",'error');
@@ -89,6 +88,16 @@ export class InvestorDetailsComponent implements OnInit {
       });
     }
   
+  }
+
+  signUpInvestor(body:any){
+    let signupBody = {
+      "username":body.name,
+      "email":body.email,
+      "password":"password",
+      "role":["investor"]
+    }
+    this.loginService.userSignUp(signupBody).subscribe();
   }
 
   isValid(formValues: NgForm): boolean {

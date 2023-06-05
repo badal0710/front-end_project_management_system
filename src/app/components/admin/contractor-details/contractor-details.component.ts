@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ContractorService } from 'src/app/services/contractor/contractor.service';
 import { typeOfContractor } from '../../shared/helper/list';
 import Swal from 'sweetalert2';
+import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
   selector: 'app-contractor-details',
@@ -12,7 +13,7 @@ import Swal from 'sweetalert2';
 })
 export class ContractorDetailsComponent implements OnInit {
 
-  constructor(private contractorService:ContractorService) { }
+  constructor(private contractorService:ContractorService, private loginService:LoginService) { }
 
   myBreadCrumbs:any = [
     {
@@ -64,6 +65,7 @@ export class ContractorDetailsComponent implements OnInit {
   
       this.contractorService.createContractor(body).subscribe((result:any)=>{
         if(result==200){
+          this.signUpContractor(body);
           Swal.fire("Created","New Contractor Added",'success');
         }else{
           Swal.fire("Error","Error while Adding Contractor",'error');
@@ -71,6 +73,16 @@ export class ContractorDetailsComponent implements OnInit {
         this.reloadPage();
       });
     }    
+  }
+
+  signUpContractor(body:any){
+    let signupBody = {
+      "username":body.contractorName,
+      "email":body.email,
+      "password":"password",
+      "role":["contractor"]
+    }
+    this.loginService.userSignUp(signupBody).subscribe();
   }
 
   isValid(formValues: NgForm): boolean {

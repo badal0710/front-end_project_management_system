@@ -20,6 +20,12 @@ export class CdashboardComponent implements OnInit {
     this.loadData();
   }
 
+  resetData(){
+    this.inProgress = [];
+    this.notStart = [];
+    this.done = [];
+  }
+
   loadData(){
     this.taskdetail.getAllTasks().subscribe((tasks:any)=>{
       for (let task of tasks) {
@@ -36,7 +42,8 @@ export class CdashboardComponent implements OnInit {
 
   reloadParent(){
     setTimeout(() => {
-      location.reload();
+      this.resetData();
+      this.loadData();
     }, 3000);
   }
 

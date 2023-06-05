@@ -21,55 +21,12 @@ export class InvestorDetailsComponent implements OnInit {
     }
   ];
 
-  InvestorName:any='Investor\'s list ';
-  InvestorAction:any=['Investor',['name','email','address','phoneno','experience','investedMoney']];
-  InvestorKeys:any=[];
-  InvestorValue:any=[];
-  InvestorRowAction:any=[['Delete','admin/projects']];
-
-  ProjectInvestorName:any='Project Investor list';
-  ProjectInvestorAction:any=['ProjectInvestor',['invested_share','investor_id','project_id']];
-  ProjectInvestorKeys:any=[];
-  ProjectInvestorValue:any=[];
-  ProjectInvestorRowAction:any=[['Delete','admin/projects']];
-
-  InvestorChartName:any='Investor Experience';
-  InvestorChartType:any='pie';
-  InvestorChartLabel:any=[];
-  InvestorChartValue:any=[];
-
   projectInvestors:any[]=[];
 
   Investors:any[]=[];
 
   ngOnInit(): void {
-
-    this.allInvestors();
-    this.getRequestOfInvestments();
-
-
-    // this.investorProjectServiceService.getAllProjectInvestor().subscribe( (projectInvestors: any) => {
-
-    //   for(let projectInvestor of projectInvestors){
-
-    //     let keys = Object.keys(projectInvestor);
-    //     let firstElement = keys[0];
-    //     let lastElement = keys[keys.length - 1];
-    //     let mykeys = [firstElement,lastElement];
-
-    //     let values = Object.values(projectInvestor);
-    //     let firstvElement = values[0];
-    //     let lastvElement = values[values.length - 1];
-    //     let myvalues = [firstvElement,lastvElement];
-
-    //     this.ProjectInvestorKeys.push(mykeys)
-    //     this.ProjectInvestorValue.push(myvalues);
-
-    //   }
-
-    // } );
-
-
+    this.loadData();
   }
 
   getRequestOfInvestments(){
@@ -95,7 +52,8 @@ export class InvestorDetailsComponent implements OnInit {
     Swal.fire('Accepted', 'Investor Added to Project','success');
     this.investorProjectServiceService.acceptInvestmentRequest(id).subscribe((result:any)=>{
     });
-    this.router.navigate(['/admin']);
+    // this.router.navigate(['/admin']);
+    this.reloadPage();
   }
 
   // rejectInvestmentRequest(data:any){
@@ -157,8 +115,8 @@ export class InvestorDetailsComponent implements OnInit {
       msg += '<li>phone number is require</li>';
       error++;
     }else{
-      if (formValues.value.phone.length!=10) {
-        msg += '<li>phone number must be 10 digit</li>';
+      if (formValues.value.phone.toString().length!==10) {
+        msg += `<li>phone number must be 10 digit ${formValues.value.phone} ${formValues.value.phone.length} </li>`;
         error++;
       }
     }
@@ -185,9 +143,19 @@ export class InvestorDetailsComponent implements OnInit {
 
   reloadPage(){
     setTimeout(() => {
-      location.reload();
+      this.resetData();
+      this.loadData();
     }, 3000);
   }
 
+  loadData(){
+    this.allInvestors();
+    this.getRequestOfInvestments();
+  }
+
+  resetData(){
+    this.projectInvestors=[];
+    this.Investors=[];
+  }
 
 }

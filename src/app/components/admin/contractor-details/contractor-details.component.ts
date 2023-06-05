@@ -24,7 +24,15 @@ export class ContractorDetailsComponent implements OnInit {
   contractors:any[]=[];
 
   ngOnInit(): void {
+    this.loadData();
+  }
+  
+  loadData(){
     this.allContractors();
+  }
+
+  resetData(){
+    this.contractors=[];
   }
 
   allContractors(){
@@ -89,7 +97,7 @@ export class ContractorDetailsComponent implements OnInit {
       msg += '<li>phone number is require</li>';
       error++;
     }else{
-      if (formValues.value.phone.length!=10) {
+      if (formValues.value.phone.toString().length!=10) {
         msg += '<li>phone number must be 10 digit</li>';
         error++;
       }
@@ -122,7 +130,8 @@ export class ContractorDetailsComponent implements OnInit {
 
   reloadPage(){
     setTimeout(() => {
-      location.reload();
+      this.resetData();
+      this.loadData();
     }, 3000);
   }
 

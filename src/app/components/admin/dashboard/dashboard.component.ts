@@ -20,11 +20,23 @@ export class DashboardComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    this.loadData();
+  }
+  
+  async loadData(){
     this.projects();
     this.loadCards();
     this.Alllocations();
   }
-  
+
+  async resetData(){
+    this.filterProjects='all';
+    this.allProjects=[];
+    this.notStartedProjects=[];
+    this.onGoingProjects=[];
+    this.doneProjects=[];
+    this.locations=[];
+  }
   // breadcrumbs
   myBreadCrumbs:any = [
     {
@@ -34,9 +46,9 @@ export class DashboardComponent implements OnInit {
   ];
 
   // card
-  investorCard=['bi bi-currency-dollar','Investor',20,'investorDetail'];
-  contractorCard=['bi bi-person','Contractor',30,'contractorDetail'];
-  projectCard=['bi bi-buildings','Projects',120,'null'];
+  investorCard=['bi bi-currency-dollar','Investor',0,'investorDetail'];
+  contractorCard=['bi bi-person','Contractor',0,'contractorDetail'];
+  projectCard=['bi bi-buildings','Projects',0,'null'];
 
   filterProjects:any='all';
   allProjects:any[]=[];
@@ -83,7 +95,9 @@ export class DashboardComponent implements OnInit {
           Swal.fire("Error","Error while creating New Project",'error');
         }
       });
-      location.reload();
+      setTimeout(() => {
+        this.reloadData();
+      }, 3000);
     }
   }
 
@@ -170,4 +184,8 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  async reloadData(){
+    await this.resetData();
+    await this.loadData();
+  }
 }

@@ -57,6 +57,14 @@ export class IdashboardComponent implements OnInit {
    });
  }
 
+ resetData(){
+  this.requestToInvest = [];
+  this.inProgress = [];
+  this.notStart = [];
+  this.done = [];
+  this.notInvestedProject = [];
+ }
+
  invest(data:NgForm){
   this.investorProjectServiceService.createProjectInvestor(data.value,localStorage.getItem("UPN")).subscribe((result:any)=>{
     if (result === 200) {
@@ -72,7 +80,8 @@ export class IdashboardComponent implements OnInit {
  }
 
  reloadParent(){
-  location.reload();
+  this.resetData();
+  this.loadData();
 }
 
 }

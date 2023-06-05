@@ -22,7 +22,6 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   listOfTaskType:string[]=typeOfTask;
   listOfProjectType:string[]=typeOfProject;
 
-  // breadcrumbs
   myBreadCrumbs: any = [
     {
       name: 'Home',
@@ -42,8 +41,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.projectId = this.route.snapshot.paramMap.get("id");
-    this.loadData(this.projectId);
+    this.loadData();
   }
 
   tasksOfProject(id: any) {
@@ -80,7 +78,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
         } else {
           Swal.fire('Error','Error while updating Project','error')
         } 
-        this.loadData(this.route.snapshot.paramMap.get("id"));
+        this.loadData();
       })
     }
   }
@@ -108,7 +106,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
             Swal.fire('Error','Error while Creating Task','error')
           }
           this.reloadPage();
-          this.loadData(this.route.snapshot.paramMap.get("id"));
+          this.loadData();
         });
       } catch (error) {
         Swal.fire('Error','Error while Creating Task','error');
@@ -167,11 +165,6 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
       error++; 
     }
   
-    // if (!formValues.value.status) {
-    //   msg += '<li>Please choose Status </li>';
-    //   error++;
-    // }
-  
     if (!formValues.value.start) {
       msg += '<li>StartDate is require</li>';
       error++;
@@ -210,10 +203,13 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   deleteProject(){
     this.projectsDetailService.deleteProject(this.route.snapshot.paramMap.get("id")).subscribe();
     Swal.fire('Delete','this project was Deleted','success')
-    this.router.navigateByUrl('/admin/dashboard');
+    setTimeout(() => {
+      this.router.navigateByUrl('/admin/dashboard');
+    }, 3000);
   }
 
-  loadData(id:any){
+  loadData(){
+    let id = this.route.snapshot.paramMap.get("id");
     this.detailOfProject(id);
     this.tasksOfProject(id);
     this.Alllocations();
@@ -238,8 +234,21 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
 
   reloadPage(){
     setTimeout(() => {
-      location.reload();
+      this.reloadData();
     }, 3000);
+  }
+
+  resetData(){
+    this.projectId= null;
+    this.allTasks=[];
+    this.projectDetail=null;
+    this.locations=[];
+    this.contractors=[];
+  }
+
+  reloadData(){
+    this.resetData();
+    this.loadData();
   }
 
 

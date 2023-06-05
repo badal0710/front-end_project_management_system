@@ -1,70 +1,81 @@
 <section class="background-radial-gradient overflow-hidden">
 
    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
-  
-    <div class="row gx-lg-5 align-items-center mb-5">
-  
-     <div class="col-lg-6 mb-5 mb-lg-0 z-10">
-  
-      <h1 class="my-5 display-5 fw-bold ls-tight color-95">
-  
-       The best offer <br />
-  
-       <span class="color-75">for your business</span>
-  
-      </h1>
-  
-      <p class="mb-4 opacity-70 color-85">
-  
-         <span>Welcome to our Real Estate Project Management Website!</span><br>
 
-         we understand that managing real estate projects can be complex and time-consuming. 
-         That's why we've developed a comprehensive online platform specifically designed to streamline and enhance your real estate project management experience. 
-         Our website offers a range of powerful tools and features to help you effectively plan, track, and collaborate on your projects from start to finish.
-  
-      </p>
-  
-     </div>
-  
-     <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-  
-      <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
-  
-      <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
-  
-      <div class="card bg-glass">
-  
-       <div class="card-body px-4 py-5 px-md-5">
-  
-        <form>
-  
-         <div class="d-flex justify-content-center py-4">
-          <a href="index.html" class="logo d-flex align-items-center w-auto">
-           <img height="300rem" src="assets/image/logo.png" alt="" />
-          </a>
+      <div class="row gx-lg-5 align-items-center mb-5">
+
+         <div class="col-lg-6 mb-5 mb-lg-0 z-10">
+
+            <h1 class="my-5 display-5 fw-bold ls-tight color-95">
+
+               The best offer <br />
+
+               <span class="color-75">for your business</span>
+
+            </h1>
+
+            <p class="mb-4 opacity-70 color-85">
+
+               <span>Welcome to our Real Estate Project Management Website!</span><br>
+
+               we understand that managing real estate projects can be complex and time-consuming.
+               That's why we've developed a comprehensive online platform specifically designed to streamline and
+               enhance your real estate project management experience.
+               Our website offers a range of powerful tools and features to help you effectively plan, track, and
+               collaborate on your projects from start to finish.
+
+            </p>
+
          </div>
 
-         <div class="text-center">
-          <div class="container p-3 mb-3">
-           <div class="google-btn container">
-            <asl-google-signin-button type="standard" shape="rectangular" size="medium" theme="filled_blue"
-             text="signin_with" locale="en-IN" logo_alignment="left" class="container flex-center" (signIn)="getAccessToken()">
-            </asl-google-signin-button>
-  
-           </div>  
-          </div>
+         <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+
+            <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+
+            <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+
+            <div class="card bg-glass">
+
+               <div class="card-body px-4 py-5 px-md-5">
+
+                  <form #createData="ngForm" (ngSubmit)="tmpLogin(createData)">
+
+                     <div class="d-flex justify-content-center py-4">
+                        <a href="index.html" class="logo d-flex align-items-center w-auto">
+                           <img height="300rem" src="assets/image/logo.png" alt="" />
+                        </a>
+                     </div>
+
+                     <div class="text-center">
+                        <div class="container p-3 mb-3">
+                           <div class="google-btn container">
+                              <div class="form-outline mb-4">
+                                 <input placeholder="abc@gmain.com" ngModel name="email" id="form3Example3"
+                                    class="form-control" />
+                              </div>
+                              <button type="submit" class="btn btn-primary btn-block mb-4">
+                                 login
+                              </button>
+                              <br>OR <br><br>
+                              <asl-google-signin-button type="standard" shape="rectangular" size="medium"
+                                 theme="filled_blue" text="signin_with" locale="en-IN" logo_alignment="left"
+                                 class="container flex-center" (signIn)="getAccessToken()">
+                              </asl-google-signin-button>
+
+                           </div>
+                        </div>
+                     </div>
+
+                  </form>
+
+               </div>
+
+            </div>
+
          </div>
 
-        </form>
-  
-       </div>
-  
       </div>
-  
-     </div>
-  
-    </div>
-  
+
    </div>
-  
-  </section>
+
+</section>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login/login.service';
 import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -26,6 +27,14 @@ export class LoginComponent implements OnInit {
       this.email = user.email;
       this.getAccessToken();
     });
+  }
+
+  tmpmail = '';
+  tmpLogin(data: NgForm) {
+
+    console.log(data.value.email);
+    let email = data.value.email;
+    this.googleLogin(email);
   }
 
   googleLogin(email: any) {
@@ -55,8 +64,8 @@ export class LoginComponent implements OnInit {
 
   getAccessToken(): void {
     this.googleAuth.getAccessToken(GoogleLoginProvider.PROVIDER_ID).then(accessToken =>
-        this.accessToken = accessToken
-      )
+      this.accessToken = accessToken
+    )
     this.googleLogin(this.email);
   }
 

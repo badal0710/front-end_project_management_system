@@ -47,6 +47,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   tasksOfProject(id: any) {
     this.taskdetailService.getAllTaskOfOneProject(id).subscribe((tasks: any) => {
       for (let task of tasks) {
+        console.log(task);
         this.allTasks.push(task.taskId);
       }
     })
@@ -144,6 +145,16 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
 
     if(new Date(formValues.value.start).getTime() > new Date(formValues.value.end).getTime()){
       msg += '<li>EndDate is always Greater than StartDate</li>';
+      error++;
+    }
+
+    if(new Date(this.projectDetail.projectStartingDate).getTime() > new Date(formValues.value.start).getTime()){
+      msg += '<li>Task Start Date is always Greater than Project Start Date</li>';
+      error++;
+    }
+
+    if(new Date(this.projectDetail.projectDeadline).getTime() < new Date(formValues.value.end).getTime()){
+      msg += '<li>Task End Date is always Less than Project End Date</li>';
       error++;
     }
 

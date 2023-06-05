@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
   tmpmail = '';
   tmpLogin(data: NgForm) {
 
-    console.log(data.value.email);
     let email = data.value.email;
     this.googleLogin(email);
   }

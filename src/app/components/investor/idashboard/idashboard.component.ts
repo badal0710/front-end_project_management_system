@@ -60,9 +60,9 @@ export class IdashboardComponent implements OnInit {
  invest(data:NgForm){
   this.investorProjectServiceService.createProjectInvestor(data.value,localStorage.getItem("UPN")).subscribe((result:any)=>{
     if (result === 200) {
-      Swal.fire('Investment request send','Investment Request Send to Admin, wait Untill Admin Approve It')
+      Swal.fire('Investment request send','Investment Request Send to Admin, wait Untill Admin Approve It','success')
     } else {
-      Swal.fire('fail','Error while Sending investment Request to admin')
+      Swal.fire('fail','Error while Sending investment Request to admin','error')
     } 
   })
   setTimeout(() => {

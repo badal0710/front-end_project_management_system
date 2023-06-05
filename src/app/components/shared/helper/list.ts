@@ -66,7 +66,7 @@ export const typeOfContractor: string[] = [
     'Civil Engineering Contractors',
 ];
 
-// export const DATABASE_URL='http://ec2-54-74-140-145.eu-west-1.compute.amazonaws.com:9090';
+// export const DATABASE_URL='http://ec2-63-33-57-183.eu-west-1.compute.amazonaws.com:9090';
 export const DATABASE_URL='http://localhost:9090';
 
 

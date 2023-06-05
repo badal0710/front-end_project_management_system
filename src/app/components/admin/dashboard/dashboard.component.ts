@@ -78,9 +78,9 @@ export class DashboardComponent implements OnInit {
       };
       this.projectService.createProject(body).subscribe((result:any)=>{
         try {
-          Swal.fire("Created","Project Successfully Created");
+          Swal.fire("Created","Project Successfully Created",'success');
         } catch (error) {
-          Swal.fire("Error","Error while creating New Project");
+          Swal.fire("Error","Error while creating New Project",'error');
         }
       });
       location.reload();

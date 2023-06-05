@@ -3,8 +3,8 @@
 }
 
 #task-card-main:hover{
-    background-color:#5c95e0;
-    color: white;
+    background-color:rgb(248, 248, 234);
+    /* color: white; */
     /* border-left: 5px #1772eb solid */
 }
 
@@ -23,6 +23,7 @@
     background-color: red;
     font-size: larger;
     color: white;
+    max-width: 300px;
 }
 
 .border-left-5{

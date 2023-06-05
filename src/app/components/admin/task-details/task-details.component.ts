@@ -39,10 +39,10 @@ export class TaskDetailsComponent implements OnInit {
   updateTask(){
     this.taskdetailService.updateTask(this.formData,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
       if (result===200) {
-        Swal.fire('update','Task Updated')
+        Swal.fire('update','Task Updated','success')
         this.loadData();
       } else {
-        Swal.fire('Error',`Error while updating Task: ${result}`)
+        Swal.fire('Error',`Error while updating Task: ${result}`,'error')
       }
     })
   }
@@ -50,10 +50,10 @@ export class TaskDetailsComponent implements OnInit {
   deleteTask(){
     this.taskdetailService.deleteTask(this.route.snapshot.paramMap.get("id")).subscribe((result:any)=>{
       if(result===200){
-        Swal.fire('Delete','this project was Deleted')
+        Swal.fire('Delete','this project was Deleted','success')
         this.router.navigateByUrl('/admin/dashboard');
       }else{
-        Swal.fire('Delete','this project was not Deleted')
+        Swal.fire('Delete','this project was not Deleted','error')
       }
     });
     

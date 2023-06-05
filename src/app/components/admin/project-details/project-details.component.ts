@@ -75,10 +75,10 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
     
       this.projectsDetailService.updateProject(body,this.route.snapshot.paramMap.get("id")).subscribe((result:any) =>{
         if (result === "OK") {
-          Swal.fire('update','Project Updated')
+          Swal.fire('update','Project Updated','success')
           this.reloadPage();
         } else {
-          Swal.fire('Error','Error while updating Project')
+          Swal.fire('Error','Error while updating Project','error')
         } 
         this.loadData(this.route.snapshot.paramMap.get("id"));
       })
@@ -100,18 +100,18 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
         this.taskdetailService.createTask(body).subscribe((result:any)=>{
           try {
             if (result === 200) {
-              Swal.fire('Created','New Task Created')
+              Swal.fire('Created','New Task Created','success')
             } else {
-              Swal.fire('Error','Error while Creating Task')
+              Swal.fire('Error','Error while Creating Task','error')
             }
           } catch (error) {
-            Swal.fire('Error','Error while Creating Task')
+            Swal.fire('Error','Error while Creating Task','error')
           }
           this.reloadPage();
           this.loadData(this.route.snapshot.paramMap.get("id"));
         });
       } catch (error) {
-        Swal.fire('Error','Error while Creating Task');
+        Swal.fire('Error','Error while Creating Task','error');
       }
     }   
   }
@@ -209,7 +209,7 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
 
   deleteProject(){
     this.projectsDetailService.deleteProject(this.route.snapshot.paramMap.get("id")).subscribe();
-    Swal.fire('Delete','this project was Deleted')
+    Swal.fire('Delete','this project was Deleted','success')
     this.router.navigateByUrl('/admin/dashboard');
   }
 

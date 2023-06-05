@@ -37,7 +37,7 @@ export class ContractorDetailsComponent implements OnInit {
 
   delete(contractorId:any){
     this.contractorService.deleteContractor(contractorId).subscribe((result:any)=>{
-      Swal.fire("Deleted","Contractor Deleted SuccessFully");
+      Swal.fire("Deleted","Contractor Deleted SuccessFully",'success');
       this.reloadPage();
     });
   }
@@ -56,9 +56,9 @@ export class ContractorDetailsComponent implements OnInit {
   
       this.contractorService.createContractor(body).subscribe((result:any)=>{
         if(result==200){
-          Swal.fire("Created","New Contractor Added");
+          Swal.fire("Created","New Contractor Added",'success');
         }else{
-          Swal.fire("Error","Error while Adding Contractor");
+          Swal.fire("Error","Error while Adding Contractor",'error');
         }
         this.reloadPage();
       });

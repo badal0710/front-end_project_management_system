@@ -19,13 +19,13 @@ export class InvestorComponent implements OnInit {
 
   authorizeUser(type: any) {
     if (localStorage.getItem('UPN') === null) {
-      Swal.fire('YOU ARE UNAUTHORIZED', 'Please Login to Continue');
+      Swal.fire('YOU ARE UNAUTHORIZED', 'Please Login to Continue','success');
       localStorage.clear();
       this.router.navigateByUrl('/login');
     } else {
       this.loginservice.authorizeUser(localStorage.getItem('UPN')).subscribe((result: any) => {
         if (result.roles[0] !== type) {
-          Swal.fire('YOU ARE UNAUTHORIZED', 'You Cannot have a Access of This Page');
+          Swal.fire('YOU ARE UNAUTHORIZED', 'You Cannot have a Access of This Page','error');
           localStorage.clear();
           this.googleAuth.signOut();
           this.router.navigateByUrl('/login');

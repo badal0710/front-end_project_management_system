@@ -50,5 +50,4 @@ export class CommentCardComponent implements OnInit {
     }, 3000);
   }
   
-
 }

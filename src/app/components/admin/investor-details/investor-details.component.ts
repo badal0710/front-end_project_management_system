@@ -92,7 +92,7 @@ export class InvestorDetailsComponent implements OnInit {
   }
 
   acceptInvestmentRequest(id:any){
-    Swal.fire('Accepted', 'Investor Added to Project');
+    Swal.fire('Accepted', 'Investor Added to Project','success');
     this.investorProjectServiceService.acceptInvestmentRequest(id).subscribe((result:any)=>{
     });
     this.router.navigate(['/admin']);
@@ -103,7 +103,7 @@ export class InvestorDetailsComponent implements OnInit {
 
   delete(investorId:any){
     this.investorService.deleteInvestor(investorId).subscribe((result:any)=>{
-      Swal.fire("Deleted","Investor Deleted SuccessFully");
+      Swal.fire("Deleted","Investor Deleted SuccessFully",'success');
       this.reloadPage();
     });
   }
@@ -123,9 +123,9 @@ export class InvestorDetailsComponent implements OnInit {
   
       this.investorService.createInvestor(body).subscribe((result:any)=>{
         if(result==200){
-          Swal.fire("Created","New Contractor Added");
+          Swal.fire("Created","New Contractor Added",'success');
         }else{
-          Swal.fire("Error","Error while Adding Contractor");
+          Swal.fire("Error","Error while Adding Contractor",'error');
         }
         this.reloadPage();
       });

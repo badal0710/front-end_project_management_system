@@ -44,11 +44,11 @@ export class TaskCardComponent implements OnInit {
         "taskStatus":progressValue
       }
       this.taskDetail.updateTask(body,this.id).subscribe((result:any)=>{
-          Swal.fire('update','Task Status Updated'); 
+          Swal.fire('update','Task Status Updated','success'); 
       });
       this.reloadParent.emit('updatePage');
     } catch (error) {
-      Swal.fire('Error','Error while updating Status of Task');
+      Swal.fire('Error','Error while updating Status of Task','error');
     }
   }
 
@@ -86,14 +86,14 @@ export class TaskCardComponent implements OnInit {
       this.taskDetail.deleteTask(this.id).subscribe((result:any)=>{
        
         if (result === 200) {
-          Swal.fire('Deleted','Task Deleted')
+          Swal.fire('Deleted','Task Deleted','success')
         } else {
-          Swal.fire('Error','Error while updating Task')
+          Swal.fire('Error','Error while updating Task','error')
         } 
       });
       this.reloadParent.emit('updatePage');
     } catch (error) {
-      Swal.fire('Error','Error while updating Task')
+      Swal.fire('Error','Error while updating Task','error')
     }
     
   }

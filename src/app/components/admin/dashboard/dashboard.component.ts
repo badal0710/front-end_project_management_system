@@ -81,7 +81,7 @@ export class DashboardComponent implements OnInit {
   createProject(data:NgForm){
     if(this.isValid(data)){
       const body = {
-        "projectStatus":parseInt("10"),
+        "projectStatus":parseInt("0"),
         "projectName":data.value.name,
         "projectStartingDate":data.value.start,
         "projectDeadline":data.value.end,

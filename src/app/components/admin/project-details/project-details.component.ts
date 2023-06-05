@@ -47,7 +47,6 @@ export class ProjectDetailsComponent implements OnInit,AfterViewInit {
   tasksOfProject(id: any) {
     this.taskdetailService.getAllTaskOfOneProject(id).subscribe((tasks: any) => {
       for (let task of tasks) {
-        console.log(task);
         this.allTasks.push(task.taskId);
       }
     })

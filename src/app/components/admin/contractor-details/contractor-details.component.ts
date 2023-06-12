@@ -91,6 +91,13 @@ export class ContractorDetailsComponent implements OnInit {
     if (!formValues.value.name || formValues.value.name.trim() === '') {
       msg += '<li>Name is require</li>';
       error++; 
+    }else{
+      let regex = /[^\w\s]|[\d]/g;
+      let result = regex.test(formValues.value.name);
+      if(result){
+        msg += '<li>Special Character or Digits not allowed on Names </li>';
+        error++; 
+      }
     }
   
     if (!formValues.value.email) {
@@ -128,6 +135,11 @@ export class ContractorDetailsComponent implements OnInit {
     if (!formValues.value.experience) {
       msg += '<li> experience is require </li>';
       error++;
+    }else{
+      if(formValues.value.experience < 0 || formValues.value.experience > 100){
+        msg += `<li> experience must be between 0 to 100  </li>`;
+        error++;
+      }
     }
 
     if(error==0){

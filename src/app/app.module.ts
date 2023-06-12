@@ -103,7 +103,7 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
       "masterLoaderId": "master",
       "overlayBorderRadius": "0",
       "overlayColor": "rgba(40, 40, 40, 0.8)",
-      "pbColor": "red",
+      "pbColor": "black",
       "pbDirection": "ltr",
       "pbThickness": 7,
       "hasProgressBar": true,

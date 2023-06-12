@@ -19,7 +19,7 @@ export class InvestorComponent implements OnInit {
 
   authorizeUser(type: any) {
     if (localStorage.getItem('UPN') === null) {
-      Swal.fire('YOU ARE UNAUTHORIZED', 'Please Login to Continue','success');
+      Swal.fire('YOU ARE UNAUTHORIZED', 'Please Login to Continue','info');
       localStorage.clear();
       this.router.navigateByUrl('/login');
     } else {

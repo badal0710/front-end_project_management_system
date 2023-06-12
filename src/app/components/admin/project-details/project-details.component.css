@@ -4,7 +4,7 @@
 
 #allTasks > app-task-card {
     margin: 5%;
-    min-width: 400px;
+    min-width: 100px;
 }
 
 #detailsOfProject > div{

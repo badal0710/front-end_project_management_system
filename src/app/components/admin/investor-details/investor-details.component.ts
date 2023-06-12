@@ -80,9 +80,9 @@ export class InvestorDetailsComponent implements OnInit {
       this.investorService.createInvestor(body).subscribe((result:any)=>{
         if(result==200){
           this.signUpInvestor(body);
-          Swal.fire("Created","New Contractor Added",'success');
+          Swal.fire("Created","New Investor Added",'success');
         }else{
-          Swal.fire("Error","Error while Adding Contractor",'error');
+          Swal.fire("Error","Error while Adding Investor",'error');
         }
         this.reloadPage();
       });

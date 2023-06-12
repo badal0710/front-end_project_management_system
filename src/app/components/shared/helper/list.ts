@@ -66,7 +66,9 @@ export const typeOfContractor: string[] = [
     'Civil Engineering Contractors',
 ];
 
-export const DATABASE_URL='http://52.48.108.122:9090';
+// export const DATABASE_URL='https://dxmsjilz0lci1.cloudfront.net/apii';
+// export const DATABASE_URL='http://localhost/myapi';
 // export const DATABASE_URL='http://localhost:9090';
+export const DATABASE_URL="https://ec2-52-48-108-122.eu-west-1.compute.amazonaws.com:9090"
 
 

@@ -1,5 +1,6 @@
 #task-card-main{
     margin-top: 10px;
+    max-width: 300px;
 }
 
 #task-card-main:hover{

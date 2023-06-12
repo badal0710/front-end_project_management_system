@@ -21,7 +21,7 @@ import { SocialLoginModule, SocialAuthServiceConfig, GoogleSigninButtonModule, S
 import {
   GoogleLoginProvider
 } from '@abacritt/angularx-social-login';
-import { LoginsComponent } from './components/logins/logins.component'; 
+import { LoginsComponent } from './components/logins/logins.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
@@ -41,8 +41,7 @@ import { IdashboardComponent } from './components/investor/idashboard/idashboard
 import { TaskCardComponent } from './components/shared/cards/task-card/task-card.component';
 import { ProjectCardComponent } from './components/shared/cards/project-card/project-card/project-card.component';
 import { CommentCardComponent } from './components/shared/cards/comment-card/comment-card.component';
-
-
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 
 @NgModule({
   declarations: [
@@ -84,7 +83,38 @@ import { CommentCardComponent } from './components/shared/cards/comment-card/com
     ReactiveFormsModule,
     SocialLoginModule,
     GoogleSigninButtonModule,
-    ReactiveFormsModule
+    NgxUiLoaderModule.forRoot({
+      "bgsColor": "black",
+      "bgsOpacity": 0.9,
+      "bgsPosition": "center-center",
+      "bgsSize": 60,
+      "bgsType": "ball-spin",
+      "blur": 5,
+      "delay": 0,
+      "fastFadeOut": true,
+      "fgsColor": "black",
+      "fgsPosition": "center-center",
+      "fgsSize": 60,
+      "fgsType": "ball-spin-clockwise",
+      "gap": 63,
+      "logoPosition": "center-center",
+      "logoSize": 120,
+      "logoUrl": "",
+      "masterLoaderId": "master",
+      "overlayBorderRadius": "0",
+      "overlayColor": "rgba(40, 40, 40, 0.8)",
+      "pbColor": "red",
+      "pbDirection": "ltr",
+      "pbThickness": 7,
+      "hasProgressBar": true,
+      "text": "Loding....",
+      "textColor": "black",
+      "textPosition": "center-center",
+      "maxTime": -1,
+      "minTime": 300
+    }),
+
+    NgxUiLoaderHttpModule.forRoot({ showForeground: true })
   ],
   providers: [
     SocialAuthService,

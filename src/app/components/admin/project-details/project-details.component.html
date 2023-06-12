@@ -55,8 +55,10 @@
       <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#create"><i class="bi bi-plus-lg"></i>
         Create Task </button>
     </div>
-    <div id="allTasks" *ngFor="let taskid of allTasks">
-      <app-task-card [id]="taskid" [user]="'admin'" (reloadParent)="reloadPage()"></app-task-card>
+    <div id="allTasks">
+      <ng-container *ngFor="let taskid of allTasks">
+        <app-task-card [id]="taskid" [user]="'admin'" (reloadParent)="reloadPage()"></app-task-card>
+      </ng-container>
     </div>
   </div>
 

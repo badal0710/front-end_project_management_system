@@ -2,10 +2,16 @@
     margin: 20px;
 }
 
+#allTasks {
+    display: flex;
+    align-items: center;
+}
+
 #allTasks > app-task-card {
     margin: 5%;
-    min-width: 100px;
+    width: 300px;
 }
+
 
 #detailsOfProject > div{
     margin-bottom: 20px;

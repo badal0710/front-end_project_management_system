@@ -55,23 +55,40 @@ export class DashboardComponent implements OnInit {
   notStartedProjects:any[]=[];
   onGoingProjects:any[]=[];
   doneProjects:any[]=[];
+  filterStartDate:any='';
+  filterEndDate:any='';
 
   listOfProjectType:string[]=typeOfProject;  
   locations:any[]=[];
 
   projects(){
+
     this.projectService.getAllProject().subscribe((projects:any)=>{
       for(let project of projects){
-        this.allProjects.push(project);
-        if(project.projectStatus===0){
-          this.notStartedProjects.push(project);
-        }else if(project.projectStatus===100){
-          this.doneProjects.push(project);
+        if(this.filterStartDate!='' && this.filterEndDate!=''){
+          if(project.projectStartingDate >=this.filterStartDate && project.projectStartingDate <=this.filterEndDate){
+            this.allProjects.push(project);
+            if(project.projectStatus===0){
+              this.notStartedProjects.push(project);
+            }else if(project.projectStatus===100){
+              this.doneProjects.push(project);
+            }else{
+              this.onGoingProjects.push(project);
+            }
+          }
         }else{
-          this.onGoingProjects.push(project);
+          this.allProjects.push(project);
+          if(project.projectStatus===0){
+            this.notStartedProjects.push(project);
+          }else if(project.projectStatus===100){
+            this.doneProjects.push(project);
+          }else{
+            this.onGoingProjects.push(project);
+          }
         }
       }
     })
+
   }
 
   async view(projectId:number){
@@ -145,6 +162,11 @@ export class DashboardComponent implements OnInit {
   
   }
   
+  async filterByDate(data:NgForm){
+    this.filterStartDate=data.value.filterStartDate;
+    this.filterEndDate=data.value.filterEndDate;
+    await this.reloadData();
+  }
 
   Alllocations(){
     this.projectLocationService.getAllLocation().subscribe((locations:any)=>{

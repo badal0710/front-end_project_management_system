@@ -26,6 +26,7 @@ export class ProjectsDetailService {
   taskDetail = 'task-details';
   projectStatusDate = 'project-status-date';
   countProject = 'totalProject';
+  
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 

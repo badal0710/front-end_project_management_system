@@ -1,7 +1,6 @@
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ChartData } from 'chart.js';
 
 
 import { LoginService } from 'src/app/services/login/login.service';

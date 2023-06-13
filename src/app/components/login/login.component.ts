@@ -72,19 +72,4 @@ export class LoginComponent implements OnInit {
     this.googleAuth.signOut();
   }
 
-
-
-  // navigateMe(result: any) {
-  //   if (result === 1) {
-  //     this.router.navigateByUrl('/admin')
-  //   } else if (result === 2) {
-  //     this.router.navigateByUrl('/investor')
-  //   } else if (result === 3) {
-  //     this.router.navigateByUrl('/contractor')
-  //   } else {
-  //     this.router.navigateByUrl('/errorPage')
-  //   }
-  // }
-
-
 }

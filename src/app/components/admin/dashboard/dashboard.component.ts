@@ -1,7 +1,6 @@
 import {  AfterViewInit, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { NgForm, NgModel } from '@angular/forms';
 import { Router } from '@angular/router';
-import Chart, { ChartData } from 'chart.js/auto';
 import { ContractorService } from 'src/app/services/contractor/contractor.service';
 import { InvestorService } from 'src/app/services/investor/investor.service';
 import { ProjectsDetailService } from 'src/app/services/projectDetail/projects-detail.service';

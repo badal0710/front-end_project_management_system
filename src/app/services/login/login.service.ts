@@ -12,7 +12,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  userSignUp(body:any){
+  userSignUp(body: any) {
     return this.http.post(`${this.database_url}/api/auth/signup`, body);
   }
 
@@ -39,6 +39,32 @@ export class LoginService {
   public getToken() {
     return localStorage.getItem('jwtToken');
   }
+
+  public setemail(email: any) {
+    localStorage.setItem('email', email);
+  }
+
+  public getemail() {
+    return localStorage.getItem('email');
+  }
+
+  public setfirstName(firstName: any) {
+    localStorage.setItem('firstName', firstName);
+  }
+
+  public getfirstName() {
+    return localStorage.getItem('firstName');
+  }
+
+  public setlastName(lastName: any) {
+    localStorage.setItem('lastName', lastName);
+  }
+
+  public getlastName() {
+    return localStorage.getItem('lastName');
+  }
+
+
 
   public clear() {
     localStorage.clear();

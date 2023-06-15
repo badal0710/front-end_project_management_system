@@ -9,26 +9,34 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private readonly googleAuth: SocialAuthService, private router:Router){}
+  constructor(private readonly googleAuth: SocialAuthService, private router: Router) { }
 
-  public static toggle:Boolean=false;
+  public static toggle: Boolean = false;
 
-  sidebarToggle(){
-    if(!HeaderComponent.toggle){
-      HeaderComponent.toggle=true;
+  sidebarToggle() {
+    if (!HeaderComponent.toggle) {
+      HeaderComponent.toggle = true;
       document.getElementById("sideContent")?.classList.add("content");
       document.getElementById("mainContent")?.classList.add("sidePlease");
-    }else{
-      HeaderComponent.toggle=false;
+    } else {
+      HeaderComponent.toggle = false;
       document.getElementById("sideContent")?.classList.remove("content");
       document.getElementById("mainContent")?.classList.remove("sidePlease");
     }
   }
 
-  Logout(){
+  Logout() {
     this.googleAuth.signOut();
     localStorage.clear();
     this.router.navigateByUrl('/login')
+  }
+
+  contactUs() {
+    this.router.navigateByUrl('/contectUs')
+  }
+
+  profile() {
+    this.router.navigateByUrl('/profile')
   }
 
 }

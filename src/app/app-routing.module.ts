@@ -14,6 +14,8 @@ import { ContractorDetailsComponent } from './components/admin/contractor-detail
 
 import { CdashboardComponent } from './components/contractor/cdashboard/cdashboard.component';
 import { IdashboardComponent } from './components/investor/idashboard/idashboard.component';
+import { ProfilePageComponent } from './components/shared/profile-page/profile-page.component';
+import { ContactUsComponent } from './components/shared/contact-us/contact-us.component';
 
 const routes: Routes = [
 
@@ -21,10 +23,16 @@ const routes: Routes = [
   {
     path: '', component: LoginComponent
   },
+  {
+    path: 'profile', component: ProfilePageComponent
+  },
+  {
+    path: 'contectUs', component: ContactUsComponent
+  },
 
   //admin
   {
-    path: 'admin',component: AdminComponent,
+    path: 'admin', component: AdminComponent,
     children: [
       {
         path: '', component: DashboardComponent
@@ -55,26 +63,32 @@ const routes: Routes = [
 
   //component
   {
-    path: 'contractor',component: ContractorComponent,
+    path: 'contractor', component: ContractorComponent,
     children: [
       {
         path: '', component: CdashboardComponent
       },
       {
         path: 'dashboard', component: CdashboardComponent
-      }
+      },
+      {
+        path: 'profile', component: ProfilePageComponent
+      },
     ]
   },
 
   //investor
   {
-    path: 'investor',component: InvestorComponent,
+    path: 'investor', component: InvestorComponent,
     children: [
       {
         path: '', component: IdashboardComponent,
       },
       {
         path: 'dashboard', component: IdashboardComponent,
+      },
+      {
+        path: 'profile', component: ProfilePageComponent
       },
     ]
   },

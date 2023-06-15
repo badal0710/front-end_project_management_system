@@ -17,13 +17,26 @@
   </div>
 
   <div>
+    <div style="display: flex;">
+      <div class="dropdown text-end">
 
-    <div class="dropdown text-end">
+        <button style="margin-right: 10px;" class="btn btn-outline-info" (click)="profile()"> Profile
+        </button>
 
-      <button class="btn btn-outline-danger" (click)="Logout()"><i class="bi bi-box-arrow-left"></i> Logout </button>
+      </div>
+      <div class="dropdown text-end">
 
+        <button style="margin-right: 10px;" class="btn btn-outline-info" (click)="contactUs()"> contactUs
+        </button>
+
+      </div>
+
+      <div class="dropdown text-end">
+
+        <button class="btn btn-outline-danger" (click)="Logout()"><i class="bi bi-box-arrow-left"></i> Logout </button>
+
+      </div>
     </div>
-
   </div>
 
 </header>

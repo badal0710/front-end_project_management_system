@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login/login.service';
 import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Router } from '@angular/router';
@@ -10,7 +10,6 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   username = '';
   password = '';
   email = '';
@@ -24,6 +23,10 @@ export class LoginComponent implements OnInit {
 
     let email = '';
     this.googleAuth.authState.subscribe((user: any) => {
+      console.log("user", user)
+      this.loginService.setemail(user.email)
+      this.loginService.setfirstName(user.firstName)
+      this.loginService.setlastName(user.lastName)
       this.email = user.email;
       this.getAccessToken();
     });
@@ -33,12 +36,12 @@ export class LoginComponent implements OnInit {
   tmpLogin(data: NgForm) {
 
     let email = data.value.email;
-    this.googleLogin(email);
   }
 
   googleLogin(email: any) {
     this.loginService.googleLogin(email).subscribe((result: any) => {
-
+      console.log("res", result.email)
+      // this.loginService.setemail(result.email)
       this.loginService.setRoles(result.roles);
       this.loginService.setToken(result.accessToken);
 

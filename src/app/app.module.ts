@@ -30,6 +30,8 @@ import { TaskCardComponent } from './components/shared/cards/task-card/task-card
 import { ProjectCardComponent } from './components/shared/cards/project-card/project-card/project-card.component';
 import { CommentCardComponent } from './components/shared/cards/comment-card/comment-card.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
+import { ProfilePageComponent } from './components/shared/profile-page/profile-page.component';
+import { ContactUsComponent } from './components/shared/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +53,8 @@ import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
     TaskCardComponent,
     ProjectCardComponent,
     CommentCardComponent,
+    ProfilePageComponent,
+    ContactUsComponent,
   ],
   imports: [
     FormsModule,

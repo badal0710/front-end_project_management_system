@@ -1,65 +1,35 @@
-<app-header *ngIf="loggedIn()"></app-header>
+<app-header id="contect-header" *ngIf="loggedIn()"></app-header>
 <section>
-    <div class="container">
-        <div class="contactInfo">
-            <h2> ADMIN </h2>
+    <div id="mainContect" class="container">
+        <div id="admin" class="card shadow">
+            <h2 id="titles"> ADMIN </h2>
             <ul class="info">
                 <div class="circle">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Your Image">
                   </div>
                 <li>
             </ul>
-            <ul class="sci">
-                <li><a href=""><i class="fab fa-twitter"></i></a></li>
-                <li><a href=""><i class="fab fa-facebook-square"></i></a></li>
-                <li><a href=""><i class="fab fa-google-plus-g"></i></a></li>
-                <li><a href=""><i class="fab fa-snapchat-square"></i></a></li>
-                <li><a href=""><i class="fab fa-whatsapp-square"></i></a></li>
-                <li><a href=""><i class="fab fa-instagram-square"></i></a></li>
-            </ul>
         </div>
-        <div class="contactForm">
-            <div class="formBox w100">
-                <div class="inputBox w50">
-                    <p type="text" name="name" id="name" required></p>
-                    <span>NAME: Manoj Kapure</span>
-                </div>
-                <div class="inputBox w50">
-                    <p type="email" name="email" id="email" required></p>
-                    <span>tmpmail126@gmail.com</span>
-                </div>
+        <div id="info" class="card shadow">
+            <span><br>
 
+                <p>NAME:</p> Manoj Kapure
+            </span>
+            <span><br>
 
-                <!-- <div class="inputBox w100 ">
-                    <p type="number" name="phone" id="phone" required>
-                        <span>+91 6954123526</span>
-                </div> -->
+                <p>EMAIL:</p> manojkapure100@gmail.com
 
-                <div class="inputBox w100">
-                    <p rows="4" cols="50" name="data" id="data" required></p>
+            </span>
+            <span><br>
 
-                    <span><br>
-                        <p>ADDRESS:</p>2945, Meadowbrook road
-                        Los Angeles, CA
-                        90017
-                    </span>
-                    <span></span>
-                </div>
+                <p>ADDRESS:</p>2945, Meadowbrook road
 
-                <div class="inputBox w100">
-                    <p rows="4" cols="50" name="data" id="data" required></p>
+                Los Angeles, CA
 
-                    <span>
-                        <br><br><br>
-                        <p>Mobile Number:</p>+91
-                        7069454545
-                    </span>
-                    <span></span>
-                </div>
-                <div class="inputBox w100">
-                    <p type="submit" name="submit" id="submit" value="Submit" required></p>
-                </div>
-            </div>
+                90017
+
+            </span>
+            <span><br><p>MOBILE NUMBER:</p> +91 6954123526</span>
         </div>
     </div>
 </section>

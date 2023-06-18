@@ -1,27 +1,13 @@
-<app-header></app-header>
+<app-header *ngIf="loggedIn()"></app-header>
 <section>
     <div class="container">
         <div class="contactInfo">
-            <h2>Contact Info</h2>
+            <h2> ADMIN </h2>
             <ul class="info">
+                <div class="circle">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Your Image">
+                  </div>
                 <li>
-                    <span><i class="fas fa-mail-bulk"></i></span>
-                    <span>Sahil@gmail.com</span>
-                </li>
-                <li>
-                    <span><i class="fas fa-location-arrow"></i></span>
-                    <span>2945, Meadowbrook road <br>
-                        Los Angeles, CA <br>
-                        90017 </span>
-                </li>
-                <li>
-                    <span><i class="fas fa-phone-alt"></i></span>
-                    <span>9876543210</span>
-                </li>
-                <li>
-                    <span><i class="fas fa-sms"></i></span>
-                    <span>9876543210</span>
-                </li>
             </ul>
             <ul class="sci">
                 <li><a href=""><i class="fab fa-twitter"></i></a></li>
@@ -33,15 +19,14 @@
             </ul>
         </div>
         <div class="contactForm">
-            <h2>Send a Message</h2>
             <div class="formBox w100">
                 <div class="inputBox w50">
                     <p type="text" name="name" id="name" required></p>
-                    <span>NAME: Dhruv Khunt</span>
+                    <span>NAME: Manoj Kapure</span>
                 </div>
                 <div class="inputBox w50">
                     <p type="email" name="email" id="email" required></p>
-                    <span>DhruvKhunt06@gmail.com</span>
+                    <span>tmpmail126@gmail.com</span>
                 </div>
 
 

@@ -3,6 +3,7 @@ import { LoginService } from '../../services/login/login.service';
 import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   accessToken = '';
   googleClientId = '848983964634-l65hjj1kfa82qm0uejmeebghric7njsk.apps.googleusercontent.com';
   data: any;
+  showHeaders='true';
 
   constructor(private loginService: LoginService, private readonly googleAuth: SocialAuthService, private router: Router) { }
 
@@ -61,8 +63,14 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("ROLE", "Admin");
         this.router.navigate(['/admin'])
       }
+
+      if(role!=="ROLE_ADMIN" && role!=="ROLE_INVESTOR" && role!=="ROLE_CONTRACTOR"){
+        Swal.fire("You Are UnAuthorised","Please Contect Admin","info");
+        this.router.navigate(['/contectUs']);
+      }
     });
   }
+
 
   getAccessToken(): void {
     this.googleAuth.getAccessToken(GoogleLoginProvider.PROVIDER_ID).then(accessToken =>

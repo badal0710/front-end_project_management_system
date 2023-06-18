@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login/login.service';
 
 @Component({
@@ -12,6 +13,10 @@ export class ProfilePageComponent {
   email = this.loginService.getemail();
   firstName = this.loginService.getfirstName();
   lastName = this.loginService.getlastName();
-  constructor(private http: HttpClient, private loginService: LoginService) { }
+  constructor(private http: HttpClient, private loginService: LoginService, private router:Router) { }
+
+  goback(){
+    this.router.navigateByUrl('../'); 
+   }
 
 }

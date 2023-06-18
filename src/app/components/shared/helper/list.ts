@@ -67,9 +67,9 @@ export const typeOfContractor: string[] = [
 ];
 
 // export const DATABASE_URL='https://dxmsjilz0lci1.cloudfront.net/apii';
-// export const DATABASE_URL = 'https://d1sxv3odgzkhr7.cloudfront.net/apii';
+export const DATABASE_URL = 'https://d1sxv3odgzkhr7.cloudfront.net/apii';
 // export const DATABASE_URL='http://localhost/myapi';
-export const DATABASE_URL = 'http://localhost:9090/apii';
+// export const DATABASE_URL = 'http://localhost:9090/apii';
 // export const DATABASE_URL="https://ec2-52-48-108-122.eu-west-1.compute.amazonaws.com:9090"
 
 
